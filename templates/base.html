@@ -41,9 +41,17 @@
                 RARA JEWELS
             </a>
             
-            <button class="navbar-toggler border-gold text-gold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="fa-solid fa-bars"></span>
-            </button>
+            <div class="d-flex align-items-center gap-2 ms-auto navbar-icons"><button class="navbar-toggler border-gold text-gold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"><span class="fa-solid fa-bars"></span></button>
+    <a href="{% url 'shop:wishlist' %}" class="btn text-light position-relative"><i class="fa-regular fa-heart fs-5"></i></a>
+    <a href="{% url 'shop:cart_detail' %}" class="btn text-light position-relative"><i class="fa-solid fa-bag-shopping fs-5 text-gold"></i></a>
+    {% if user.is_authenticated %}
+    <div class="dropdown"><a class="btn text-light dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-regular fa-user fs-5 text-gold"></i><span class="d-none d-lg-inline fs-6">{{ user.name|truncatechars:10 }}</span></a>
+        <ul class="dropdown-menu dropdown-menu-end bg-black border-gold-dim" aria-labelledby="userMenu"><li><a class="dropdown-item text-light-dim" href="{% url 'accounts:dashboard' %}"><i class="fa-solid fa-circle-user me-2"></i>My Profile</a></li><li><a class="dropdown-item text-light-dim" href="{% url 'accounts:dashboard' %}?tab=orders"><i class="fa-solid fa-box me-2"></i>My Orders</a></li><li><hr class="dropdown-divider border-gold-dim"></li><li><a class="dropdown-item text-danger" href="{% url 'accounts:logout' %}"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout</a></li></ul>
+    </div>
+    {% else %}
+    <a href="{% url 'accounts:login' %}" class="btn border-gold text-gold rounded-pill px-3 py-1 fs-6 transition-all hover-gold">Login</a>
+    {% endif %}
+</div>
             
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
@@ -100,51 +108,6 @@
                     </li>
                     {% endif %}
                 </ul>
-
-                <!-- Icons & Actions (Search, Cart, User) -->
-                <div class="d-flex align-items-center gap-3">
-                    <form action="{% url 'shop:products' %}" method="GET" class="d-none d-md-flex search-form relative">
-                        <input type="text" name="q" class="form-control bg-dark border-gold text-light rounded-pill px-3 py-1 text-sm" placeholder="Search jewelry...">
-                        <button type="submit" class="btn text-gold absolute-search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
-                    
-                    <a href="{% url 'shop:wishlist' %}" class="btn text-light position-relative">
-                        <i class="fa-regular fa-heart fs-5"></i>
-                        {% if wishlist_count > 0 %}
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-dark fs-xsmall">
-                            {{ wishlist_count }}
-                        </span>
-                        {% endif %}
-                    </a>
-                    
-                    <a href="{% url 'shop:cart_detail' %}" class="btn text-light position-relative">
-                        <i class="fa-solid fa-bag-shopping fs-5 text-gold"></i>
-                        {% if cart_count > 0 %}
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark fs-xsmall">
-                            {{ cart_count }}
-                        </span>
-                        {% endif %}
-                    </a>
-
-                    {% if user.is_authenticated %}
-                    <div class="dropdown">
-                        <a class="btn text-light dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-regular fa-user fs-5 text-gold"></i>
-                            <span class="d-none d-lg-inline fs-6">{{ user.name|truncatechars:10 }}</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end bg-black border-gold-dim" aria-labelledby="userMenu">
-                            <li><a class="dropdown-item text-light-dim" href="{% url 'accounts:dashboard' %}"><i class="fa-solid fa-circle-user me-2"></i>My Profile</a></li>
-                            <li><a class="dropdown-item text-light-dim" href="{% url 'accounts:dashboard' %}?tab=orders"><i class="fa-solid fa-box me-2"></i>My Orders</a></li>
-                            <li><hr class="dropdown-divider border-gold-dim"></li>
-                            <li><a class="dropdown-item text-danger" href="{% url 'accounts:logout' %}"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout</a></li>
-                        </ul>
-                    </div>
-                    {% else %}
-                    <a href="{% url 'accounts:login' %}" class="btn border-gold text-gold rounded-pill px-3 py-1 fs-6 transition-all hover-gold">
-                        Login
-                    </a>
-                    {% endif %}
-                </div>
             </div>
         </div>
     </nav>

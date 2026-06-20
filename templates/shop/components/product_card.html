@@ -39,21 +39,16 @@
             </div>
             
             <div class="d-flex gap-2">
-                <a href="{% url 'shop:product_detail' product.slug %}" class="btn btn-xs btn-outline-gold rounded-pill w-100 py-1 text-xs">
-                    VIEW DETAILS
-                </a>
                 {% if product.stock > 0 %}
-                <form action="{% url 'shop:add_to_cart' product.id %}" method="POST" class="w-100 m-0">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-xs btn-gold rounded-pill w-100 py-1 text-xs font-semibold">
-                        ADD TO BAG
-                    </button>
-                </form>
+                    <a href="{% url 'shop:product_detail' product.slug %}" class="btn btn-buy-now w-100 py-1 text-xs font-semibold">
+                        BUY NOW
+                    </a>
                 {% else %}
-                <button class="btn btn-xs btn-dark disabled rounded-pill w-100 py-1 text-xs border-gold-dim">
-                    OUT OF STOCK
-                </button>
+                    <button class="btn btn-xs btn-dark disabled rounded-pill w-100 py-1 text-xs border-gold-dim">
+                        OUT OF STOCK
+                    </button>
                 {% endif %}
+            </div>
             </div>
         </div>
     </div>
