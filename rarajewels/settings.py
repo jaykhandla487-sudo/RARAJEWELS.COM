@@ -28,11 +28,11 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "rarajewels.com",
     "www.rarajewels.com",
+    "rarajewelscom-production.up.railway.app",
     ".up.railway.app",
     "localhost",
     "127.0.0.1",
 ]
-
 
 # Application definition
 
