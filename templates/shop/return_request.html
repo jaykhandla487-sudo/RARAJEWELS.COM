@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Request Return | Rara Jewels{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <div class="col-lg-6 mx-auto">
+        <div class="glass-card p-5">
+            <h2 class="playfair-font text-gold mb-3 text-center fs-2">REQUEST ORDER RETURN</h2>
+            <p class="text-xs text-light-dim text-center mb-4">Please submit your return request. Our administrative team will review details and approve/process refunds within 48 hours.</p>
+            
+            <div class="bg-dark-glow p-3 rounded mb-4 text-start border-gold-dim text-sm">
+                <span class="text-xs text-gold d-block mb-1">Return Order Info:</span>
+                <strong class="text-light d-block">Order Number: {{ order.order_number }}</strong>
+                <span class="text-xs text-light-dim d-block mt-1">Purchase Date: {{ order.created_at|date:"d-M-Y" }}</span>
+                <span class="text-xs text-light-dim d-block">Amount Paid: <strong class="text-warning">₹{{ order.total_price }}</strong></span>
+            </div>
+            
+            <div class="alert alert-warning bg-opacity-10 border-gold-dim text-light text-xs mb-4">
+                <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>Note: Items must be returned in their original packaging and unused condition under our 3-Month Return Policy framework.
+            </div>
+            
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-4 text-start">
+                    <label for="id_reason" class="form-label text-xs text-gold">Reason for Return</label>
+                    {{ form.reason }}
+                </div>
+                
+                <button type="submit" class="btn btn-gold rounded-pill w-100 py-3 font-semibold tracking-wide shadow-gold">
+                    SUBMIT RETURN REQUEST
+                </button>
+                <a href="{% url 'accounts:dashboard' %}" class="btn btn-outline-gold rounded-pill w-100 py-2 mt-2">
+                    CANCEL & BACK TO DASHBOARD
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

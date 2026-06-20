@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Signup | Rara Jewels{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <div class="col-lg-5 mx-auto">
+        <div class="glass-card p-5">
+            <div class="gold-gradient-border-top mb-4"></div>
+            
+            <div class="text-center mb-4">
+                <h3 class="playfair-font text-gold fs-3">CREATE ACCOUNT</h3>
+                <p class="text-xs text-light-dim">Sign up to claim unique discount coupons, manage addresses, and save wishlists.</p>
+            </div>
+            
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label class="form-label text-xs text-gold">Full Name</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                        <div class="text-danger text-xs mt-1">{{ form.name.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label text-xs text-gold">Mobile Number</label>
+                    {{ form.mobile }}
+                    {% if form.mobile.errors %}
+                        <div class="text-danger text-xs mt-1">{{ form.mobile.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label text-xs text-gold">Email Address</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="text-danger text-xs mt-1">{{ form.email.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label text-xs text-gold">Password</label>
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                        <div class="text-danger text-xs mt-1">{{ form.password.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-4">
+                    <label class="form-label text-xs text-gold">Confirm Password</label>
+                    {{ form.confirm_password }}
+                    {% if form.confirm_password.errors %}
+                        <div class="text-danger text-xs mt-1">{{ form.confirm_password.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                
+                <button type="submit" class="btn btn-gold rounded-pill w-100 py-3 font-semibold tracking-wide shadow-gold mb-3">
+                    CREATE ACCOUNT
+                </button>
+                
+                <div class="text-center text-xs mt-3">
+                    <span class="text-light-dim">Already have an account?</span>
+                    <a href="{% url 'accounts:login' %}" class="text-warning font-semibold ms-1">Sign In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

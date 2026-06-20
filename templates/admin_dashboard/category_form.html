@@ -1,0 +1,66 @@
+{% extends 'admin_dashboard/base_admin.html' %}
+{% load static %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="playfair-font text-gold mb-1">{{ title }}</h2>
+        <p class="text-xs text-light-dim mb-0">Fill in collection category parameters.</p>
+    </div>
+    <div>
+        <a href="{% url 'shop:admin_categories' %}" class="btn btn-xs btn-outline-gold rounded-pill px-3"><i class="fa-solid fa-chevron-left me-1"></i>Back to Categories</a>
+    </div>
+</div>
+
+<div class="glass-card p-5">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row g-4 col-lg-8">
+            <div class="col-12">
+                <label class="text-xs text-gold mb-1">Category Name</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                <div class="text-danger text-xs mt-1">{{ form.name.errors.0 }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="col-12">
+                <label class="text-xs text-gold mb-1">Parent Category (Optional)</label>
+                {{ form.parent }}
+                <span class="text-xs text-light-dim mt-1 d-block">Leave blank if this is a top-level collection (e.g. Women Collection). Select a parent if it is a subcategory (e.g. Rings).</span>
+                {% if form.parent.errors %}
+                <div class="text-danger text-xs mt-1">{{ form.parent.errors.0 }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="col-12">
+                <label class="text-xs text-gold mb-1">Upload Banner Image (Optional)</label>
+                {{ form.image }}
+                {% if category.image %}
+                <div class="mt-2">
+                    <span class="text-xs text-light-dim d-block mb-1">Current Image:</span>
+                    <img src="{{ category.image.url }}" class="rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="col-12">
+                <label class="text-xs text-gold mb-1">Description</label>
+                {{ form.description }}
+            </div>
+            
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-gold rounded-pill px-5 py-2 font-semibold shadow-gold">
+                    SAVE CATEGORY
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block admin_js %}
+<script>
+    document.getElementById("nav-categories").classList.add("active");
+</script>
+{% endblock %}

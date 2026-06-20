@@ -1,0 +1,141 @@
+{% extends 'admin_dashboard/base_admin.html' %}
+{% load static %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="playfair-font text-gold mb-1">{{ title }}</h2>
+        <p class="text-xs text-light-dim mb-0">Fill in product information and upload media resources.</p>
+    </div>
+    <div>
+        <a href="{% url 'shop:admin_products' %}" class="btn btn-xs btn-outline-gold rounded-pill px-3"><i class="fa-solid fa-chevron-left me-1"></i>Back to Products</a>
+    </div>
+</div>
+
+<div class="glass-card p-5">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row g-4">
+            <!-- Product Basics -->
+            <div class="col-md-6">
+                <label class="text-xs text-gold mb-1">Product Title</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                <div class="text-danger text-xs mt-1">{{ form.name.errors.0 }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+                <label class="text-xs text-gold mb-1">Product Category</label>
+                {{ form.category }}
+                {% if form.category.errors %}
+                <div class="text-danger text-xs mt-1">{{ form.category.errors.0 }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+                <label class="text-xs text-gold mb-1">Price (₹)</label>
+                {{ form.price }}
+                {% if form.price.errors %}
+                <div class="text-danger text-xs mt-1">{{ form.price.errors.0 }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+                <label class="text-xs text-gold mb-1">Discount Price (₹, Optional)</label>
+                {{ form.discount_price }}
+                {% if form.discount_price.errors %}
+                <div class="text-danger text-xs mt-1">{{ form.discount_price.errors.0 }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+                <label class="text-xs text-gold mb-1">Stock Quantity</label>
+                {{ form.stock }}
+                {% if form.stock.errors %}
+                <div class="text-danger text-xs mt-1">{{ form.stock.errors.0 }}</div>
+                {% endif %}
+            </div>
+            
+            <!-- Description -->
+            <div class="col-12">
+                <label class="text-xs text-gold mb-1">Product Description</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                <div class="text-danger text-xs mt-1">{{ form.description.errors.0 }}</div>
+                {% endif %}
+            </div>
+            
+            <!-- Images uploads -->
+            <div class="col-12">
+                <h6 class="small-lettering text-gold mb-3 border-bottom border-gold-dim pb-1">Product Images Uploads</h6>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="text-xs text-gold mb-1">Primary Image (Required)</label>
+                        {{ form.primary_image }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="text-xs text-gold mb-1">Extra Gallery Image 1 (Optional)</label>
+                        {{ form.extra_image_1 }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="text-xs text-gold mb-1">Extra Gallery Image 2 (Optional)</label>
+                        {{ form.extra_image_2 }}
+                    </div>
+                </div>
+                
+                {% if existing_images %}
+                <div class="mt-4">
+                    <span class="text-xs text-gold mb-2 d-block">Existing Images:</span>
+                    <div class="d-flex gap-2">
+                        {% for img in existing_images %}
+                        <div class="position-relative">
+                            <img src="{{ img.image.url }}" class="rounded" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid var(--glass-border);">
+                            {% if img.is_primary %}
+                            <span class="position-absolute bottom-0 start-0 w-100 bg-gold text-dark text-center text-xs py-0">Primary</span>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Promotion flags -->
+            <div class="col-12">
+                <h6 class="small-lettering text-gold mb-3 border-bottom border-gold-dim pb-1">Promotion Placement Badges</h6>
+                <div class="d-flex gap-4 flex-wrap text-sm">
+                    <div class="form-check">
+                        {{ form.is_featured }}
+                        <label class="form-check-label text-light" for="id_is_featured">Featured List</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.is_new_arrival }}
+                        <label class="form-check-label text-light" for="id_is_new_arrival">New Arrival Badge</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.is_best_seller }}
+                        <label class="form-check-label text-light" for="id_is_best_seller">Best Seller Tag</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.is_trending }}
+                        <label class="form-check-label text-light" for="id_is_trending">Trending Flag</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 text-end mt-4">
+                <button type="submit" class="btn btn-gold rounded-pill px-5 py-3 font-semibold shadow-gold">
+                    SAVE PRODUCT
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block admin_js %}
+<script>
+    document.getElementById("nav-products").classList.add("active");
+</script>
+{% endblock %}

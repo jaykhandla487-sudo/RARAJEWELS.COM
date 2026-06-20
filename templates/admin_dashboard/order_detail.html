@@ -1,0 +1,143 @@
+{% extends 'admin_dashboard/base_admin.html' %}
+{% load static %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h2 class="playfair-font text-gold mb-1">ORDER FULFILLMENT PANEL</h2>
+        <p class="text-xs text-light-dim mb-0">Update dispatch pipeline, payments, and print packaging receipts.</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="{% url 'shop:admin_orders' %}" class="btn btn-xs btn-outline-gold rounded-pill px-3"><i class="fa-solid fa-chevron-left me-1"></i>Back to Orders</a>
+        <a href="{% url 'shop:download_invoice' order.id %}" class="btn btn-xs btn-gold rounded-pill px-3"><i class="fa-solid fa-file-pdf me-1"></i>PDF Invoice</a>
+        <a href="{% url 'shop:print_invoice_html' order.id %}" target="_blank" class="btn btn-xs btn-outline-gold rounded-pill px-3"><i class="fa-solid fa-print me-1"></i>Print A4 Invoice</a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Left: Order Details summary -->
+    <div class="col-lg-7">
+        <div class="glass-card p-4 h-100">
+            <h5 class="playfair-font text-gold mb-3 border-bottom border-gold-dim pb-1">ORDER METADATA</h5>
+            
+            <div class="row g-3 text-sm mb-4">
+                <div class="col-6">
+                    <span class="text-light-dim d-block text-xs">Order Number:</span>
+                    <strong class="text-light font-monospace fs-5">{{ order.order_number }}</strong>
+                </div>
+                <div class="col-6">
+                    <span class="text-light-dim d-block text-xs">Date Placed:</span>
+                    <strong class="text-light">{{ order.created_at|date:"Y-m-d h:i A" }}</strong>
+                </div>
+                <div class="col-6">
+                    <span class="text-light-dim d-block text-xs">Payment Method:</span>
+                    <strong class="text-light text-uppercase">{{ order.get_payment_method_display }}</strong>
+                </div>
+                {% if order.razorpay_order_id %}
+                <div class="col-6">
+                    <span class="text-light-dim d-block text-xs">Razorpay Order ID:</span>
+                    <strong class="text-light font-monospace">{{ order.razorpay_order_id }}</strong>
+                </div>
+                {% endif %}
+                {% if order.razorpay_payment_id %}
+                <div class="col-6">
+                    <span class="text-light-dim d-block text-xs">Razorpay Payment ID:</span>
+                    <strong class="text-light font-monospace">{{ order.razorpay_payment_id }}</strong>
+                </div>
+                {% endif %}
+            </div>
+            
+            <h5 class="playfair-font text-gold mb-3 border-bottom border-gold-dim pb-1">CUSTOMER & SHIPPING DETAILS</h5>
+            <div class="bg-black p-3 rounded border border-gold-dim border-opacity-25 text-sm mb-4">
+                <div class="mb-2">
+                    <span class="text-light-dim">Patron Name:</span> <strong class="text-light">{{ order.user.name }}</strong>
+                </div>
+                <div class="mb-2">
+                    <span class="text-light-dim">Patron Email:</span> <strong class="text-light">{{ order.user.email }}</strong>
+                </div>
+                <div class="mb-2">
+                    <span class="text-light-dim">Patron Mobile:</span> <strong class="text-light">{{ order.user.mobile }}</strong>
+                </div>
+                <hr class="border-gold-dim border-opacity-10 my-2">
+                <div>
+                    <span class="text-light-dim d-block mb-1">Shipping Destination:</span>
+                    <p class="text-xs text-light-dim mb-0 lh-base">{{ order.shipping_address|linebreaksbr }}</p>
+                </div>
+            </div>
+            
+            <h5 class="playfair-font text-gold mb-3 border-bottom border-gold-dim pb-1">ORDER BREAKDOWN</h5>
+            <div class="d-flex flex-column gap-3 text-sm">
+                {% for item in order.items.all %}
+                <div class="d-flex align-items-center justify-content-between">
+                    <span>{{ item.quantity }} x {{ item.product.name }}</span>
+                    <span class="text-warning">₹{{ item.subtotal }}</span>
+                </div>
+                {% endfor %}
+                <hr class="border-gold-dim border-opacity-10 my-1">
+                <div class="d-flex justify-content-between text-xs text-light-dim">
+                    <span>Subtotal:</span>
+                    <span>₹{{ order.subtotal }}</span>
+                </div>
+                {% if order.discount_amount > 0 %}
+                <div class="d-flex justify-content-between text-xs text-success">
+                    <span>Promo Discount {% if order.coupon %}({{ order.coupon.code }}){% endif %}:</span>
+                    <span>-₹{{ order.discount_amount }}</span>
+                </div>
+                {% endif %}
+                <div class="d-flex justify-content-between text-xs text-light-dim">
+                    <span>Shipping Charges:</span>
+                    <span>₹{{ order.shipping_charge }}</span>
+                </div>
+                <hr class="border-gold-dim border-opacity-25 my-1">
+                <div class="d-flex justify-content-between font-semibold text-sm">
+                    <span class="text-gold">GRAND TOTAL:</span>
+                    <span class="text-warning fs-5">₹{{ order.total_price }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right: Update Status panel -->
+    <div class="col-lg-5">
+        <div class="glass-card p-4">
+            <h5 class="playfair-font text-gold mb-3 border-bottom border-gold-dim pb-1">UPDATE ORDER PIPELINE</h5>
+            
+            <form method="POST" action=".">
+                {% csrf_token %}
+                
+                <div class="mb-4">
+                    <label for="order_status" class="form-label text-xs text-gold">Fulfillment Shipping Status</label>
+                    <select name="order_status" id="order_status" class="form-select bg-dark border-gold text-light">
+                        <option value="pending" {% if order.order_status == 'pending' %}selected{% endif %}>Pending Processing</option>
+                        <option value="processing" {% if order.order_status == 'processing' %}selected{% endif %}>Processing / Packed</option>
+                        <option value="shipped" {% if order.order_status == 'shipped' %}selected{% endif %}>Shipped / Dispatched</option>
+                        <option value="delivered" {% if order.order_status == 'delivered' %}selected{% endif %}>Delivered Successfully</option>
+                        <option value="cancelled" {% if order.order_status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+                        <option value="returned" {% if order.order_status == 'returned' %}selected{% endif %}>Returned</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="payment_status" class="form-label text-xs text-gold">Billing Payment Status</label>
+                    <select name="payment_status" id="payment_status" class="form-select bg-dark border-gold text-light">
+                        <option value="pending" {% if order.payment_status == 'pending' %}selected{% endif %}>Pending Payment</option>
+                        <option value="completed" {% if order.payment_status == 'completed' %}selected{% endif %}>Completed / Paid</option>
+                        <option value="failed" {% if order.payment_status == 'failed' %}selected{% endif %}>Failed</option>
+                        <option value="refunded" {% if order.payment_status == 'refunded' %}selected{% endif %}>Refunded</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-gold w-100 rounded-pill py-3 font-semibold tracking-wide shadow-gold">
+                    SAVE CHANGES
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block admin_js %}
+<script>
+    document.getElementById("nav-orders").classList.add("active");
+</script>
+{% endblock %}

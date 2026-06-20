@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Order Payment | Rara Jewels{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <div class="col-lg-6 mx-auto">
+        <div class="glass-card p-5 text-center border-gold">
+            <div class="gold-gradient-border-top"></div>
+            
+            {% if is_cod %}
+                <!-- COD SUCCESS STATE -->
+                <i class="fa-solid fa-circle-check text-success fs-1 mb-4"></i>
+                <h2 class="playfair-font text-gold mb-3">ORDER CONFIRMED</h2>
+                <p class="text-sm text-light-dim mb-4">Thank you for shopping with Rara Jewels! Your order has been registered successfully as Cash on Delivery.</p>
+                
+                <div class="bg-dark-glow p-3 rounded mb-4 text-start border-gold-dim">
+                    <span class="text-xs text-gold d-block mb-1">Order Details:</span>
+                    <strong class="text-light text-sm d-block mb-2">Order No: {{ order.order_number }}</strong>
+                    <span class="text-xs text-light-dim d-block">Grand Total: <strong class="text-warning">₹{{ order.total_price }}</strong></span>
+                    <span class="text-xs text-light-dim d-block mt-2">Delivery Address:</span>
+                    <p class="text-xs text-light-dim mb-0 lh-base text-opacity-75">{{ order.shipping_address|linebreaksbr }}</p>
+                </div>
+                
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="{% url 'accounts:dashboard' %}" class="btn btn-gold rounded-pill px-4">VIEW MY ORDERS</a>
+                    <a href="{% url 'shop:products' %}" class="btn btn-outline-gold rounded-pill px-4">KEEP SHOPPING</a>
+                </div>
+                
+            {% else %}
+                <!-- RAZORPAY GATEWAY PROCESSING -->
+                <i class="fa-solid fa-credit-card text-gold fs-1 mb-4 animate-pulse"></i>
+                <h3 class="playfair-font text-gold mb-3">COMPLETE SECURE PAYMENT</h3>
+                <p class="text-sm text-light-dim mb-4">Please complete the payment of <strong class="text-warning">₹{{ order.total_price }}</strong> to process your order.</p>
+                
+                <div class="bg-dark-glow p-3 rounded mb-4 text-start border-gold-dim">
+                    <span class="text-xs text-gold d-block mb-1">Order Info:</span>
+                    <strong class="text-light text-sm d-block mb-1">Order ID: {{ order.order_number }}</strong>
+                    <span class="text-xs text-light-dim">Grand Total: <strong class="text-warning">₹{{ order.total_price }}</strong></span>
+                </div>
+
+                {% if is_mock %}
+                    <!-- Sandbox local payment simulator -->
+                    <div class="border-gold-dashed p-4 rounded mb-4 bg-black">
+                        <span class="small-lettering text-warning mb-2 d-block"><i class="fa-solid fa-vial me-2"></i>RAZORPAY DEMO GATEWAY</span>
+                        <p class="text-xs text-light-dim mb-3">Since you are running in local debug mode, click one of the buttons below to simulate a real payment checkout transaction response.</p>
+                        
+                        <div class="d-flex flex-column gap-2">
+                            <button type="button" class="btn btn-success text-dark font-semibold py-2" onclick="simulatePayment(true)">
+                                SIMULATE SUCCESSFUL PAYMENT
+                            </button>
+                            <button type="button" class="btn btn-danger text-light font-semibold py-2" onclick="simulatePayment(false)">
+                                SIMULATE FAILED PAYMENT
+                            </button>
+                        </div>
+                    </div>
+                {% else %}
+                    <!-- Real Razorpay checkout integration button -->
+                    <button id="pay-btn" class="btn btn-gold rounded-pill px-5 py-3 font-semibold tracking-wide w-100 shadow-gold">
+                        PAY WITH RAZORPAY
+                    </button>
+                {% endif %}
+                
+                <a href="{% url 'shop:cart_detail' %}" class="text-xs text-danger hover-text-gold d-block mt-4"><i class="fa-solid fa-circle-xmark me-2"></i>Cancel Order & Return to Cart</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% if not is_cod and not is_mock %}
+<!-- Razorpay Standard script load -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    const options = {
+        "key": "{{ razorpay_key }}",
+        "amount": "{{ amount_paisa }}",
+        "currency": "INR",
+        "name": "Rara Jewels",
+        "description": "Payment for order {{ order.order_number }}",
+        "order_id": "{{ razorpay_order_id }}",
+        "handler": function (response){
+            // Submit confirmation
+            fetch("{% url 'shop:verify_payment' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: JSON.stringify({
+                    order_id: "{{ order.order_number }}",
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_signature: response.razorpay_signature
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = data.redirect_url;
+                } else {
+                    alert("Payment verification failed. Please contact support.");
+                }
+            });
+        },
+        "prefill": {
+            "name": "{{ user.name }}",
+            "email": "{{ user.email }}",
+            "contact": "{{ user.mobile }}"
+        },
+        "theme": {
+            "color": "#D4AF37"
+        }
+    };
+    const rzp1 = new Razorpay(options);
+    document.getElementById('pay-btn').onclick = function(e){
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+{% endif %}
+
+{% if not is_cod and is_mock %}
+<!-- Local Payment simulation script -->
+<script>
+    function simulatePayment(success) {
+        if (!success) {
+            alert("Simulated transaction: payment failed.");
+            window.location.href = "{% url 'accounts:dashboard' %}";
+            return;
+        }
+        
+        fetch("{% url 'shop:verify_payment' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Requested-With": "XMLHttpRequest"
+            },
+            body: JSON.stringify({
+                order_id: "{{ order.order_number }}",
+                razorpay_payment_id: "pay_mock_" + Math.random().toString(36).substring(7),
+                razorpay_signature: "sig_mock_" + Math.random().toString(36).substring(7),
+                mock_success: "true"
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                window.location.href = data.redirect_url;
+            } else {
+                alert("Simulated validation error. Try again.");
+            }
+        });
+    }
+</script>
+{% endif %}
+{% endblock %}

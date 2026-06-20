@@ -1,0 +1,80 @@
+{% extends 'admin_dashboard/base_admin.html' %}
+{% load static %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h2 class="playfair-font text-gold mb-1">CUSTOMER ORDERS FULFILLMENT</h2>
+        <p class="text-xs text-light-dim mb-0">Track payments, shipping, and update order statuses.</p>
+    </div>
+    
+    <!-- Filter status -->
+    <div class="d-flex gap-2 text-xs">
+        <a href="{% url 'shop:admin_orders' %}" class="btn btn-xs {% if not status_filter %}btn-gold{% else %}btn-outline-gold{% endif %} rounded-pill px-3">All Orders</a>
+        {% for s_val, s_label in status_choices %}
+        <a href="{% url 'shop:admin_orders' %}?status={{ s_val }}" class="btn btn-xs {% if status_filter == s_val %}btn-gold{% else %}btn-outline-gold{% endif %} rounded-pill px-3">{{ s_label }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="glass-card p-4">
+    <div class="table-responsive">
+        <table class="table table-dark table-luxury m-0 text-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Order No</th>
+                    <th>Customer Name</th>
+                    <th>Date Placed</th>
+                    <th>Payment Method</th>
+                    <th class="text-center">Payment Status</th>
+                    <th class="text-center">Fulfillment Status</th>
+                    <th class="text-end">Grand Total</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in orders %}
+                <tr>
+                    <td>
+                        <a href="{% url 'shop:admin_order_detail' o.order_number %}" class="font-monospace text-warning font-semibold">{{ o.order_number }}</a>
+                    </td>
+                    <td>
+                        <strong class="text-light">{{ o.user.name }}</strong><br>
+                        <span class="text-xs text-light-dim">{{ o.user.email }}</span>
+                    </td>
+                    <td class="text-xs text-light-dim">{{ o.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="text-xs">{{ o.get_payment_method_display }}</td>
+                    <td class="text-center">
+                        <span class="badge {% if o.payment_status == 'completed' %}bg-success{% elif o.payment_status == 'failed' %}bg-danger{% else %}bg-warning text-dark{% endif %} px-2 py-1 text-xs">
+                            {{ o.get_payment_status_display }}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge {% if o.order_status == 'delivered' %}bg-success{% elif o.order_status == 'cancelled' %}bg-danger{% else %}bg-warning text-dark{% endif %} px-2 py-1 text-xs">
+                            {{ o.get_order_status_display }}
+                        </span>
+                    </td>
+                    <td class="text-end font-semibold text-gold">₹{{ o.total_price }}</td>
+                    <td class="text-center">
+                        <div class="d-flex gap-2 justify-content-center">
+                            <a href="{% url 'shop:admin_order_detail' o.order_number %}" class="btn btn-xs btn-outline-gold px-2 py-1 text-xs" title="Manage Order"><i class="fa-solid fa-gear"></i></a>
+                            <a href="{% url 'shop:download_invoice' o.id %}" class="btn btn-xs btn-outline-gold px-2 py-1 text-xs" title="PDF Invoice"><i class="fa-solid fa-file-invoice"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" class="text-center py-4 text-light-dim italic">No matching orders found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block admin_js %}
+<script>
+    document.getElementById("nav-orders").classList.add("active");
+</script>
+{% endblock %}

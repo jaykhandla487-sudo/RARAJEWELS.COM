@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Track Order | Rara Jewels{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <div class="col-lg-8 mx-auto">
+        <div class="glass-card p-5">
+            <h2 class="playfair-font text-gold mb-3 text-center fs-2">TRACK YOUR SHIPMENT</h2>
+            <p class="text-xs text-light-dim text-center mb-4">Enter your 15-character Order Number below to check the real-time fulfillment status.</p>
+            
+            <form method="GET" action="." class="mb-5">
+                <div class="input-group">
+                    <input type="text" name="order_number" class="form-control bg-dark border-gold text-light text-sm" placeholder="e.g. RARA-A1B2C3D4E5" value="{{ order_number|default:'' }}" required>
+                    <button type="submit" class="btn btn-gold text-dark font-semibold px-4 text-sm">TRACK STATUS</button>
+                </div>
+            </form>
+            
+            {% if order %}
+                <div class="bg-dark-glow p-4 rounded border-gold-dim mb-4">
+                    <h5 class="playfair-font text-gold mb-3">Shipment Progress</h5>
+                    <div class="row text-sm mb-4">
+                        <div class="col-md-6 mb-2">
+                            <span class="text-light-dim">Order No:</span> <strong class="text-light">{{ order.order_number }}</strong>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <span class="text-light-dim">Ordered Date:</span> <strong class="text-light">{{ order.created_at|date:"d M Y h:i A" }}</strong>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <span class="text-light-dim">Payment Status:</span> 
+                            <strong class="{% if order.payment_status == 'completed' %}text-success{% elif order.payment_status == 'failed' %}text-danger{% else %}text-warning{% endif %}">
+                                {{ order.get_payment_status_display }}
+                            </strong>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <span class="text-light-dim">Order Status:</span> 
+                            <strong class="text-warning">{{ order.get_order_status_display }}</strong>
+                        </div>
+                    </div>
+                    
+                    {% if order.order_status == 'cancelled' %}
+                    <div class="alert alert-danger bg-opacity-20 border-danger text-light text-sm mb-0">
+                        <i class="fa-solid fa-circle-xmark me-2"></i>This order has been cancelled. If you believe this is a mistake, please contact customer care.
+                    </div>
+                    {% elif order.order_status == 'returned' %}
+                    <div class="alert alert-warning bg-opacity-20 border-warning text-light text-sm mb-0">
+                        <i class="fa-solid fa-arrow-rotate-left me-2"></i>This order has been returned. Refund will be credited within 5 business days.
+                    </div>
+                    {% else %}
+                    <!-- Progress milestone timeline -->
+                    <div class="track-pipeline">
+                        <!-- Pending Step -->
+                        <div class="track-step {% if order.order_status == 'pending' %}active{% elif order.order_status != 'cancelled' %}completed{% endif %}" title="Order Registered">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+                        
+                        <!-- Processing Step -->
+                        <div class="track-step {% if order.order_status == 'processing' %}active{% elif order.order_status == 'shipped' or order.order_status == 'delivered' %}completed{% endif %}" title="Packed at Warehouse">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        
+                        <!-- Shipped Step -->
+                        <div class="track-step {% if order.order_status == 'shipped' %}active{% elif order.order_status == 'delivered' %}completed{% endif %}" title="Dispatched with Courier">
+                            <i class="fa-solid fa-truck-ramp-box"></i>
+                        </div>
+                        
+                        <!-- Delivered Step -->
+                        <div class="track-step {% if order.order_status == 'delivered' %}completed{% endif %}" title="Delivered Successfully">
+                            <i class="fa-solid fa-house-chimney-user"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between text-xs text-light-dim px-2">
+                        <span>Pending</span>
+                        <span>Processing</span>
+                        <span>Shipped</span>
+                        <span>Delivered</span>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Order items summary -->
+                <div class="border border-gold-dim p-4 rounded">
+                    <h6 class="small-lettering text-gold mb-3">Item Breakdown</h6>
+                    <div class="d-flex flex-column gap-3">
+                        {% for item in order.items.all %}
+                        <div class="d-flex align-items-center justify-content-between text-xs">
+                            <span class="text-light">{{ item.quantity }} x {{ item.product.name }}</span>
+                            <span class="text-warning">₹{{ item.subtotal }}</span>
+                        </div>
+                        {% endfor %}
+                        <hr class="border-gold-dim my-2">
+                        <div class="d-flex align-items-center justify-content-between text-xs font-semibold">
+                            <span class="text-gold">Total:</span>
+                            <span class="text-warning">₹{{ order.total_price }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

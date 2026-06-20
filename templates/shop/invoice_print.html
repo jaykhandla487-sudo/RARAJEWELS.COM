@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - {{ order.order_number }}</title>
+    <!-- Simple print styles -->
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 30px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .invoice-header {
+            border-bottom: 2px solid #D4AF37;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand-name {
+            font-size: 26px;
+            font-weight: bold;
+            color: #111;
+            letter-spacing: 1px;
+        }
+        .invoice-title {
+            font-size: 20px;
+            color: #D4AF37;
+            font-weight: bold;
+            text-align: right;
+        }
+        .grid-addresses {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .grid-addresses td {
+            width: 50%;
+            vertical-align: top;
+            padding: 10px;
+            background-color: #fcfbfa;
+            border: 1px solid #f1ece6;
+        }
+        .table-items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .table-items th {
+            background-color: #111;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        .table-items td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .align-right {
+            text-align: right !important;
+        }
+        .totals-block {
+            float: right;
+            width: 300px;
+            margin-bottom: 30px;
+        }
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        .grand-total {
+            font-size: 16px;
+            font-weight: bold;
+            border-top: 1px solid #D4AF37;
+            padding-top: 10px;
+            margin-top: 5px;
+            color: #AA7C11;
+        }
+        .footer-note {
+            clear: both;
+            text-align: center;
+            font-size: 11px;
+            color: #777;
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        @media print {
+            body { padding: 0; }
+            .btn-print { display: none; }
+        }
+        .btn-print {
+            background-color: #D4AF37;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print" onclick="window.print()">Print Invoice</button>
+
+    <div class="invoice-header">
+        <div>
+            <div class="brand-name">RARA JEWELS</div>
+            <div style="font-size: 12px; color: #666; margin-top: 5px;">Premium Imitation Jewelry Brand</div>
+        </div>
+        <div>
+            <div class="invoice-title">TAX INVOICE</div>
+            <div style="margin-top: 5px; font-size: 12px;">Invoice No: <strong>{{ order.order_number }}</strong></div>
+            <div style="font-size: 12px;">Date: <strong>{{ order.created_at|date:"d-M-Y" }}</strong></div>
+        </div>
+    </div>
+
+    <table class="grid-addresses">
+        <tr>
+            <td>
+                <strong>Seller:</strong><br>
+                Rara Jewels Office<br>
+                Luxury Tower, Sector 4<br>
+                Mumbai, Maharashtra, 400001<br>
+                Email: support@rarajewels.com<br>
+                Contact: +91 99999 99999
+            </td>
+            <td>
+                <strong>Shipping Address:</strong><br>
+                {{ order.shipping_address|linebreaksbr }}
+            </td>
+        </tr>
+    </table>
+
+    <table class="table-items">
+        <thead>
+            <tr>
+                <th style="width: 40px;">Sr.</th>
+                <th>Item Description</th>
+                <th style="width: 60px;" class="align-right">Qty</th>
+                <th style="width: 120px;" class="align-right">Price (INR)</th>
+                <th style="width: 120px;" class="align-right">Total (INR)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.items.all %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><strong>{{ item.product.name }}</strong></td>
+                <td class="align-right">{{ item.quantity }}</td>
+                <td class="align-right">₹{{ item.price }}</td>
+                <td class="align-right">₹{{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="totals-block">
+        <div class="totals-row">
+            <span>Subtotal:</span>
+            <span>₹{{ order.subtotal }}</span>
+        </div>
+        {% if order.discount_amount > 0 %}
+        <div class="totals-row" style="color: green;">
+            <span>Discount {% if order.coupon %}({{ order.coupon.code }}){% endif %}:</span>
+            <span>-₹{{ order.discount_amount }}</span>
+        </div>
+        {% endif %}
+        <div class="totals-row">
+            <span>Shipping:</span>
+            <span>₹{{ order.shipping_charge }}</span>
+        </div>
+        <div class="totals-row grand-total">
+            <span>Grand Total:</span>
+            <span>₹{{ order.total_price }}</span>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        Thank you for purchasing from Rara Jewels. For returns, please log in and request refunds online within 3 months.<br>
+        This is a computer generated invoice and requires no physical signature.
+    </div>
+
+    <!-- Automatically open print prompt -->
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                window.print();
+            }, 300);
+        }
+    </script>
+</body>
+</html>

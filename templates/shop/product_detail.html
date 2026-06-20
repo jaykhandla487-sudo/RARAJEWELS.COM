@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | Rara Jewels{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <div class="row g-5">
+        <!-- Left: Product Images Gallery -->
+        <div class="col-lg-6">
+            <div class="zoom-container shadow-premium relative">
+                <img src="{{ product.primary_image }}" id="mainProductImage" class="img-fluid w-100" alt="{{ product.name }}" style="aspect-ratio: 1/1; object-fit: cover;">
+            </div>
+            
+            <!-- Thumbnail scroll -->
+            {% if images.count > 1 %}
+            <div class="product-thumbnails">
+                {% for img in images %}
+                <img src="{{ img.image.url }}" class="thumb-img {% if img.is_primary %}active{% endif %}" alt="{{ product.name }} Thumbnail">
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Right: Purchase Panel details -->
+        <div class="col-lg-6">
+            <span class="small-lettering text-gold mb-1 d-block">{{ product.category.name }}</span>
+            <h1 class="playfair-font text-light mb-3 fs-2">{{ product.name }}</h1>
+            
+            <!-- Rating stars summary -->
+            <div class="d-flex align-items-center gap-2 mb-4">
+                <div class="star-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star-half-stroke"></i>
+                </div>
+                <span class="text-xs text-light-dim">({{ reviews.count }} customer review{{ reviews.count|pluralize }})</span>
+            </div>
+            
+            <!-- Pricing -->
+            <div class="d-flex align-items-baseline gap-3 mb-4">
+                {% if product.discount_price %}
+                    <span class="h2 text-warning font-boldplay">₹{{ product.discount_price }}</span>
+                    <span class="text-decoration-line-through text-light-dim fs-5">₹{{ product.price }}</span>
+                    <span class="badge bg-gold text-dark font-medium px-2 py-1 text-xs">{{ product.discount_percent }}% OFF</span>
+                {% else %}
+                    <span class="h2 text-warning font-boldplay">₹{{ product.price }}</span>
+                {% endif %}
+            </div>
+            
+            <!-- Stock alert -->
+            <div class="mb-4">
+                {% if product.stock > 5 %}
+                    <span class="text-success text-xs font-semibold"><i class="fa-solid fa-circle-check me-1"></i>In Stock (Ready to Ship)</span>
+                {% elif product.stock > 0 %}
+                    <span class="text-warning text-xs font-semibold"><i class="fa-solid fa-triangle-exclamation me-1"></i>Hurry, only {{ product.stock }} items left!</span>
+                {% else %}
+                    <span class="text-danger text-xs font-semibold"><i class="fa-solid fa-circle-xmark me-1"></i>Temporarily Out of Stock</span>
+                {% endif %}
+            </div>
+            
+            <!-- Description -->
+            <div class="mb-4">
+                <h6 class="small-lettering text-gold mb-2">Description</h6>
+                <p class="text-sm text-light-dim lh-lg">{{ product.description|linebreaksbr }}</p>
+            </div>
+            
+            <hr class="border-gold-dim my-4">
+            
+            <!-- Buy controls -->
+            {% if product.stock > 0 %}
+            <form action="{% url 'shop:add_to_cart' product.id %}" method="POST" class="row g-3 align-items-center mb-5">
+                {% csrf_token %}
+                <div class="col-3">
+                    <label for="quantity" class="text-xs text-gold d-block mb-1">Quantity</label>
+                    <select name="quantity" id="quantity" class="form-select bg-dark border-gold text-light py-2">
+                        {% for i in "12345"|make_list %}
+                            {% if forloop.counter <= product.stock %}
+                            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-9 pt-3">
+                    <div class="d-flex gap-3">
+                        <button type="submit" class="btn btn-gold rounded-pill w-100 py-3 font-semibold tracking-wide">
+                            <i class="fa-solid fa-bag-shopping me-2"></i>ADD TO SHOPPING BAG
+                        </button>
+                        
+                        <a href="{% url 'shop:toggle_wishlist' product.id %}" class="btn btn-outline-gold rounded-circle p-0 d-flex align-items-center justify-content-center" style="width: 55px; height: 55px;" title="Wishlist">
+                            <i class="fa-regular fa-heart fs-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </form>
+            {% else %}
+            <div class="d-flex gap-3 mb-5">
+                <button class="btn btn-dark border-gold-dim text-muted disabled w-100 py-3 rounded-pill">
+                    OUT OF STOCK
+                </button>
+                <a href="{% url 'shop:toggle_wishlist' product.id %}" class="btn btn-outline-gold rounded-circle p-0 d-flex align-items-center justify-content-center" style="width: 55px; height: 55px;" title="Wishlist">
+                    <i class="fa-regular fa-heart fs-4"></i>
+                </a>
+            </div>
+            {% endif %}
+
+            <!-- Frequently Bought Together (Upsell module) -->
+            {% if frequently_bought %}
+            <div class="glass-card p-3 mb-5 border-gold-dim">
+                <h6 class="small-lettering text-gold mb-3"><i class="fa-solid fa-circle-plus me-1 text-warning"></i>Frequently Bought Together</h6>
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="{{ product.primary_image }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid var(--glass-border);">
+                        <span class="text-gold font-bold">+</span>
+                        {% for fb in frequently_bought %}
+                        <a href="{% url 'shop:product_detail' fb.slug %}">
+                            <img src="{{ fb.primary_image }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid var(--glass-border);" title="{{ fb.name }}">
+                        </a>
+                        {% if not forloop.last %}<span class="text-gold font-bold">+</span>{% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="ms-auto pt-2 pt-sm-0">
+                        <p class="text-xs text-light-dim mb-1">Bundle Offer Available</p>
+                        <a href="{% url 'shop:products' %}" class="btn btn-xs btn-gold rounded-pill px-3 py-1">View Bundles</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Bottom: Reviews and Related Section -->
+    <div class="row mt-5 pt-4">
+        <!-- Product Reviews list and form -->
+        <div class="col-lg-8 mb-5">
+            <h3 class="playfair-font text-gold mb-4 fs-4 border-bottom border-gold-dim pb-2">CUSTOMER REVIEWS</h3>
+            
+            {% for r in reviews %}
+            <div class="review-card">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="text-gold font-medium mb-0">{{ r.user.name }}</h6>
+                    <span class="text-xs text-light-dim">{{ r.created_at|date:"d M Y" }}</span>
+                </div>
+                
+                <div class="star-rating mb-2">
+                    {% for i in "12345"|make_list %}
+                        {% if forloop.counter <= r.rating %}
+                            <i class="fa-solid fa-star text-warning"></i>
+                        {% else %}
+                            <i class="fa-regular fa-star text-warning"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <p class="text-sm text-light-dim mb-2">{{ r.review_text }}</p>
+                
+                <!-- Attached Images -->
+                {% for img in r.images.all %}
+                <img src="{{ img.image.url }}" class="review-image-attached" alt="Review Photo" data-bs-toggle="modal" data-bs-target="#imageModal{{ img.id }}">
+                
+                <!-- Photo Modal -->
+                <div class="modal fade" id="imageModal{{ img.id }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-black border-gold">
+                            <div class="modal-body p-0">
+                                <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 m-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <img src="{{ img.image.url }}" class="img-fluid w-100" alt="Review Photo Fullscreen">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% empty %}
+            <p class="text-light-dim text-sm italic mb-4">No reviews yet for this product. Be the first to write a review!</p>
+            {% endfor %}
+            
+            <!-- Submit Review Form -->
+            <div class="glass-card p-4 mt-5">
+                <h5 class="playfair-font text-gold mb-3">SHARE YOUR REVIEW</h5>
+                {% if user.is_authenticated %}
+                <form method="POST" enctype="multipart/form-data" action=".">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="text-xs text-gold mb-1">Rating</label>
+                            {{ review_form.rating }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-xs text-gold mb-1">Add Product Photo</label>
+                            {{ review_form.review_image }}
+                        </div>
+                        <div class="col-12">
+                            <label class="text-xs text-gold mb-1">Your Review</label>
+                            {{ review_form.review_text }}
+                        </div>
+                        <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-gold rounded-pill px-4 py-2 font-semibold">
+                                SUBMIT REVIEW
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                {% else %}
+                <p class="text-sm text-light-dim mb-0">Please <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="text-warning">Login</a> to write an product review.</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Related products sidebar -->
+        <div class="col-lg-4">
+            <h3 class="playfair-font text-gold mb-4 fs-4 border-bottom border-gold-dim pb-2">RELATED DESIGNS</h3>
+            <div class="d-flex flex-column gap-4">
+                {% for rp in related %}
+                <div class="d-flex gap-3 align-items-center">
+                    <a href="{% url 'shop:product_detail' rp.slug %}">
+                        <img src="{{ rp.primary_image }}" class="rounded border-gold-dim" style="width: 80px; height: 80px; object-fit: cover;">
+                    </a>
+                    <div>
+                        <a href="{% url 'shop:product_detail' rp.slug %}" class="text-light text-sm hover-text-gold font-medium d-block mb-1">{{ rp.name }}</a>
+                        <span class="text-warning font-bold text-sm">₹{{ rp.get_price }}</span>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-light-dim text-xs">No related designs found.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

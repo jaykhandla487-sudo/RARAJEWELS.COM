@@ -1,0 +1,113 @@
+{% extends 'admin_dashboard/base_admin.html' %}
+{% load static %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="playfair-font text-gold mb-1">RETURN REQUESTS DESK</h2>
+        <p class="text-xs text-light-dim mb-0">Review product return claims, approve workflows, and track refunds.</p>
+    </div>
+</div>
+
+<div class="glass-card p-4">
+    <div class="table-responsive">
+        <table class="table table-dark table-luxury m-0 text-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Order No</th>
+                    <th>Customer Name</th>
+                    <th>Reason</th>
+                    <th class="text-center">Status</th>
+                    <th>Date Filed</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in requests %}
+                <tr>
+                    <td>
+                        <a href="{% url 'shop:admin_order_detail' r.order.order_number %}" class="font-monospace text-warning font-semibold">{{ r.order.order_number }}</a>
+                    </td>
+                    <td>
+                        <strong class="text-light">{{ r.user.name }}</strong><br>
+                        <span class="text-xs text-light-dim">{{ r.user.email }}</span>
+                    </td>
+                    <td class="text-xs text-light-dim" style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="{{ r.reason }}">
+                        {{ r.reason }}
+                    </td>
+                    <td class="text-center">
+                        <span class="badge {% if r.status == 'approved' %}bg-success{% elif r.status == 'rejected' %}bg-danger{% elif r.status == 'refunded' %}bg-info text-dark{% else %}bg-warning text-dark{% endif %} px-2 py-1 text-xs">
+                            {{ r.get_status_display }}
+                        </span>
+                    </td>
+                    <td class="text-xs text-light-dim">{{ r.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="text-center">
+                        {% if r.status == 'pending' or r.status == 'approved' %}
+                        <!-- Trigger Action Modal -->
+                        <button type="button" class="btn btn-xs btn-outline-gold rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#actionModal{{ r.id }}">
+                            Resolve
+                        </button>
+                        
+                        <!-- Action Modal -->
+                        <div class="modal fade" id="actionModal{{ r.id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content bg-black border-gold text-light glass-card text-start">
+                                    <div class="modal-header border-gold-dim">
+                                        <h5 class="modal-title playfair-font text-gold">Resolve Return Claim</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="{% url 'shop:admin_return_action' r.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="modal-body">
+                                            <div class="mb-3 text-xs bg-dark-glow p-2 rounded border border-gold-dim">
+                                                <strong>Order No:</strong> {{ r.order.order_number }}<br>
+                                                <strong>Reason:</strong> {{ r.reason }}
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="action" class="form-label text-xs text-gold">Select Resolution Action</label>
+                                                <select name="action" class="form-select bg-dark border-gold text-light text-sm" required>
+                                                    {% if r.status == 'pending' %}
+                                                    <option value="approve">Approve Return (Changes order to Returned)</option>
+                                                    <option value="reject">Reject Claim</option>
+                                                    {% endif %}
+                                                    {% if r.status == 'approved' or r.status == 'pending' %}
+                                                    <option value="refund">Issue Refund (Mark payment as Refunded)</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="mb-2">
+                                                <label for="admin_notes" class="form-label text-xs text-gold">Administrative Notes</label>
+                                                <textarea name="admin_notes" class="form-control bg-dark border-gold text-light text-xs" rows="3" placeholder="Enter instructions or rejection reasons..."></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer border-gold-dim">
+                                            <button type="button" class="btn btn-xs btn-outline-gold rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-xs btn-gold rounded-pill px-3">Submit Action</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <span class="text-xs text-light-dim">Resolved</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center py-4 text-light-dim italic">No returns requested yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block admin_js %}
+<script>
+    document.getElementById("nav-returns").classList.add("active");
+</script>
+{% endblock %}

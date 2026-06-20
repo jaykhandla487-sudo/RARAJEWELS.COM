@@ -1,0 +1,360 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Rara Jewels | Premium Imitation Jewelry Brand{% endblock %}</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="{% block meta_description %}Discover premium, modern, luxury imitation jewelry from Rara Jewels. Handcrafted rings, necklaces, bracelets, and combo sets designed to shine.{% endblock %}">
+    <meta name="keywords" content="Rara Jewels, imitation jewelry, luxury jewelry, gold plated rings, designer necklaces, fashion jewelry, premium ornaments">
+    
+    <!-- Google Fonts: Playfair Display for Headings, Outfit for secondary, Inter for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="luxury-bg">
+    <!-- Announcement Bar -->
+    {% if store_settings.announcement_text %}
+    <div class="announcement-bar text-center py-2 px-3">
+        <span class="small-lettering tracking-wide"><i class="fa-solid fa-gift me-2 text-warning"></i>{{ store_settings.announcement_text }}</span>
+    </div>
+    {% endif %}
+
+    <!-- Top Luxury Navigation Grid -->
+    <nav class="navbar navbar-expand-lg sticky-top luxury-navbar">
+        <div class="container py-2">
+            <a class="navbar-brand text-gold playfair-font fs-3 tracking-wide" href="{% url 'shop:home' %}">
+                RARA JEWELS
+            </a>
+            
+            <button class="navbar-toggler border-gold text-gold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa-solid fa-bars"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light px-3" href="{% url 'shop:home' %}">Home</a>
+                    </li>
+                    
+                    <!-- Women Collection Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light px-3" href="#" id="womenDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Women
+                        </a>
+                        <ul class="dropdown-menu bg-black border-gold-dim" aria-labelledby="womenDropdown">
+                            <li><a class="dropdown-item text-light-dim" href="{% url 'shop:products' %}?collection=women">All Women Collection</a></li>
+                            <li><hr class="dropdown-divider border-gold-dim"></li>
+                            {% for cat in nav_categories %}
+                                {% if "women" in cat.name|lower or "combo" in cat.name|lower or "anklet" in cat.name|lower or "mangalsutra" in cat.name|lower or "ring" in cat.name|lower or "earring" in cat.name|lower or "necklace" in cat.name|lower or "bracelet" in cat.name|lower %}
+                                    {% if not cat.parent %}
+                                        <li><a class="dropdown-item text-light-dim" href="{% url 'shop:category_products' cat.slug %}">{{ cat.name }}</a></li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    <!-- Men Collection Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light px-3" href="#" id="menDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Men
+                        </a>
+                        <ul class="dropdown-menu bg-black border-gold-dim" aria-labelledby="menDropdown">
+                            <li><a class="dropdown-item text-light-dim" href="{% url 'shop:products' %}?collection=men">All Men Collection</a></li>
+                            <li><hr class="dropdown-divider border-gold-dim"></li>
+                            {% for cat in nav_categories %}
+                                {% if "men" in cat.name|lower or "chain" in cat.name|lower or "kada" in cat.name|lower %}
+                                    {% if not cat.parent %}
+                                        <li><a class="dropdown-item text-light-dim" href="{% url 'shop:category_products' cat.slug %}">{{ cat.name }}</a></li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-light px-3" href="{% url 'shop:products' %}">Shop All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light px-3" href="{% url 'shop:track_order' %}">Track Order</a>
+                    </li>
+                    
+                    {% if user.is_authenticated and user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link text-warning px-3 border border-warning rounded px-2 ms-2 admin-badge" href="{% url 'shop:admin_dashboard' %}"><i class="fa-solid fa-gauge me-1"></i>Admin Panel</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <!-- Icons & Actions (Search, Cart, User) -->
+                <div class="d-flex align-items-center gap-3">
+                    <form action="{% url 'shop:products' %}" method="GET" class="d-none d-md-flex search-form relative">
+                        <input type="text" name="q" class="form-control bg-dark border-gold text-light rounded-pill px-3 py-1 text-sm" placeholder="Search jewelry...">
+                        <button type="submit" class="btn text-gold absolute-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                    
+                    <a href="{% url 'shop:wishlist' %}" class="btn text-light position-relative">
+                        <i class="fa-regular fa-heart fs-5"></i>
+                        {% if wishlist_count > 0 %}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-gold text-dark fs-xsmall">
+                            {{ wishlist_count }}
+                        </span>
+                        {% endif %}
+                    </a>
+                    
+                    <a href="{% url 'shop:cart_detail' %}" class="btn text-light position-relative">
+                        <i class="fa-solid fa-bag-shopping fs-5 text-gold"></i>
+                        {% if cart_count > 0 %}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark fs-xsmall">
+                            {{ cart_count }}
+                        </span>
+                        {% endif %}
+                    </a>
+
+                    {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a class="btn text-light dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-regular fa-user fs-5 text-gold"></i>
+                            <span class="d-none d-lg-inline fs-6">{{ user.name|truncatechars:10 }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end bg-black border-gold-dim" aria-labelledby="userMenu">
+                            <li><a class="dropdown-item text-light-dim" href="{% url 'accounts:dashboard' %}"><i class="fa-solid fa-circle-user me-2"></i>My Profile</a></li>
+                            <li><a class="dropdown-item text-light-dim" href="{% url 'accounts:dashboard' %}?tab=orders"><i class="fa-solid fa-box me-2"></i>My Orders</a></li>
+                            <li><hr class="dropdown-divider border-gold-dim"></li>
+                            <li><a class="dropdown-item text-danger" href="{% url 'accounts:logout' %}"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}" class="btn border-gold text-gold rounded-pill px-3 py-1 fs-6 transition-all hover-gold">
+                        Login
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Message Alerts (Toasts) -->
+    <div class="container mt-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} bg-opacity-75 border-gold text-light alert-dismissible fade show" role="alert">
+                    {% if message.tags == 'success' %}<i class="fa-solid fa-circle-check me-2 text-warning"></i>{% endif %}
+                    {{ message }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/{{ store_settings.whatsapp_number|cut:'+'|cut:' ' }}?text=Hello%20Rara%20Jewels,%20I'm%20interested%20in%20your%20jewelry%20collection!" class="whatsapp-float" target="_blank" title="Order via WhatsApp">
+        <i class="fa-brands fa-whatsapp my-float"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="luxury-footer text-light pt-5 pb-4 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="playfair-font text-gold mb-3 fs-4">RARA JEWELS</h5>
+                    <p class="text-light-dim text-sm lh-lg">
+                        Step into a realm of luxury with our premium, handcrafted imitation jewelry. Inspired by the finest heritage designs and crafted for the modern shopper. Enjoy premium finishes, gold polishing, and anti-tarnish protection.
+                    </p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="{{ store_settings.instagram_url }}" class="social-link" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="{{ store_settings.facebook_url }}" class="social-link" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="{{ store_settings.youtube_url }}" class="social-link" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://wa.me/{{ store_settings.whatsapp_number|cut:'+'|cut:' ' }}" class="social-link" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="small-lettering text-gold mb-3">Shop Collections</h6>
+                    <ul class="list-unstyled footer-links text-sm">
+                        <li><a href="{% url 'shop:products' %}?collection=women">Women Collection</a></li>
+                        <li><a href="{% url 'shop:products' %}?collection=men">Men Collection</a></li>
+                        <li><a href="{% url 'shop:products' %}">All Jewelry</a></li>
+                        <li><a href="{% url 'shop:products' %}?sort=popularity">Best Sellers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="small-lettering text-gold mb-3">Customer Service</h6>
+                    <ul class="list-unstyled footer-links text-sm">
+                        <li><a href="{% url 'shop:track_order' %}">Track Order</a></li>
+                        <li><a href="{% url 'shop:return_policy' %}">3-Month Return Policy</a></li>
+                        <li><a href="{% url 'shop:home' %}#reviews">Reviews</a></li>
+                        <li><a href="https://wa.me/{{ store_settings.whatsapp_number|cut:'+'|cut:' ' }}">WhatsApp Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="small-lettering text-gold mb-3">Subscribe to Luxury</h6>
+                    <p class="text-light-dim text-sm mb-3">Join our newsletter to receive updates on new arrivals, secret sales, and styling tips.</p>
+                    <form action="#" class="newsletter-form flex" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Rara Jewels newsletter!');">
+                        <div class="input-group">
+                            <input type="email" class="form-control bg-dark border-gold text-light text-sm" placeholder="Enter your email" required>
+                            <button type="submit" class="btn btn-gold text-dark font-medium px-3 text-sm">Join</button>
+                        </div>
+                    </form>
+                    <div class="mt-4 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-gold"></i>
+                        <span class="text-xs text-light-dim">100% Secure Payments via Razorpay & SSL encryption</span>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="border-gold-dim my-4">
+            
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-xs text-light-dim gap-2">
+                <p>&copy; {{ current_year }} Rara Jewels. All Rights Reserved. Crafted for luxury.</p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'shop:return_policy' %}" class="hover-text-gold">Return Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover-text-gold">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover-text-gold">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Customer Discount Popup Form (Lead Capture Modal) -->
+    <div class="modal fade" id="leadCaptureModal" tabindex="-1" aria-labelledby="leadModalTitle" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-black border-gold text-light glass-card overflow-hidden">
+                <div class="gold-gradient-border-top"></div>
+                <div class="modal-body p-4 text-center">
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                    
+                    <div id="leadFormState">
+                        <i class="fa-solid fa-gem text-gold fs-1 mb-3 animate-pulse"></i>
+                        <h4 class="playfair-font text-gold mb-2" id="leadModalTitle">UNLOCk 15% OFF YOUR FIRST ORDER</h4>
+                        <p class="text-light-dim text-sm mb-4">Enter your details to receive an instant, exclusive discount coupon for your luxury jewelry purchase.</p>
+                        
+                        <form id="leadCaptureForm" class="text-start">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="leadName" class="form-label text-xs text-gold">Full Name</label>
+                                <input type="text" class="form-control bg-dark border-gold text-light" id="leadName" name="name" required placeholder="Enter your full name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="leadMobile" class="form-label text-xs text-gold">Mobile Number</label>
+                                <input type="tel" class="form-control bg-dark border-gold text-light" id="leadMobile" name="mobile" required placeholder="Enter 10-digit mobile number">
+                            </div>
+                            <div class="mb-3">
+                                <label for="leadEmail" class="form-label text-xs text-gold">Email Address</label>
+                                <input type="email" class="form-control bg-dark border-gold text-light" id="leadEmail" name="email" required placeholder="Enter email address">
+                            </div>
+                            <button type="submit" class="btn btn-gold text-dark w-100 rounded-pill py-2 font-medium tracking-wide transition-all mt-2 shadow-gold">
+                                CLAIM DISCOUNT
+                            </button>
+                        </form>
+                    </div>
+
+                    <div id="leadSuccessState" class="d-none py-3">
+                        <i class="fa-solid fa-circle-check text-success fs-1 mb-3"></i>
+                        <h4 class="playfair-font text-gold mb-2">YOUR LUXURY COUPON IS READY</h4>
+                        <p class="text-light-dim text-sm mb-4">Copy the code below to apply your discount. An email copy has also been sent to you.</p>
+                        
+                        <div class="coupon-box py-3 px-4 mb-4 rounded border-gold-dashed relative bg-dark-glow">
+                            <span class="h3 font-monospace text-warning tracking-wide d-block" id="generatedCouponCode">COUPONCODE</span>
+                            <button class="btn btn-xs btn-outline-warning rounded-pill px-3 py-1 text-xs mt-2" onclick="copyCouponToClipboard()">
+                                <i class="fa-regular fa-copy me-1"></i>Copy Code
+                            </button>
+                        </div>
+                        
+                        <button type="button" class="btn btn-gold text-dark rounded-pill px-5 py-2" data-bs-dismiss="modal">
+                            START SHOPPING
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JavaScript & Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom scripts -->
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    <!-- AJAX handler for Lead capture -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Show lead popup after 4 seconds on Home page if not closed before
+            const hasClosedPopup = localStorage.getItem("rara_lead_popup_shown");
+            const isHomePage = window.location.pathname === "/";
+            
+            if (isHomePage && !hasClosedPopup) {
+                setTimeout(function() {
+                    const myModal = new bootstrap.Modal(document.getElementById('leadCaptureModal'));
+                    myModal.show();
+                    localStorage.setItem("rara_lead_popup_shown", "true");
+                }, 4000);
+            }
+            
+            const form = document.getElementById("leadCaptureForm");
+            if (form) {
+                form.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    
+                    fetch("{% url 'shop:lead_capture' %}", {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest"
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "success") {
+                            document.getElementById("leadFormState").classList.add("d-none");
+                            document.getElementById("leadSuccessState").classList.remove("d-none");
+                            document.getElementById("generatedCouponCode").innerText = data.coupon;
+                        } else {
+                            alert("Error generating coupon. Please check your fields.");
+                        }
+                    })
+                    .catch(err => {
+                        console.error("AJAX Error:", err);
+                        alert("Network connection error. Please try again.");
+                    });
+                });
+            }
+        });
+        
+        function copyCouponToClipboard() {
+            const couponText = document.getElementById("generatedCouponCode").innerText;
+            navigator.clipboard.writeText(couponText).then(() => {
+                alert("Coupon code copied to clipboard: " + couponText);
+            }).catch(err => {
+                console.error("Could not copy:", err);
+            });
+        }
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

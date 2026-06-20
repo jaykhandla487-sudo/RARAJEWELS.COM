@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login | Rara Jewels{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <div class="col-lg-5 mx-auto">
+        <div class="glass-card p-5">
+            <div class="gold-gradient-border-top mb-4"></div>
+            
+            <div class="text-center mb-4">
+                <h3 class="playfair-font text-gold fs-3">CUSTOMER SIGN IN</h3>
+                <p class="text-xs text-light-dim">Access your custom dashboard, wishlist, and track order histories.</p>
+            </div>
+            
+            <form method="POST">
+                {% csrf_token %}
+                {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+                
+                <div class="mb-3">
+                    <label class="form-label text-xs text-gold">Email Address</label>
+                    {{ form.email }}
+                </div>
+                
+                <div class="mb-4">
+                    <label class="form-label text-xs text-gold">Password</label>
+                    {{ form.password }}
+                </div>
+                
+                <button type="submit" class="btn btn-gold rounded-pill w-100 py-3 font-semibold tracking-wide shadow-gold mb-3">
+                    SIGN IN
+                </button>
+                
+                <div class="text-center text-xs mt-3">
+                    <span class="text-light-dim">New to Rara Jewels?</span>
+                    <a href="{% url 'accounts:signup' %}" class="text-warning font-semibold ms-1">Create Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

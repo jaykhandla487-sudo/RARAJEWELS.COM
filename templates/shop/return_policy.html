@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}3-Month Return Policy | Rara Jewels{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-4">
+    <div class="col-lg-8 mx-auto">
+        <div class="glass-card p-5">
+            <h2 class="playfair-font text-gold mb-4 text-center fs-2">3-MONTH RETURN & WARRANTY POLICY</h2>
+            <hr class="border-gold-dim mb-4">
+            
+            <p class="text-sm text-light-dim lh-lg mb-4">
+                At <strong>Rara Jewels</strong>, we stand behind the quality of our craftsmanship. We want you to feel fully satisfied with every single purchase. That is why we offer an industry-leading <strong>3-Month Return and Exchange Policy</strong>.
+            </p>
+            
+            <h5 class="text-gold playfair-font mb-3">1. Eligibility Criteria</h5>
+            <p class="text-sm text-light-dim lh-lg mb-4">
+                To be eligible for a return or replacement, the item must be in its original packaging, unused, and in the same brand-new condition as received. Return requests must be filed online through the User Dashboard within 90 days from the purchase date.
+            </p>
+
+            <h5 class="text-gold playfair-font mb-3">2. Processing Time</h5>
+            <p class="text-sm text-light-dim lh-lg mb-4">
+                Once submitted, return requests are reviewed by our administrative fulfillment desk. Approved returns are assigned a reverse pickup. Upon reception of the physical goods at our Mumbai warehouse, refunds are initiated back to the original payment source (Razorpay or Bank Account) within 5-7 business days.
+            </p>
+
+            <h5 class="text-gold playfair-font mb-3">3. Anti-Tarnish Polish Protection Warranty</h5>
+            <p class="text-sm text-light-dim lh-lg mb-4">
+                Our gold plating is treated with anti-tarnish protective coatings. If your jewelry experiences premature fading, tarnishing, or structural defects within 90 days of normal wear, we will replace the design absolutely free of cost.
+            </p>
+            
+            <div class="text-center mt-5">
+                <a href="{% url 'shop:products' %}" class="btn btn-gold rounded-pill px-5 py-3">EXPLORE LUXURY JEWELRY</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

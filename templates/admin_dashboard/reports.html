@@ -1,0 +1,111 @@
+{% extends 'admin_dashboard/base_admin.html' %}
+{% load static %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h2 class="playfair-font text-gold mb-1">SALES AUDIT & REPORTS</h2>
+        <p class="text-xs text-light-dim mb-0">Select date intervals to calculate sales totals and export worksheets.</p>
+    </div>
+    
+    <!-- Export buttons -->
+    <div class="d-flex gap-2">
+        <a href="{% url 'shop:admin_export_excel' %}?start_date={{ start_date|default:'' }}&end_date={{ end_date|default:'' }}" class="btn btn-xs btn-gold rounded-pill px-3">
+            <i class="fa-solid fa-file-excel me-1"></i>EXPORT EXCEL
+        </a>
+        <a href="{% url 'shop:admin_export_pdf' %}?start_date={{ start_date|default:'' }}&end_date={{ end_date|default:'' }}" class="btn btn-xs btn-outline-gold rounded-pill px-3">
+            <i class="fa-solid fa-file-pdf me-1"></i>EXPORT PDF SUMMARY
+        </a>
+    </div>
+</div>
+
+<!-- Date range selector -->
+<div class="glass-card p-4 mb-4">
+    <form method="GET" class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label for="start_date" class="form-label text-xs text-gold">Start Date</label>
+            <input type="date" name="start_date" id="start_date" class="form-control bg-dark border-gold text-light text-xs" value="{{ start_date|default:'' }}">
+        </div>
+        <div class="col-md-4">
+            <label for="end_date" class="form-label text-xs text-gold">End Date</label>
+            <input type="date" name="end_date" id="end_date" class="form-control bg-dark border-gold text-light text-xs" value="{{ end_date|default:'' }}">
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-gold w-100 rounded-pill py-2 text-xs font-semibold">
+                CALCULATE TOTALS
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Aggregate info cards -->
+<div class="row g-3 mb-5 text-center">
+    <div class="col-md-3">
+        <div class="bg-black p-3 rounded border border-gold-dim border-opacity-20">
+            <span class="text-xs text-light-dim d-block mb-1">Selected sales revenue</span>
+            <strong class="text-warning fs-5">₹{{ totals.sales|default:0.00 }}</strong>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="bg-black p-3 rounded border border-gold-dim border-opacity-20">
+            <span class="text-xs text-light-dim d-block mb-1">Orders Count</span>
+            <strong class="text-light fs-5">{{ totals.qty|default:0 }}</strong>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="bg-black p-3 rounded border border-gold-dim border-opacity-20">
+            <span class="text-xs text-light-dim d-block mb-1">Shipping Collected</span>
+            <strong class="text-light fs-5">₹{{ totals.shipping|default:0.00 }}</strong>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="bg-black p-3 rounded border border-gold-dim border-opacity-20">
+            <span class="text-xs text-light-dim d-block mb-1">Discounts Allowed</span>
+            <strong class="text-success fs-5">₹{{ totals.discount|default:0.00 }}</strong>
+        </div>
+    </div>
+</div>
+
+<!-- Orders list in that interval -->
+<div class="glass-card p-4">
+    <h5 class="playfair-font text-gold mb-3 border-bottom border-gold-dim pb-1">INCLUDED TRANSACTIONS (PAID)</h5>
+    <div class="table-responsive">
+        <table class="table table-dark table-luxury m-0 text-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Order No</th>
+                    <th>Customer</th>
+                    <th>Date Placed</th>
+                    <th>Subtotal (₹)</th>
+                    <th>Discount (₹)</th>
+                    <th>Shipping (₹)</th>
+                    <th class="text-end">Total Price (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in orders %}
+                <tr>
+                    <td><strong class="font-monospace text-warning">{{ o.order_number }}</strong></td>
+                    <td>{{ o.user.name }}</td>
+                    <td class="text-xs text-light-dim">{{ o.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>₹{{ o.subtotal }}</td>
+                    <td class="text-success">-₹{{ o.discount_amount }}</td>
+                    <td>₹{{ o.shipping_charge }}</td>
+                    <td class="text-end font-semibold text-gold">₹{{ o.total_price }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center py-4 text-light-dim italic">No transactions found in this date range.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block admin_js %}
+<script>
+    document.getElementById("nav-reports").classList.add("active");
+</script>
+{% endblock %}

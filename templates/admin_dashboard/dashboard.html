@@ -1,0 +1,136 @@
+{% extends 'admin_dashboard/base_admin.html' %}
+{% load static %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="playfair-font text-gold mb-1">ANALYTICS SUMMARY</h2>
+        <p class="text-xs text-light-dim mb-0">Overview of Rara Jewels performance & status metrics.</p>
+    </div>
+    <div class="text-xs text-light-dim font-monospace">
+        System Date: {% now "d-M-Y H:i" %}
+    </div>
+</div>
+
+<!-- KPI Cards Grid -->
+<div class="row g-4 mb-5">
+    <div class="col-xl-3 col-sm-6">
+        <div class="glass-card p-4 text-start h-100 relative overflow-hidden">
+            <div class="gold-gradient-border-top"></div>
+            <span class="small-lettering text-gold mb-1 d-block text-xs">Total Sales</span>
+            <h3 class="font-semibold text-light mb-1 mt-1">₹{{ total_sales|floatformat:2 }}</h3>
+            <span class="text-xs text-success"><i class="fa-solid fa-circle-check me-1"></i>Completed Transactions</span>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="glass-card p-4 text-start h-100 relative overflow-hidden">
+            <div class="gold-gradient-border-top"></div>
+            <span class="small-lettering text-gold mb-1 d-block text-xs">Total Orders</span>
+            <h3 class="font-semibold text-light mb-1 mt-1">{{ total_orders }}</h3>
+            <span class="text-xs text-light-dim">Orders Placed</span>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="glass-card p-4 text-start h-100 relative overflow-hidden">
+            <div class="gold-gradient-border-top"></div>
+            <span class="small-lettering text-gold mb-1 d-block text-xs">Total Patrons</span>
+            <h3 class="font-semibold text-light mb-1 mt-1">{{ total_customers }}</h3>
+            <span class="text-xs text-light-dim">Registered Customer Profiles</span>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="glass-card p-4 text-start h-100 relative overflow-hidden">
+            <div class="gold-gradient-border-top"></div>
+            <span class="small-lettering text-gold mb-1 d-block text-xs">Inventory Alerts</span>
+            <h3 class="font-semibold text-light mb-1 mt-1 text-danger">
+                {{ out_of_stock }} <span class="fs-6 text-warning font-normal">({{ low_stock }} Low)</span>
+            </h3>
+            <span class="text-xs text-light-dim">Out of stock products</span>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Recent Orders -->
+    <div class="col-lg-8">
+        <div class="glass-card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="playfair-font text-gold mb-0"><i class="fa-solid fa-receipt me-2"></i>RECENT ORDERS</h5>
+                <a href="{% url 'shop:admin_orders' %}" class="btn btn-xs btn-outline-gold rounded-pill px-3">View All</a>
+            </div>
+            
+            {% if recent_orders %}
+            <div class="table-responsive">
+                <table class="table table-dark table-luxury m-0 text-sm">
+                    <thead>
+                        <tr>
+                            <th>Order No</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th class="text-center">Fulfillment</th>
+                            <th class="text-center">Payment</th>
+                            <th class="text-end">Grand Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in recent_orders %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'shop:admin_order_detail' order.order_number %}" class="font-monospace text-warning font-semibold">{{ order.order_number }}</a>
+                            </td>
+                            <td>{{ order.user.name }}</td>
+                            <td class="text-xs text-light-dim">{{ order.created_at|date:"Y-m-d H:i" }}</td>
+                            <td class="text-center">
+                                <span class="badge {% if order.order_status == 'delivered' %}bg-success{% elif order.order_status == 'cancelled' %}bg-danger{% else %}bg-warning text-dark{% endif %} px-2 py-1 text-xs">
+                                    {{ order.get_order_status_display }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge {% if order.payment_status == 'completed' %}bg-success{% elif order.payment_status == 'failed' %}bg-danger{% else %}bg-warning text-dark{% endif %} px-2 py-1 text-xs">
+                                    {{ order.get_payment_status_display }}
+                                </span>
+                            </td>
+                            <td class="text-end font-semibold text-gold">₹{{ order.total_price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-light-dim text-xs py-4 text-center">No orders placed recently.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Recent captured leads -->
+    <div class="col-lg-4">
+        <div class="glass-card p-4">
+            <h5 class="playfair-font text-gold mb-3"><i class="fa-solid fa-tags me-2"></i>RECENT SAVED LEADS</h5>
+            
+            {% if recent_leads %}
+            <div class="d-flex flex-column gap-3">
+                {% for lead in recent_leads %}
+                <div class="bg-black p-3 rounded border border-gold-dim border-opacity-20 text-xs">
+                    <div class="d-flex justify-content-between mb-1">
+                        <strong class="text-light">{{ lead.name }}</strong>
+                        <span class="text-light-dim text-opacity-50">{{ lead.created_at|date:"d-b" }}</span>
+                    </div>
+                    <span class="text-light-dim d-block mb-1">Email: {{ lead.email }}</span>
+                    <span class="text-light-dim d-block mb-1">Mobile: {{ lead.mobile }}</span>
+                    <span class="text-success font-semibold">Generated Coupon: {{ lead.coupon_code }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-light-dim text-xs py-4 text-center">No lead discount submissions yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block admin_js %}
+<script>
+    document.getElementById("nav-dashboard").classList.add("active");
+</script>
+{% endblock %}

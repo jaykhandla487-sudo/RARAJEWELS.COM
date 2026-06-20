@@ -1,0 +1,106 @@
+{% extends 'admin_dashboard/base_admin.html' %}
+{% load static %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="playfair-font text-gold mb-1">PROMOTIONAL COUPONS MANAGER</h2>
+        <p class="text-xs text-light-dim mb-0">Create, edit, or invalidate discount promo codes.</p>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Coupons List -->
+    <div class="col-lg-8">
+        <div class="glass-card p-4 h-100">
+            <h5 class="playfair-font text-gold mb-3 border-bottom border-gold-dim pb-1">ACTIVE PROMO CODES</h5>
+            <div class="table-responsive">
+                <table class="table table-dark table-luxury m-0 text-sm align-middle">
+                    <thead>
+                        <tr>
+                            <th>Coupon Code</th>
+                            <th>Discount</th>
+                            <th>Min Purchase</th>
+                            <th>Expiry Date</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in coupons %}
+                        <tr>
+                            <td><strong class="text-light font-monospace">{{ c.code }}</strong></td>
+                            <td class="text-warning">
+                                {% if c.discount_percentage %}{{ c.discount_percentage }}%{% else %}₹{{ c.discount_amount }}{% endif %}
+                            </td>
+                            <td>₹{{ c.min_purchase }}</td>
+                            <td class="text-xs text-light-dim">{{ c.valid_to|date:"Y-m-d H:i" }}</td>
+                            <td class="text-center">
+                                <span class="badge {% if c.active %}bg-success{% else %}bg-secondary{% endif %} px-2 py-1 text-xs">
+                                    {% if c.active %}Active{% else %}Inactive{% endif %}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <a href="{% url 'shop:admin_coupon_delete' c.pk %}" class="btn btn-xs btn-danger px-2 py-1 text-xs" title="Delete Coupon" onclick="return confirm('Delete this coupon code?');"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-light-dim italic">No coupons defined. Create one on the right.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Creation panel -->
+    <div class="col-lg-4">
+        <div class="glass-card p-4">
+            <h5 class="playfair-font text-gold mb-3 border-bottom border-gold-dim pb-1">CREATE NEW COUPON</h5>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="text-xs text-gold mb-1">Coupon Code</label>
+                    {{ form.code }}
+                </div>
+                <div class="mb-3">
+                    <label class="text-xs text-gold mb-1">Discount Percentage (%, optional)</label>
+                    {{ form.discount_percentage }}
+                </div>
+                <div class="mb-3">
+                    <label class="text-xs text-gold mb-1">Discount Amount (₹, optional)</label>
+                    {{ form.discount_amount }}
+                </div>
+                <div class="mb-3">
+                    <label class="text-xs text-gold mb-1">Min purchase value (₹)</label>
+                    {{ form.min_purchase }}
+                </div>
+                <div class="mb-3">
+                    <label class="text-xs text-gold mb-1">Valid From</label>
+                    {{ form.valid_from }}
+                </div>
+                <div class="mb-3">
+                    <label class="text-xs text-gold mb-1">Valid To</label>
+                    {{ form.valid_to }}
+                </div>
+                <div class="form-check mb-4">
+                    {{ form.active }}
+                    <label class="form-check-label text-xs text-light" for="id_active">Active status</label>
+                </div>
+                
+                <button type="submit" class="btn btn-gold w-100 rounded-pill py-3 font-semibold shadow-gold">
+                    SAVE PROMO CODE
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block admin_js %}
+<script>
+    document.getElementById("nav-coupons").classList.add("active");
+</script>
+{% endblock %}
