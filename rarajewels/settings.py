@@ -34,6 +34,12 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://rarajewels.com",
+    "https://www.rarajewels.com",
+    "https://rarajewelscom-production.up.railway.app",
+]
+
 # Application definition
 
 INSTALLED_APPS = [
