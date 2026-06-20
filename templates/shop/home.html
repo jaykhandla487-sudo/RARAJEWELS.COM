@@ -132,38 +132,6 @@
 </section>
 {% endif %}
 
-<!-- Promotional Category Grid Link Section -->
-<section class="py-5">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="glass-card position-relative overflow-hidden p-0 rounded-4" style="height: 300px;">
-                    <img src="https://images.unsplash.com/photo-1599643477877-537ef527852f?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover opacity-50 position-absolute start-0 top-0" alt="Women Jewelry">
-                    <div class="position-relative p-5 d-flex flex-column justify-content-end h-100 z-3">
-                        <h3 class="playfair-font text-gold">WOMEN'S COLLECTION</h3>
-                        <p class="text-sm text-light-dim mb-3">Rings, Necklaces, Bracelets, Anklets, Mangalsutras & more.</p>
-                        <div>
-                            <a href="{% url 'shop:products' %}?collection=women" class="btn btn-sm btn-outline-gold rounded-pill px-4">EXPLORE</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="glass-card position-relative overflow-hidden p-0 rounded-4" style="height: 300px;">
-                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover opacity-50 position-absolute start-0 top-0" alt="Men Jewelry">
-                    <div class="position-relative p-5 d-flex flex-column justify-content-end h-100 z-3">
-                        <h3 class="playfair-font text-gold">MEN'S COLLECTION</h3>
-                        <p class="text-sm text-light-dim mb-3">Heavy Chains, Bracelets, Kadas & Statement Rings.</p>
-                        <div>
-                            <a href="{% url 'shop:products' %}?collection=men" class="btn btn-sm btn-outline-gold rounded-pill px-4">EXPLORE</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Best Sellers & Trending Section (Tabs) -->
 <section class="py-5 bg-dark-glow-dim">
     <div class="container py-3">
@@ -251,25 +219,4 @@
 </section>
 {% endif %}
 
-<!-- Instagram Grid Section -->
-<section class="py-5 bg-dark-glow-dim border-top border-gold-dim">
-    <div class="container">
-        <div class="text-center mb-5">
-            <span class="small-lettering text-gold">Follow Our Journey</span>
-            <h2 class="playfair-font text-light mt-2 fs-1">INSTAGRAM GALLERY</h2>
-            <p class="text-xs text-light-dim mt-2">Tag <span class="text-gold">#RaraJewels</span> to get featured in our gallery</p>
-        </div>
-        
-        <div class="insta-grid">
-            {% for item in instagram_gallery %}
-            <a href="{{ item.link }}" class="insta-item">
-                <img src="{{ item.image }}" alt="Instagram Jewelry Piece">
-                <div class="insta-overlay">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-    </div>
-</section>
 {% endblock %}

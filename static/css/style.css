@@ -330,53 +330,6 @@ a:hover {
     animation: pulse 2.5s infinite ease-in-out;
 }
 
-/* Instagram Gallery Grid */
-.insta-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-}
-@media (max-width: 992px) {
-    .insta-grid { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 576px) {
-    .insta-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-.insta-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    aspect-ratio: 1/1;
-    border: 1px solid var(--glass-border);
-}
-.insta-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-.insta-item:hover img {
-    transform: scale(1.1);
-}
-.insta-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    color: var(--gold);
-    font-size: 20px;
-}
-.insta-item:hover .insta-overlay {
-    opacity: 1;
-}
 
 /* Star ratings styling */
 .star-rating {
