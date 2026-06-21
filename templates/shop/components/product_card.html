@@ -1,55 +1,72 @@
 {% load static %}
-<div class="card luxury-card h-100 d-flex flex-column justify-content-between">
+
+<div class="card product-card luxury-card">
+    
     <div class="card-img-wrapper">
-        <!-- Badge -->
+        
         {% if product.stock == 0 %}
             <span class="card-badge bg-danger text-light">Sold Out</span>
         {% elif product.discount_percent > 0 %}
-            <span class="card-badge bg-warning text-dark">-{{ product.discount_percent }}% OFF</span>
+            <span class="card-badge bg-warning text-dark">
+                -{{ product.discount_percent }}% OFF
+            </span>
         {% elif product.is_new_arrival %}
             <span class="card-badge">NEW</span>
         {% endif %}
 
-        <!-- Wishlist Button -->
-        <div class="wishlist-btn-overlay ajax-wishlist-toggle" data-product-id="{{ product.id }}" title="Add to Wishlist">
+        <div class="wishlist-btn-overlay ajax-wishlist-toggle"
+             data-product-id="{{ product.id }}"
+             title="Add to Wishlist">
             <i class="fa-regular fa-heart"></i>
         </div>
 
         <a href="{% url 'shop:product_detail' product.slug %}">
-            <img src="{{ product.primary_image }}" class="card-img-top" alt="{{ product.name }}">
+            <img src="{{ product.primary_image }}"
+                 class="card-img-top"
+                 alt="{{ product.name }}">
         </a>
+
     </div>
-    
-    <div class="card-body p-3 d-flex flex-column justify-content-between">
-        <div>
-            <span class="small-lettering text-gold text-xs d-block mb-1">{{ product.category.name }}</span>
-            <h5 class="card-title playfair-font fs-6 text-light mb-2">
-                <a href="{% url 'shop:product_detail' product.slug %}" class="text-light hover-text-gold">{{ product.name|truncatechars:45 }}</a>
-            </h5>
+
+    <div class="card-body p-3">
+
+        <span class="small-lettering text-gold text-xs d-block mb-1">
+            {{ product.category.name }}
+        </span>
+
+        <h5 class="card-title playfair-font fs-6 text-light mb-2">
+            <a href="{% url 'shop:product_detail' product.slug %}"
+               class="text-light hover-text-gold">
+                {{ product.name|truncatechars:45 }}
+            </a>
+        </h5>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+            {% if product.discount_price %}
+                <span class="fs-5 text-warning font-semibold">
+                    ₹{{ product.discount_price }}
+                </span>
+                <span class="text-xs text-decoration-line-through text-light-dim">
+                    ₹{{ product.price }}
+                </span>
+            {% else %}
+                <span class="fs-5 text-warning font-semibold">
+                    ₹{{ product.price }}
+                </span>
+            {% endif %}
         </div>
-        
-        <div>
-            <div class="d-flex align-items-center gap-2 mb-3">
-                {% if product.discount_price %}
-                    <span class="fs-5 text-warning font-semibold">₹{{ product.discount_price }}</span>
-                    <span class="text-xs text-decoration-line-through text-light-dim">₹{{ product.price }}</span>
-                {% else %}
-                    <span class="fs-5 text-warning font-semibold">₹{{ product.price }}</span>
-                {% endif %}
-            </div>
-            
-            <div class="d-flex gap-2">
-                {% if product.stock > 0 %}
-                    <a href="{% url 'shop:product_detail' product.slug %}" class="btn btn-buy-now w-100 py-1 text-xs font-semibold">
-                        BUY NOW
-                    </a>
-                {% else %}
-                    <button class="btn btn-xs btn-dark disabled rounded-pill w-100 py-1 text-xs border-gold-dim">
-                        OUT OF STOCK
-                    </button>
-                {% endif %}
-            </div>
-            </div>
-        </div>
+
+        {% if product.stock > 0 %}
+            <a href="{% url 'shop:product_detail' product.slug %}"
+               class="btn btn-buy-now w-100 py-1 text-xs font-semibold">
+                BUY NOW
+            </a>
+        {% else %}
+            <button class="btn btn-dark disabled rounded-pill w-100 py-1 text-xs border-gold-dim">
+                OUT OF STOCK
+            </button>
+        {% endif %}
+
     </div>
+
 </div>

@@ -11,11 +11,9 @@
     </div>
     
     {% if wishlist_items %}
-    <div class="row g-4">
+    <div class="products-grid">
         {% for item in wishlist_items %}
-        <div class="col-lg-3 col-md-4 col-sm-6">
             {% include 'shop/components/product_card.html' with product=item.product %}
-        </div>
         {% endfor %}
     </div>
     {% else %}

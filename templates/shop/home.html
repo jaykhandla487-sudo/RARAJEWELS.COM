@@ -100,11 +100,9 @@
             <div class="mx-auto" style="width: 60px; height: 2px; background-color: var(--gold); margin-top: 10px;"></div>
         </div>
         
-        <div class="row g-4">
+        <div class="products-grid">
             {% for item in featured %}
-            <div class="col-lg-3 col-md-4 col-sm-6">
                 {% include 'shop/components/product_card.html' with product=item %}
-            </div>
             {% endfor %}
         </div>
     </div>
@@ -121,11 +119,9 @@
             <div class="mx-auto" style="width: 60px; height: 2px; background-color: var(--gold); margin-top: 10px;"></div>
         </div>
         
-        <div class="row g-4">
+        <div class="products-grid">
             {% for item in new_arrivals %}
-            <div class="col-lg-3 col-md-4 col-sm-6">
                 {% include 'shop/components/product_card.html' with product=item %}
-            </div>
             {% endfor %}
         </div>
     </div>
@@ -153,28 +149,28 @@
         <div class="tab-content" id="pills-tabContent">
             <!-- Trending tab -->
             <div class="tab-pane fade show active" id="pills-trending" role="tabpanel" aria-labelledby="pills-trending-tab">
-                <div class="row g-4">
+                {% if trending %}
+                <div class="products-grid">
                     {% for item in trending %}
-                    <div class="col-lg-3 col-md-4 col-sm-6">
                         {% include 'shop/components/product_card.html' with product=item %}
-                    </div>
-                    {% empty %}
-                    <p class="text-center text-light-dim col-12">No trending products available.</p>
                     {% endfor %}
                 </div>
+                {% else %}
+                <p class="text-center text-light-dim col-12">No trending products available.</p>
+                {% endif %}
             </div>
             
             <!-- Best Sellers tab -->
             <div class="tab-pane fade" id="pills-bestsellers" role="tabpanel" aria-labelledby="pills-bestsellers-tab">
-                <div class="row g-4">
+                {% if best_sellers %}
+                <div class="products-grid">
                     {% for item in best_sellers %}
-                    <div class="col-lg-3 col-md-4 col-sm-6">
                         {% include 'shop/components/product_card.html' with product=item %}
-                    </div>
-                    {% empty %}
-                    <p class="text-center text-light-dim col-12">No best selling products available.</p>
                     {% endfor %}
                 </div>
+                {% else %}
+                <p class="text-center text-light-dim col-12">No best selling products available.</p>
+                {% endif %}
             </div>
         </div>
     </div>

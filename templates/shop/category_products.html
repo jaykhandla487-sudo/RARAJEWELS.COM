@@ -97,21 +97,20 @@
                 </div>
                 {% endif %}
             </div>
-            
-            <div class="row g-4">
+            {% if products %}
+            <div class="products-grid">
                 {% for p in products %}
-                <div class="col-md-4 col-sm-6">
                     {% include 'shop/components/product_card.html' with product=p %}
-                </div>
-                {% empty %}
-                <div class="col-12 text-center py-5">
-                    <i class="fa-solid fa-gem text-gold-dim fs-1 mb-3"></i>
-                    <h4 class="playfair-font text-light">No Products Found</h4>
-                    <p class="text-light-dim text-sm">We couldn't find any products matching your current filters.</p>
-                    <a href="{% url 'shop:products' %}" class="btn btn-gold rounded-pill px-4 mt-2">Browse All Products</a>
-                </div>
                 {% endfor %}
             </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fa-solid fa-gem text-gold-dim fs-1 mb-3"></i>
+                <h4 class="playfair-font text-light">No Products Found</h4>
+                <p class="text-light-dim text-sm">We couldn't find any products matching your current filters.</p>
+                <a href="{% url 'shop:products' %}" class="btn btn-gold rounded-pill px-4 mt-2">Browse All Products</a>
+            </div>
+            {% endif %}
             
             <!-- Pagination Controls -->
             {% if products.has_other_pages %}
