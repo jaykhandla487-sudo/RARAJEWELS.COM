@@ -721,11 +721,3 @@ a:hover {
         height: 180px !important;
     }
 }
-
-.btn-buy-now {
-    background: #ff0000 !important;
-    color: #ffffff !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
-}
