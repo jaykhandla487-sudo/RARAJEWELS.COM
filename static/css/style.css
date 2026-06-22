@@ -201,6 +201,20 @@ a:hover {
     transform: translateY(-2px);
 }
 
+.btn-buy-now {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%) !important;
+    color: #000 !important;
+    border: none !important;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: var(--gold-glow);
+}
+
+.btn-buy-now:hover {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%) !important;
+    color: #000 !important;
+}
+
 /* Luxury Product Cards */
 .luxury-card {
     background-color: var(--glass-bg);
