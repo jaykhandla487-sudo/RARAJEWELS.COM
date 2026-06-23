@@ -148,7 +148,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'support@rarajewels.com'
 
 # Razorpay credentials settings
-RAZORPAY_KEY_ID = 'rzp_test_dummykey12345'
-RAZORPAY_KEY_SECRET = 'dummypaymentsecret67890'
-RAZORPAY_IS_MOCK = True # Set to False in production
+RAZORPAY_KEY_ID = 'rzp_live_T57ZIcLKdaQgpY'
+RAZORPAY_KEY_SECRET = 'hgeUoUSGoSuyLTPpApdY76Mn'
+RAZORPAY_IS_MOCK = False # Set to False in production
 
