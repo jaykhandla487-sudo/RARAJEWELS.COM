@@ -70,41 +70,42 @@
             <hr class="border-gold-dim my-4">
             
             <!-- Buy controls -->
-            {% if product.stock > 0 %}
-            <form action="{% url 'shop:add_to_cart' product.id %}" method="POST" class="row g-3 align-items-center mb-5">
-                {% csrf_token %}
-                <div class="col-3">
-                    <label for="quantity" class="text-xs text-gold d-block mb-1">Quantity</label>
-                    <select name="quantity" id="quantity" class="form-select bg-dark border-gold text-light py-2">
-                        {% for i in "12345"|make_list %}
-                            {% if forloop.counter <= product.stock %}
-                            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col-9 pt-3">
-                    <div class="d-flex gap-3">
-                        <button type="submit" class="btn btn-gold rounded-pill w-100 py-3 font-semibold tracking-wide">
-                            <i class="fa-solid fa-bag-shopping me-2"></i>ADD TO SHOPPING BAG
-                        </button>
-                        
-                        <a href="{% url 'shop:toggle_wishlist' product.id %}" class="btn btn-outline-gold rounded-circle p-0 d-flex align-items-center justify-content-center" style="width: 55px; height: 55px;" title="Wishlist">
-                            <i class="fa-regular fa-heart fs-4"></i>
-                        </a>
-                    </div>
-                </div>
-            </form>
-            {% else %}
-            <div class="d-flex gap-3 mb-5">
-                <button class="btn btn-dark border-gold-dim text-muted disabled w-100 py-3 rounded-pill">
-                    OUT OF STOCK
+         {% if product.stock > 0 %}
+    <!-- Add to Cart Form -->
+    <form action="{% url 'shop:add_to_cart' product.id %}" method="POST" class="row g-3 align-items-center mb-5">
+        {% csrf_token %}
+        <div class="col-3">
+            <label for="quantity" class="text-xs text-gold d-block mb-1">Quantity</label>
+            <select name="quantity" id="quantity" class="form-select bg-dark border-gold text-light py-2">
+                {% for i in "12345"|make_list %}
+                    {% if forloop.counter <= product.stock %}
+                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-9 pt-3">
+            <div class="d-flex gap-3">
+                <button type="submit" class="btn btn-gold rounded-pill w-100 py-3 font-semibold tracking-wide">
+                    <i class="fa-solid fa-bag-shopping me-2"></i>ADD TO SHOPPING BAG
                 </button>
                 <a href="{% url 'shop:toggle_wishlist' product.id %}" class="btn btn-outline-gold rounded-circle p-0 d-flex align-items-center justify-content-center" style="width: 55px; height: 55px;" title="Wishlist">
                     <i class="fa-regular fa-heart fs-4"></i>
                 </a>
             </div>
-            {% endif %}
+        </div>
+    </form>
+ 
+{% else %}
+    <div class="d-flex gap-3 mb-5">
+        <button class="btn btn-dark border-gold-dim text-muted disabled w-100 py-3 rounded-pill">
+            OUT OF STOCK
+        </button>
+        <a href="{% url 'shop:toggle_wishlist' product.id %}" class="btn btn-outline-gold rounded-circle p-0 d-flex align-items-center justify-content-center" style="width: 55px; height: 55px;" title="Wishlist">
+            <i class="fa-regular fa-heart fs-4"></i>
+        </a>
+    </div>
+{% endif %}
 
             <!-- Frequently Bought Together (Upsell module) -->
             {% if frequently_bought %}

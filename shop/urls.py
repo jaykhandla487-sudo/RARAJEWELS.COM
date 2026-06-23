@@ -20,6 +20,8 @@ urlpatterns = [
     # Wishlist
     path('wishlist/', views.wishlist_view, name='wishlist'),
     path('wishlist/toggle/<int:product_id>/', views.toggle_wishlist_view, name='toggle_wishlist'),
+
+   
     
     # Checkout & Payment
     path('checkout/', views.checkout_view, name='checkout'),

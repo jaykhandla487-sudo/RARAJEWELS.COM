@@ -6,17 +6,14 @@
 {% block content %}
 <div class="container py-5 mt-4">
     <h2 class="playfair-font text-gold mb-4 fs-2">SECURE CHECKOUT</h2>
-    
     <form action="{% url 'shop:process_payment' %}" method="POST" id="checkoutForm">
         {% csrf_token %}
         <div class="row g-4">
-            <!-- Left: Address & Payment Methods -->
-            <div class="col-lg-8">
-                <!-- Address Section -->
+            <!-- Shipping Address Section -->
+            <div class="col-12">
                 <div class="glass-card p-4 mb-4">
                     <h5 class="playfair-font text-gold mb-3"><i class="fa-solid fa-location-dot me-2"></i>SHIPPING ADDRESS</h5>
                     <hr class="border-gold-dim">
-                    
                     {% if addresses %}
                     <div class="row g-3 mb-4">
                         {% for addr in addresses %}
@@ -39,51 +36,19 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    
-                    <!-- Button to link to address addition -->
                     <div class="text-start">
                         <a href="{% url 'accounts:dashboard' %}?tab=addresses" class="btn btn-xs btn-outline-gold rounded-pill px-4">
                             <i class="fa-solid fa-plus me-1 text-xs"></i>Manage Address Book
                         </a>
                     </div>
                 </div>
-
-                <!-- Payment Method Section -->
-                <div class="glass-card p-4">
-                    <h5 class="playfair-font text-gold mb-3"><i class="fa-solid fa-credit-card me-2"></i>PAYMENT METHOD</h5>
-                    <hr class="border-gold-dim">
-                    
-                    <div class="d-flex flex-column gap-3">
-                        <div class="payment-box p-3 rounded bg-dark-glow border border-gold-dim border-opacity-50" style="cursor: pointer;" onclick="document.getElementById('pay_rzp').checked = true;">
-                            <div class="form-check">
-                                <input class="form-check-input bg-dark border-gold" type="radio" name="payment_method" id="pay_rzp" value="razorpay" checked>
-                                <label class="form-check-label text-sm text-light font-semibold d-flex align-items-center gap-2" for="pay_rzp">
-                                    <span>Razorpay Payment Gateway</span>
-                                    <span class="badge bg-gold text-dark fs-xsmall">UPI / CARDS / NET BANKING</span>
-                                </label>
-                            </div>
-                            <p class="text-xs text-light-dim mt-2 mb-0">Pay securely with UPI, Credit/Debit cards, Net Banking, or popular wallets via Razorpay.</p>
-                        </div>
-                        
-                        <div class="payment-box p-3 rounded bg-dark-glow border border-gold-dim border-opacity-50" style="cursor: pointer;" onclick="document.getElementById('pay_cod').checked = true;">
-                            <div class="form-check">
-                                <input class="form-check-input bg-dark border-gold" type="radio" name="payment_method" id="pay_cod" value="cod">
-                                <label class="form-check-label text-sm text-light font-semibold" for="pay_cod">
-                                    Cash On Delivery (COD)
-                                </label>
-                            </div>
-                            <p class="text-xs text-light-dim mt-2 mb-0">Pay in cash when the delivery agent delivers your package to your doorstep.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
-            
-            <!-- Right: Order review & promo discounts -->
-            <div class="col-lg-4">
+
+            <!-- Order Items Section -->
+            <div class="col-12">
                 <div class="glass-card p-4 mb-4">
                     <h5 class="playfair-font text-gold mb-3">ORDER ITEMS</h5>
                     <hr class="border-gold-dim">
-                    
                     <div class="d-flex flex-column gap-3 mb-4" style="max-height: 250px; overflow-y: auto;">
                         {% for item in cart.items.all %}
                         <div class="d-flex gap-3 align-items-center">
@@ -96,25 +61,31 @@
                         </div>
                         {% endfor %}
                     </div>
-                    
                     <hr class="border-gold-dim">
-                    
-                    <!-- Coupon Discount field -->
-                    <div class="mb-4">
-                        <label class="text-xs text-gold mb-2">Have a Promo Coupon?</label>
-                        <div class="input-group">
-                            <input type="text" id="couponCodeInput" class="form-control bg-dark border-gold text-light text-xs" placeholder="Promo code" value="{{ coupon.code|default:'' }}">
-                            <button type="button" class="btn btn-gold text-dark text-xs font-semibold px-3" onclick="applyPromoCoupon()">Apply</button>
-                        </div>
-                        {% if coupon %}
-                        <div class="mt-2 text-xs text-success font-semibold">
-                            <i class="fa-solid fa-circle-check me-1"></i>Promo Code <span class="text-light">"{{ coupon.code }}"</span> applied!
-                        </div>
-                        {% endif %}
+                </div>
+            </div>
+
+            <!-- Promo Coupon -->
+            <div class="col-12">
+                <div class="mb-4">
+                    <label class="text-xs text-gold mb-2">Have a Promo Coupon?</label>
+                    <div class="input-group">
+                        <input type="text" id="couponCodeInput" class="form-control bg-dark border-gold text-light text-xs" placeholder="Promo code" value="{{ coupon.code|default:'' }}">
+                        <button type="button" class="btn btn-gold text-dark text-xs font-semibold px-3" onclick="applyPromoCoupon()">Apply</button>
                     </div>
-                    
+                    {% if coupon %}
+                    <div class="mt-2 text-xs text-success font-semibold">
+                        <i class="fa-solid fa-circle-check me-1"></i>Promo Code "<span class="text-light">{{ coupon.code }}</span>" applied!
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-12">
+                <div class="glass-card p-4 mb-4">
+                    <h5 class="playfair-font text-gold mb-3">ORDER SUMMARY</h5>
                     <hr class="border-gold-dim">
-                    
                     <div class="d-flex justify-content-between text-xs mb-2">
                         <span class="text-light-dim">Subtotal:</span>
                         <span class="text-light">₹{{ subtotal }}</span>
@@ -133,27 +104,54 @@
                         <span class="text-light">₹{{ shipping }}</span>
                         {% endif %}
                     </div>
-                    
                     <hr class="border-gold-dim">
-                    
                     <div class="d-flex justify-content-between font-semibold mb-4">
                         <span class="text-gold text-sm">TOTAL AMOUNT:</span>
                         <span class="text-warning fs-5">₹{{ total }}</span>
                     </div>
-                    
-                    <!-- Carry coupon code forward in checkout form -->
-                    <input type="hidden" name="coupon_code" id="formCouponCode" value="{{ coupon.code|default:'' }}">
-                    
-                    {% if addresses %}
-                    <button type="submit" class="btn btn-gold w-100 rounded-pill py-3 font-semibold tracking-wide shadow-gold">
-                        PLACE ORDER NOW
-                    </button>
-                    {% else %}
-                    <a href="{% url 'accounts:dashboard' %}?tab=addresses" class="btn btn-gold w-100 rounded-pill py-3 font-semibold tracking-wide">
-                        ADD SHIPPING ADDRESS TO BUY
-                    </a>
-                    {% endif %}
                 </div>
+            </div>
+
+            {% comment %}Hidden coupon code field and reordered sections{% endcomment %}
+            <!-- Hidden coupon code field -->
+            <input type="hidden" name="coupon_code" id="formCouponCode" value="{{ coupon.code|default:'' }}">
+
+            <!-- Payment Method Section -->
+            <div class="col-12">
+                <div class="glass-card p-4 mb-4">
+                    <h5 class="playfair-font text-gold mb-3"><i class="fa-solid fa-credit-card me-2"></i>PAYMENT METHOD</h5>
+                    <hr class="border-gold-dim">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="payment-box p-3 rounded bg-dark-glow border border-gold-dim border-opacity-50" style="cursor: pointer;" onclick="document.getElementById('pay_rzp').checked = true;">
+                            <div class="form-check">
+                                <input class="form-check-input bg-dark border-gold" type="radio" name="payment_method" id="pay_rzp" value="razorpay" checked>
+                                <label class="form-check-label text-sm text-light font-semibold d-flex align-items-center gap-2" for="pay_rzp">
+                                    <span>Razorpay Payment Gateway</span>
+                                    <span class="badge bg-gold text-dark fs-xsmall">UPI / CARDS / NET BANKING</span>
+                                </label>
+                            </div>
+                            <p class="text-xs text-light-dim mt-2 mb-0">Pay securely with UPI, Credit/Debit cards, Net Banking, or popular wallets via Razorpay.</p>
+                        </div>
+                        <div class="payment-box p-3 rounded bg-dark-glow border border-gold-dim border-opacity-50" style="cursor: pointer;" onclick="document.getElementById('pay_cod').checked = true;">
+                            <div class="form-check">
+                                <input class="form-check-input bg-dark border-gold" type="radio" name="payment_method" id="pay_cod" value="cod">
+                                <label class="form-check-label text-sm text-light font-semibold" for="pay_cod">
+                                    Cash On Delivery (COD)
+                                </label>
+                            </div>
+                            <p class="text-xs text-light-dim mt-2 mb-0">Pay in cash when the delivery agent delivers your package to your doorstep.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Place Order Button -->
+            <div class="col-12">
+                {% if addresses %}
+                <button type="submit" class="btn btn-gold w-100 rounded-pill py-3 font-semibold tracking-wide shadow-gold">PLACE ORDER NOW</button>
+                {% else %}
+                <a href="{% url 'accounts:dashboard' %}?tab=addresses" class="btn btn-gold w-100 rounded-pill py-3 font-semibold tracking-wide">ADD SHIPPING ADDRESS TO BUY</a>
+                {% endif %}
             </div>
         </div>
     </form>
