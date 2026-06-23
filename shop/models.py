@@ -26,6 +26,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=120, unique=True, blank=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subcategories')
     image = models.ImageField(upload_to='categories/', null=True, blank=True)
+    active = models.BooleanField(default=True)
     description = models.TextField(blank=True)
 
     class Meta:

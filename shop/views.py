@@ -54,6 +54,8 @@ def home_view(request):
         'reviews': reviews,
         'instagram_gallery': instagram_mock,
         'announcement': StoreSetting.get_settings().announcement_text,
+        'women_categories': Category.objects.filter(parent__name__iexact='women', active=True),
+        'men_categories': Category.objects.filter(parent__name__iexact='men', active=True),
     }
     return render(request, 'shop/home.html', context)
 
