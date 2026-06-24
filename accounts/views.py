@@ -78,7 +78,7 @@ def dashboard_view(request):
             if profile_form.is_valid():
                 profile_form.save()
                 messages.success(request, "Profile updated successfully.")
-                return redirect(reverse('accounts:dashboard') + '?tab=profile')
+                return redirect('shop:checkout')
             active_tab = 'profile'
         elif action == 'add_address':
             address_form = AddressForm(request.POST)
@@ -87,7 +87,7 @@ def dashboard_view(request):
                 address.user = request.user
                 address.save()
                 messages.success(request, "Address saved successfully.")
-                return redirect(reverse('accounts:dashboard') + '?tab=addresses')
+                return redirect('shop:checkout')
             active_tab = 'addresses'
             
     context = {
