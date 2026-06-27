@@ -1647,3 +1647,18 @@ a:focus-visible {
     outline: 2px solid #D4AF37;
     outline-offset: 3px;
 }
+
+/* Navbar Logo Fix */
+.navbar-logo {
+    width: 150px !important;
+    height: 60px !important;
+    object-fit: contain !important;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .navbar-logo {
+        width: 120px !important;
+        height: 48px !important;
+    }
+}
