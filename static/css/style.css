@@ -198,16 +198,21 @@ a:hover {
 /* Navbar Logo */
 
 .navbar-logo {
+    width: 180px !important;
 
-    width: 60px;
-
-    height: 60px;
+    height: 70px !important;
 
     object-fit: contain;
-
-    display: block;
-
 }
+
+@media (max-width:768px) {
+    .navbar-logo {
+        width: 150px !important;
+
+        height: 60px !important;
+    }
+}
+
 
 .luxury-navbar .nav-link {
 
@@ -1648,18 +1653,41 @@ a:focus-visible {
     outline-offset: 3px;
 }
 
-/* Navbar Logo Fix */
+/* ===== Premium Logo ===== */
+
 .navbar-logo {
-    width: 150px !important;
-    height: 60px !important;
+    width: 220px !important;
+    height: 90px !important;
     object-fit: contain !important;
     display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
+
+    .luxury-navbar .container {
+        display: flex;
+        align-items: center !important;
+        justify-content: space-between;
+    }
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
     .navbar-logo {
-        width: 120px !important;
-        height: 48px !important;
+        width: 90px !important;
+        height: 90px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        display: block;
+    }
+
+    .navbar-icons {
+        display: flex;
+        align-items: center !important;
     }
 }
 
