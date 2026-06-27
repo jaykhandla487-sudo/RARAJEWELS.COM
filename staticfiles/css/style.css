@@ -1,19 +1,28 @@
 /* Rara Jewelry - Premium Luxury Styling Sheets */
 
 :root {
+    /* Luxury Gold */
     --gold: #D4AF37;
-    --gold-dark: #AA7C11;
-    --gold-light: #F3E5AB;
-    --gold-dim: rgba(212, 175, 55, 0.4);
+    --gold-dark: #B58A1F;
+    --gold-light: #F4E2A1;
+    --gold-dim: rgba(212, 175, 55, 0.40);
     --gold-dimmer: rgba(212, 175, 55, 0.15);
-    --dark-deep: #050505;
-    --dark-velvet: #0d0d0d;
-    --dark-grey: #1a1a1a;
-    --dark-light: #2c2c2c;
-    --glass-bg: rgba(13, 13, 13, 0.75);
-    --glass-border: rgba(212, 175, 55, 0.2);
-    --gold-glow: 0 0 15px rgba(212, 175, 55, 0.35);
-    --shadow-premium: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+    /* Premium Olive Green Theme */
+    --dark-deep: #3B4326;
+    --dark-velvet: #373B20;
+    --dark-grey: #404527;
+    --dark-light: #4A5131;
+
+    /* Glass Effect */
+    --glass-bg: rgba(59, 67, 38, 0.82);
+    --glass-border: rgba(212, 175, 55, 0.20);
+
+    /* Shadows & Glow */
+    --gold-glow: 0 0 18px rgba(212, 175, 55, 0.35);
+    --shadow-premium: 0 10px 35px rgba(0, 0, 0, 0.45);
+
+    /* Typography */
     --font-heading: 'Outfit', sans-serif;
     --font-brand: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
@@ -30,8 +39,10 @@ body {
 }
 
 .luxury-bg {
-    /* Premium dark gradient with gold accents */
-    background: radial-gradient(circle at 50% 20%, #15130f 0%, var(--dark-deep) 70%);
+    background: radial-gradient(circle at 50% 20%,
+            #4A5131 0%,
+            #3B4326 40%,
+            #34381D 100%);
     background-attachment: fixed;
 }
 
@@ -82,7 +93,7 @@ a:hover {
 }
 
 .bg-dark-glow {
-    background-color: rgba(5, 5, 5, 0.8) !important;
+    background-color: rgba(59, 67, 38, 0.85) !important;
 }
 
 .tracking-wide {
@@ -139,7 +150,7 @@ a:hover {
 }
 
 .dropdown-menu {
-    background-color: #080808 !important;
+    background-color: var(--dark-velvet) !important;
     border: 1px solid var(--glass-border) !important;
     border-radius: 6px;
     box-shadow: var(--shadow-premium);
@@ -169,9 +180,19 @@ a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.btn-gold:hover {
-    transform: translateY(-2px);
+.btn-buy-now {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: #000 !important;
+    border: none;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: var(--gold-glow);
+}
+
+.btn-buy-now:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
     background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
 }
 
@@ -189,6 +210,20 @@ a:hover {
     color: #000 !important;
     box-shadow: var(--gold-glow);
     transform: translateY(-2px);
+}
+
+.btn-buy-now {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%) !important;
+    color: #000 !important;
+    border: none !important;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: var(--gold-glow);
+}
+
+.btn-buy-now:hover {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%) !important;
+    color: #000 !important;
 }
 
 /* Luxury Product Cards */
@@ -210,26 +245,21 @@ a:hover {
 .card-img-wrapper {
     position: relative;
     overflow: hidden;
-    background-color: #050505;
+    background-color: var(--dark-deep);
 }
 
 
-.luxury-card:hover .card-img-wrapper img {
-    transform: scale(1.08);
-}
 
-.card-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-    color: #000;
-    font-family: var(--font-heading);
-    font-size: 10px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 4px;
-    text-transform: uppercase;
+
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Maximum 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: auto;
+    margin-bottom: 0.5rem;
 }
 
 .wishlist-btn-overlay {
@@ -258,7 +288,7 @@ a:hover {
 /* Form Inputs */
 .form-control,
 .form-select {
-    background-color: #0d0d0d !important;
+    background-color: var(--dark-velvet) !important;
     border: 1px solid var(--glass-border) !important;
     color: #fff !important;
     border-radius: 8px;
@@ -286,14 +316,35 @@ a:hover {
 
 .carousel-item {
     height: 600px;
-    background-color: #050505;
+    background-color: var(--dark-deep);
 }
 
+
+/* Mobile & Tablet product card adjustments */
 @media (max-width: 768px) {
-    .carousel-item {
-        height: 380px;
+    .product-card {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+    }
+
+    .product-card img {
+        width: 100% !important;
+        aspect-ratio: 4/5 !important;
+        height: auto !important;
+        object-fit: cover !important;
+    }
+
+    .card-badge {
+        font-size: 9px;
+        padding: 2px 8px;
     }
 }
+
+.carousel-item {
+    height: 380px;
+}
+
 
 .carousel-img {
     width: 100%;
@@ -308,7 +359,7 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(5, 5, 5, 0.8) 0%, rgba(5, 5, 5, 0.2) 60%, rgba(5, 5, 5, 0.8) 100%);
+    background: linear-gradient(to right, rgba(59, 67, 38, 0.85) 0%, rgba(59, 67, 38, 0.20) 60%, rgba(59, 67, 38, 0.85) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -316,7 +367,7 @@ a:hover {
 
 /* Glassmorphism Cards */
 .glass-card {
-    background: rgba(13, 13, 13, 0.8);
+    background: rgba(59, 67, 38, 0.82);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
@@ -379,63 +430,6 @@ a:hover {
     animation: pulse 2.5s infinite ease-in-out;
 }
 
-/* Instagram Gallery Grid */
-.insta-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-}
-
-@media (max-width: 992px) {
-    .insta-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .insta-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-.insta-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    aspect-ratio: 1/1;
-    border: 1px solid var(--glass-border);
-}
-
-.insta-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.insta-item:hover img {
-    transform: scale(1.1);
-}
-
-.insta-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    color: var(--gold);
-    font-size: 20px;
-}
-
-.insta-item:hover .insta-overlay {
-    opacity: 1;
-}
 
 /* Star ratings styling */
 .star-rating {
@@ -553,7 +547,7 @@ a:hover {
 
 /* Review layout list cards */
 .review-card {
-    background-color: rgba(26, 26, 26, 0.3);
+    background-color: rgba(59, 67, 38, 0.35);
     border: 1px solid var(--glass-border);
     border-radius: 10px;
     padding: 18px;
@@ -619,7 +613,7 @@ a:hover {
 
 /* Admin Dashboard sidebar styling overrides */
 .admin-sidebar {
-    background-color: #080808;
+    background-color: var(--dark-velvet);
     border-right: 1px solid var(--glass-border);
     min-height: calc(100vh - 100px);
 }
@@ -649,18 +643,60 @@ a:hover {
 }
 
 .table-luxury th {
-    background-color: #0d0d0d;
+    background-color: var(--dark-velvet);
     color: var(--gold);
     font-family: var(--font-heading);
     border-bottom: 2px solid var(--glass-border);
 }
 
-.table-luxury td {
-    border-bottom: 1px solid var(--glass-border);
-    vertical-align: middle;
+/* Products Grid Layout */
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important;
 }
 
-/* EMERGENCY GRID FIX */
+@media (max-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+}
+
+/* Ensure parent containers use width: 100% */
+.col-lg-9,
+.products-grid-container {
+    width: 100% !important;
+}
+
+/* Product Card Final Fix */
+.product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: var(--shadow-premium);
+}
+
+/* PRODUCT GRID FIX */
+
 .products-grid {
     display: grid !important;
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
