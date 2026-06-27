@@ -193,73 +193,108 @@
         <i class="fa-brands fa-whatsapp my-float"></i>
     </a>
 
-    <!-- Footer -->
-    <footer class="luxury-footer text-light pt-5 pb-4 mt-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <h5 class="playfair-font text-gold mb-3 fs-4">RARA JEWELS</h5>
-                    <p class="text-light-dim text-sm lh-lg">
-                        Step into a realm of luxury with our premium, handcrafted imitation jewelry. Inspired by the finest heritage designs and crafted for the modern shopper. Enjoy premium finishes, gold polishing, and anti-tarnish protection.
-                    </p>
-                    <div class="d-flex gap-3 mt-3">
-                        <a href="{{ store_settings.instagram_url }}" class="social-link" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="{{ store_settings.facebook_url }}" class="social-link" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="{{ store_settings.youtube_url }}" class="social-link" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="https://wa.me/{{ store_settings.whatsapp_number|cut:'+'|cut:' ' }}" class="social-link" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 col-6">
-                    <h6 class="small-lettering text-gold mb-3">Shop Collections</h6>
-                    <ul class="list-unstyled footer-links text-sm">
-                        <li><a href="{% url 'shop:products' %}?collection=women">Women Collection</a></li>
-                        <li><a href="{% url 'shop:products' %}?collection=men">Men Collection</a></li>
-                        <li><a href="{% url 'shop:products' %}">All Jewelry</a></li>
-                        <li><a href="{% url 'shop:products' %}?sort=popularity">Best Sellers</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 col-6">
-                    <h6 class="small-lettering text-gold mb-3">Customer Service</h6>
-                    <ul class="list-unstyled footer-links text-sm">
-                        <li><a href="{% url 'shop:track_order' %}">Track Order</a></li>
-                        <li><a href="{% url 'shop:return_policy' %}">3-Month Return Policy</a></li>
-                        <li><a href="{% url 'shop:home' %}#reviews">Reviews</a></li>
-                        <li><a href="https://wa.me/{{ store_settings.whatsapp_number|cut:'+'|cut:' ' }}">WhatsApp Support</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <h6 class="small-lettering text-gold mb-3">Subscribe to Luxury</h6>
-                    <p class="text-light-dim text-sm mb-3">Join our newsletter to receive updates on new arrivals, secret sales, and styling tips.</p>
-                    <form action="#" class="newsletter-form flex" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Rara Jewels newsletter!');">
-                        <div class="input-group">
-                            <input type="email" class="form-control bg-dark border-gold text-light text-sm" placeholder="Enter your email" required>
-                            <button type="submit" class="btn btn-gold text-dark font-medium px-3 text-sm">Join</button>
-                        </div>
-                    </form>
-                    <div class="mt-4 d-flex align-items-center gap-2">
-                        <i class="fa-solid fa-shield-halved text-gold"></i>
-                        <span class="text-xs text-light-dim">100% Secure Payments via Razorpay & SSL encryption</span>
-                    </div>
+   <!-- Footer -->
+<footer class="luxury-footer text-light pt-5 pb-4 mt-5">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Brand -->
+            <div class="col-lg-3 col-md-6">
+                <h5 class="playfair-font text-gold mb-3 fs-4">RARA JEWELS</h5>
+                <p class="text-light-dim text-sm lh-lg">
+                    Step into a realm of luxury with our premium handcrafted imitation jewellery. Designed to add elegance to every occasion.
+                </p>
+
+                <div class="d-flex gap-3 mt-3">
+                    <a href="{{ store_settings.instagram_url }}" class="social-link" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="{{ store_settings.facebook_url }}" class="social-link" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="{{ store_settings.youtube_url }}" class="social-link" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://wa.me/{{ store_settings.whatsapp_number|cut:'+'|cut:' ' }}" class="social-link" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
-            
-            <hr class="border-gold-dim my-4">
-            
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-xs text-light-dim gap-2">
-                <p>&copy; {{ current_year }} Rara Jewels. All Rights Reserved. Crafted for luxury.</p>
-                <div class="d-flex gap-3">
-                    <a href="{% url 'shop:return_policy' %}" class="hover-text-gold">Return Policy</a>
-                    <span>|</span>
-                    <a href="#" class="hover-text-gold">Privacy Policy</a>
-                    <span>|</span>
-                    <a href="#" class="hover-text-gold">Terms of Service</a>
+
+            <!-- Policies -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <h6 class="small-lettering text-gold mb-3">Policies</h6>
+                <ul class="list-unstyled footer-links text-sm">
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="{% url 'shop:return_policy' %}">Return Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <!-- Help -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <h6 class="small-lettering text-gold mb-3">Help</h6>
+                <ul class="list-unstyled footer-links text-sm">
+                    <li><a href="{% url 'shop:track_order' %}">Track Order</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="https://wa.me/{{ store_settings.whatsapp_number|cut:'+'|cut:' ' }}">WhatsApp Support</a></li>
+                </ul>
+            </div>
+
+            <!-- About Us -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <h6 class="small-lettering text-gold mb-3">About Us</h6>
+                <ul class="list-unstyled footer-links text-sm">
+                    <li><a href="#">About Rara Jewels</a></li>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="col-lg-3 col-md-6">
+                <h6 class="small-lettering text-gold mb-3">Subscribe</h6>
+
+                <p class="text-light-dim text-sm mb-3">
+                    Get updates about new arrivals, offers and exclusive collections.
+                </p>
+
+                <form action="#" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <div class="input-group">
+                        <input type="email"
+                               class="form-control bg-dark border-gold text-light"
+                               placeholder="Enter your email"
+                               required>
+
+                        <button class="btn btn-gold text-dark">
+                            Join
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-4 d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-gold"></i>
+                    <span class="text-xs text-light-dim">
+                        100% Secure Payments
+                    </span>
                 </div>
+            </div>
+
+        </div>
+
+        <hr class="border-gold-dim my-4">
+
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-xs text-light-dim">
+            <p class="mb-2 mb-md-0">
+                © {{ current_year }} Rara Jewels. All Rights Reserved.
+            </p>
+
+            <div class="d-flex gap-3">
+                <a href="#" class="hover-text-gold">Privacy Policy</a>
+                <span>|</span>
+                <a href="#" class="hover-text-gold">Terms & Conditions</a>
+                <span>|</span>
+                <a href="{% url 'shop:return_policy' %}" class="hover-text-gold">Return Policy</a>
             </div>
         </div>
-    </footer>
+
+    </div>
+</footer>
 
     <!-- Customer Discount Popup Form (Lead Capture Modal) -->
     <div class="modal fade" id="leadCaptureModal" tabindex="-1" aria-labelledby="leadModalTitle" aria-hidden="true" data-bs-backdrop="static">
