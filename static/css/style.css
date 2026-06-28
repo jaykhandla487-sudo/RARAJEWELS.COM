@@ -1943,3 +1943,34 @@ a:focus-visible {
 .product-card .card-body {
     padding: 14px !important;
 }
+
+/* ===== FIX OFFER BADGE ===== */
+
+.product-card .card-img-wrapper {
+    position: relative !important;
+    overflow: hidden;
+}
+
+.product-card .card-badge {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    z-index: 999 !important;
+
+    display: inline-block;
+    background: #f5b301;
+    color: #111;
+    font-size: 13px;
+    font-weight: 700;
+
+    padding: 6px 12px;
+    border-radius: 0 0 8px 0;
+}
+
+.product-card .card-img-top,
+.product-card .card-img-wrapper img {
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
