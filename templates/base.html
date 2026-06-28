@@ -81,6 +81,8 @@
     
     <!-- Custom Style Sheet -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     
     {% block extra_css %}{% endblock %}
 </head>
@@ -355,6 +357,46 @@
     
     <!-- Custom scripts -->
     <script src="{% static 'js/main.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    new Swiper(".categorySwiper", {
+        slidesPerView: 2.2,
+        spaceBetween: 20,
+        loop: true,
+        grabCursor: true,
+
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+
+        breakpoints: {
+            576: {
+                slidesPerView: 3,
+            },
+            768: {
+                slidesPerView: 4,
+            },
+            992: {
+                slidesPerView: 5,
+            },
+            1200: {
+                slidesPerView: 6,
+            }
+        }
+    });
+
+});
+</script>
     
     <!-- AJAX handler for Lead capture -->
     <script>

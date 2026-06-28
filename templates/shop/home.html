@@ -90,65 +90,49 @@
     </div>
 </section>
 
-<!-- Shop By Category Section -->
 <section class="py-5">
-  <div class="container">
-    <div class="text-center mb-5">
-      <span class="small-lettering text-gold">Explore Collections</span>
-      <h2 class="playfair-font text-light mt-2 fs-1">Shop By Category</h2>
-      <div class="mx-auto" style="width: 60px; height: 2px; background-color: var(--gold); margin-top: 10px;"></div>
-    </div>
+    <div class="container">
 
-    <!-- Women's Collection -->
-    <h3 class="text-gold mb-4">Women's Collection</h3>
-    <div class="row g-4">
-      {% for cat in women_categories %}
-      <div class="col-6 col-md-4 col-lg-3">
-        <a href="{% url 'shop:category_products' slug=cat.slug %}" class="text-decoration-none">
-          <div class="glass-card h-100 overflow-hidden">
-            {% if cat.image %}
-            <img src="{{ cat.image.url }}" alt="{{ cat.name }}" class="img-fluid w-100" style="height:180px; object-fit:cover;">
-            {% else %}
-            <div class="bg-dark-glow d-flex align-items-center justify-content-center" style="height:180px;">
-              <span class="text-light">No Image</span>
-            </div>
-            {% endif %}
-            <div class="p-3 text-center">
-              <h5 class="text-light mb-0">{{ cat.name }}</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-      {% empty %}
-      <p class="text-light">No women's categories available.</p>
-      {% endfor %}
-    </div>
+        <div class="text-center mb-5">
+            <span class="small-lettering text-gold">EXPLORE COLLECTIONS</span>
+            <h2 class="playfair-font text-light mt-2">Shop By Category</h2>
+        </div>
 
-    <!-- Men's Collection -->
-    <h3 class="text-gold mt-5 mb-4">Men's Collection</h3>
-    <div class="row g-4">
-      {% for cat in men_categories %}
-      <div class="col-6 col-md-4 col-lg-3">
-        <a href="{% url 'shop:category_products' slug=cat.slug %}" class="text-decoration-none">
-          <div class="glass-card h-100 overflow-hidden">
-            {% if cat.image %}
-            <img src="{{ cat.image.url }}" alt="{{ cat.name }}" class="img-fluid w-100" style="height:180px; object-fit:cover;">
-            {% else %}
-            <div class="bg-dark-glow d-flex align-items-center justify-content-center" style="height:180px;">
-              <span class="text-light">No Image</span>
+        <div class="swiper categorySwiper">
+            <div class="swiper-wrapper">
+
+                {% for cat in categories %}
+
+                <div class="swiper-slide text-center">
+
+                    <a href="{% url 'shop:category_products' slug=cat.slug %}" class="text-decoration-none">
+
+                        <div class="category-circle">
+
+                            {% if cat.image %}
+                                <img src="{{ cat.image.url }}" alt="{{ cat.name }}">
+                            {% endif %}
+
+                        </div>
+
+                        <h6 class="text-light mt-3">
+                            {{ cat.name }}
+                        </h6>
+
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
             </div>
-            {% endif %}
-            <div class="p-3 text-center">
-              <h5 class="text-light mb-0">{{ cat.name }}</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-      {% empty %}
-      <p class="text-light">No men's categories available.</p>
-      {% endfor %}
+
+            <!-- Optional Pagination -->
+            <div class="swiper-pagination"></div>
+
+        </div>
+
     </div>
-  </div>
 </section>
 
 <!-- Featured Products Section -->

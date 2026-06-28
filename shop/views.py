@@ -46,17 +46,22 @@ def home_view(request):
     ]
     
     context = {
-        'banners': banners,
-        'featured': featured,
-        'new_arrivals': new_arrivals,
-        'best_sellers': best_sellers,
-        'trending': trending,
-        'reviews': reviews,
-        'instagram_gallery': instagram_mock,
-        'announcement': StoreSetting.get_settings().announcement_text,
-        'women_categories': Category.objects.filter(parent__name__iexact='women', active=True),
-        'men_categories': Category.objects.filter(parent__name__iexact='men', active=True),
-    }
+    'banners': banners,
+    'featured': featured,
+    'new_arrivals': new_arrivals,
+    'best_sellers': best_sellers,
+    'trending': trending,
+    'reviews': reviews,
+    'instagram_gallery': instagram_mock,
+    'announcement': StoreSetting.get_settings().announcement_text,
+
+    'women_categories': Category.objects.filter(parent__name__iexact='women', active=True),
+    'men_categories': Category.objects.filter(parent__name__iexact='men', active=True),
+    'categories': Category.objects.filter(
+    active=True,
+    image__isnull=False
+).exclude(image='')
+}
     return render(request, 'shop/home.html', context)
 
 def category_products_view(request, slug=None):
