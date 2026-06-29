@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9r&m*o05#s7a6wu51bym!5w7kfo7otipz_#^05y2=+u40h+nf!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "rarajewels.com",
@@ -39,6 +39,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.rarajewels.com",
     "https://rarajewelscom-production.up.railway.app",
 ]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
 
 # Application definition
 
