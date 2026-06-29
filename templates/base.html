@@ -2,8 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+     
+
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
     <script type="application/ld+json">
+        
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -52,7 +56,58 @@
   }]
 }
 </script>
-       <title>Rara Jewels | Premium Imitation Jewellery Online Shopping in India</title>
+
+<!-- Organization Schema yahan se start -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rara Jewels",
+  "url": "https://rarajewels.com",
+  "logo": "https://rarajewels.com{% static 'images/logo.png' %}",
+  "description": "Rara Jewels is an online store offering premium imitation jewellery across India.",
+  "telephone": "{{ store_settings.whatsapp_number }}",
+  "sameAs": [
+    "{{ store_settings.instagram_url }}",
+    "{{ store_settings.facebook_url }}",
+    "{{ store_settings.youtube_url }}"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN"
+  }
+}
+</script>
+
+<!-- Website Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rara Jewels",
+  "url": "https://rarajewels.com",
+  "description": "Premium imitation jewellery online shopping in India. Shop earrings, necklaces, rings, bangles, bracelets, bridal jewellery and more.",
+  "inLanguage": "en-IN",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rara Jewels",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rarajewels.com/static/images/logo.png"
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://rarajewels.com/products/?search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{% block schema %}{% endblock %}
+
+
+ <title>Rara Jewels | Premium Imitation Jewellery Online Shopping in India</title>
 
 <meta name="description" content="Shop premium imitation jewellery online at Rara Jewels. Explore elegant necklace sets, earrings, bangles, rings, bridal jewellery, and trendy fashion accessories. Enjoy secure payments, fast delivery, and affordable prices across India.">
 
@@ -67,6 +122,26 @@
 <meta name="theme-color" content="#D4AF37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta property="og:title" content="Rara Jewels | Premium Imitation Jewellery">
+
+<meta property="og:description" content="Shop Premium Artificial Jewellery Online in India">
+
+<meta property="og:type" content="website">
+
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+
+<meta property="og:image" content="https://rarajewels.com/static/images/og-image.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:title" content="Rara Jewels">
+
+<meta name="twitter:description" content="Premium Artificial Jewellery Online">
+
+<meta name="twitter:image" content="https://rarajewels.com/static/images/og-image.jpg">
+
+<meta property="og:site_name" content="Rara Jewels">
 <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 <link rel="apple-touch-icon" href="{% static 'images/favicon.ico' %}">
