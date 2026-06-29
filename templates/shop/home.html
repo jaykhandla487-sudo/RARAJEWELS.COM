@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load l10n %}
 
 {% block title %}Home | Rara Jewels - Imitation Jewelry Brand{% endblock %}
 
@@ -10,7 +11,9 @@
         {% if banners %}
             {% for banner in banners %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="{{ banner.image.url }}" class="carousel-img" alt="{{ banner.title }}">
+               <img src="{% static 'images/banners/' %}{{ banner.image.name|cut:'banners/' }}"
+     class="carousel-img"
+     alt="{{ banner.title }}">
                 <div class="carousel-caption-overlay text-center">
                     <div class="container text-start px-4 px-md-5">
                         <div class="col-lg-7">
@@ -108,9 +111,9 @@
                     <a href="{% url 'shop:category_products' slug=cat.slug %}" class="text-decoration-none">
 
                         <div class="category-circle">
-
-                            {% if cat.image %}
-                                <img src="{{ cat.image.url }}" alt="{{ cat.name }}">
+                           {% if cat.image %}
+                            <img src="{% static 'images/categories/' %}{{ cat.image.name|cut:'categories/' }}" 
+                            alt="{{ cat.name }}">
                             {% endif %}
 
                         </div>
