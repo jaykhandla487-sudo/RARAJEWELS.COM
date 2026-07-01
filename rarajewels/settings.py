@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9r&m*o05#s7a6wu51bym!5w7kfo7otipz_#^05y2=+u40h+nf!'
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -90,10 +91,12 @@ WSGI_APPLICATION = 'rarajewels.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join('/data', 'db.sqlite3'),
     }
 }
 
@@ -153,7 +156,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'support@rarajewels.com'
 
 # Razorpay credentials settings
-RAZORPAY_KEY_ID = 'rzp_live_T57ZIcLKdaQgpY'
-RAZORPAY_KEY_SECRET = 'hgeUoUSGoSuyLTPpApdY76Mn'
+RAZORPAY_KEY_ID = os.environ["RAZORPAY_KEY_ID"]
+RAZORPAY_KEY_SECRET = os.environ["RAZORPAY_KEY_SECRET"]
 RAZORPAY_IS_MOCK = False # Set to False in production
 
