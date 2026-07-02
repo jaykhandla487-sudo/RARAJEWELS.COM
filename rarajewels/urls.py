@@ -9,6 +9,7 @@ from django.conf.urls.static import static
 from django.views.generic import RedirectView
 from django.templatetags.static import static as static_url
 from django.views.static import serve
+from django.views.generic import TemplateView
 
 # Sitemap
 from django.contrib.sitemaps.views import sitemap
@@ -29,6 +30,13 @@ urlpatterns = [
         ),
     ),
 
+         path(
+    "robots.txt",
+    TemplateView.as_view(
+        template_name="robots.txt",
+        content_type="text/plain",
+    ),
+),
     # Sitemap
     path(
         "sitemap.xml",

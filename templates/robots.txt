@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rarajewels.com/sitemap.xml
