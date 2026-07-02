@@ -99,26 +99,13 @@ class Product(models.Model):
         primary = self.images.filter(is_primary=True).first()
 
         if primary:
-           @property
-           def primary_image(self):
-            primary = self.images.filter(is_primary=True).first()
-
-           if primary:
             return primary.image.url
 
-            first = self.images.first()
+        first = self.images.first()
 
-           if first:
+        if first:
             return first.image.url
-
-            return "/static/images/product-placeholder.jpg"
-            first = self.images.first()
-
-            if first:
-              filename = first.image.name.split("/")[-1]
-            return f"/static/images/products/{filename}"
-
-           return "/static/images/product-placeholder.jpg"
+        return "/static/images/product-placeholder.jpg"
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
