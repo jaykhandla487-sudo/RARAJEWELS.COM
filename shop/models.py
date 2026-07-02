@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils.text import slugify
 from django.utils import timezone
 import uuid
+from django.urls import reverse
 
 class StoreSetting(models.Model):
     free_shipping_threshold = models.DecimalField(max_digits=10, decimal_places=2, default=699.00)
@@ -47,6 +48,12 @@ class Category(models.Model):
         if self.parent:
             return f"{self.parent.name} > {self.name}"
         return self.name
+        
+    def get_absolute_url(self):
+        return reverse(
+            "shop:category_products",
+            kwargs={"slug": self.slug}
+        )   
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -76,6 +83,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse(
+            "shop:product_detail",
+            kwargs={"slug": self.slug}
+        )   
 
     @property
     def get_price(self):
