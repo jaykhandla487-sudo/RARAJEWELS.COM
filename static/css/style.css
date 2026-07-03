@@ -1974,3 +1974,64 @@ a:focus-visible {
     position: relative;
     z-index: 1;
 }
+
+/* ===== FAQ PAGE CSS ===== */
+
+.faq-hero {
+    background: linear-gradient(180deg, #252d17, #1b2112);
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, .2);
+}
+
+.faq-hero h1 {
+    color: #d4af37;
+}
+
+#faqSearch {
+    height: 55px;
+    border-radius: 12px;
+}
+
+#faqSearch:focus {
+    box-shadow: 0 0 15px rgba(212, 175, 55, .4);
+}
+
+.faq-item {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.faq-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, .15);
+}
+
+.accordion-button {
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #d4af37;
+    color: #111;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-body {
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+@media(max-width:768px) {
+    .faq-hero h1 {
+        font-size: 34px;
+    }
+
+    .accordion-button {
+        font-size: 15px;
+    }
+}

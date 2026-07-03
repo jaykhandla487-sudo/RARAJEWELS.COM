@@ -39,6 +39,16 @@ urlpatterns = [
     path('order/<int:order_id>/invoice/print/', views.print_invoice_html_view, name='print_invoice_html'),
     path('return-policy/', views.return_policy_view, name='return_policy'),
 
+    # Static Pages
+    path('faq/', views.faq_view, name='faq'),
+    path('shipping-policy/', views.shipping_policy_view, name='shipping_policy'),
+    path('privacy-policy/', views.privacy_policy_view, name='privacy_policy'),
+    path('terms/', views.terms_view, name='terms'),
+    path('contact/', views.contact_view, name='contact'),
+    path('about/', views.about_view, name='about'),
+    path('blogs/', views.blogs_view, name='blogs'),
+    path('careers/', views.careers_view, name='careers'), 
+
     # --- Custom Luxury Admin Dashboard ---
     path('luxury-admin/', admin_views.admin_dashboard_view, name='admin_dashboard'),
     

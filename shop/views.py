@@ -658,6 +658,30 @@ def return_policy_view(request):
     Renders the static 3-Month Return Policy informational page.
     """
     return render(request, 'shop/return_policy.html')
-from django.contrib.auth.decorators import login_required
+
+def faq_view(request):
+    return render(request, 'faq.html')
+
+def shipping_policy_view(request):
+    return render(request, 'shipping_policy.html')
+
+def privacy_policy_view(request):
+    return render(request, 'privacy_policy.html')
+
+def terms_view(request):
+    return render(request, 'terms.html')
+
+def contact_view(request):
+    return render(request, 'contact.html')
+
+def about_view(request):
+    return render(request, 'about.html')
+
+def blogs_view(request):
+    return render(request, 'blogs.html')
+
+def careers_view(request):
+    return render(request, 'careers.html')
+    from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 

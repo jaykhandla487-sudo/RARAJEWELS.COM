@@ -1,0 +1,553 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"What products does Rara Jewels offer?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Rara Jewels offers premium imitation jewellery including necklace sets, earrings, bangles, bracelets, rings, mangalsutra, bridal jewellery and fashion accessories."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Do you deliver across India?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. We deliver across India with secure packaging and fast shipping."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How long does delivery take?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Most orders are delivered within 2 to 7 business days depending on your location."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Do you offer free shipping?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. Free shipping is available on eligible orders above our minimum order value."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"What payment methods do you accept?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"We accept UPI, Debit Card, Credit Card, Net Banking and other secure online payment methods."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I return my order?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. Please check our Return Policy for complete return and refund details."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How can I track my order?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"You can track your order from the Track Order page using your Order ID."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How can I contact Rara Jewels?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"You can contact us through WhatsApp, email or our Contact Us page."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<section class="faq-hero py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <span class="badge bg-warning text-dark px-3 py-2 mb-3">
+                ❓ HELP CENTER
+            </span>
+
+            <h1 class="display-4 playfair-font text-gold fw-bold">
+                Frequently Asked Questions
+            </h1>
+
+            <p class="lead text-light mt-3">
+                Everything you need to know about shopping at
+                <span class="text-warning">Rara Jewels</span>.
+            </p>
+        </div>
+
+        <!-- Search -->
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7">
+
+                <div class="input-group shadow-lg">
+
+                    <span class="input-group-text bg-dark border-warning text-warning">
+                        <i class="fa fa-search"></i>
+                    </span>
+
+                    <input
+                        id="faqSearch"
+                        type="text"
+                        class="form-control bg-dark text-light border-warning"
+                        placeholder="Search your question...">
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FAQ -->
+
+        <div class="accordion" id="faqAccordion">
+
+            <!-- FAQ 1 -->
+
+            <div class="accordion-item bg-dark border-warning faq-item mb-3">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed bg-dark text-warning"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq1">
+
+                        💎 What products does Rara Jewels offer?
+
+                    </button>
+
+                </h2>
+
+                <div id="faq1"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body text-light">
+
+                        We offer premium imitation jewellery including:
+
+                        <ul class="mt-3">
+
+                            <li>Necklace Sets</li>
+
+                            <li>Earrings</li>
+
+                            <li>Bangles</li>
+
+                            <li>Bracelets</li>
+
+                            <li>Rings</li>
+
+                            <li>Mangalsutra</li>
+
+                            <li>Bridal Jewellery</li>
+
+                            <li>Party Wear Collection</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 2 -->
+
+            <div class="accordion-item bg-dark border-warning faq-item mb-3">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed bg-dark text-warning"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq2">
+
+                        🚚 Do you deliver across India?
+
+                    </button>
+
+                </h2>
+
+                <div id="faq2"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body text-light">
+
+                        Yes.
+
+                        We deliver all over India with secure packaging.
+
+                        Every order is packed carefully to ensure your jewellery reaches safely.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 3 -->
+
+            <div class="accordion-item bg-dark border-warning faq-item mb-3">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed bg-dark text-warning"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq3">
+
+                        ⏳ How long does delivery take?
+
+                    </button>
+
+                </h2>
+
+                <div id="faq3"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body text-light">
+
+                        Orders are generally delivered within
+                        <strong>2–7 business days</strong> depending on your location.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 4 -->
+
+            <div class="accordion-item bg-dark border-warning faq-item mb-3">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed bg-dark text-warning"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq4">
+
+                        🚛 Do you offer Free Shipping?
+
+                    </button>
+
+                </h2>
+
+                <div id="faq4"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body text-light">
+
+                        Yes.
+
+                        Free Shipping is available on eligible orders.
+
+                        Please check our Shipping Policy for current conditions.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 5 -->
+
+            <div class="accordion-item bg-dark border-warning faq-item mb-3">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed bg-dark text-warning"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq5">
+
+                        💳 Which payment methods are accepted?
+
+                    </button>
+
+                </h2>
+
+                <div id="faq5"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body text-light">
+
+                        We accept
+
+                        <ul class="mt-3">
+
+                            <li>UPI</li>
+
+                            <li>Credit Card</li>
+
+                            <li>Debit Card</li>
+
+                            <li>Net Banking</li>
+
+                            <li>Secure Online Payments</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 6 -->
+
+<div class="accordion-item bg-dark border-warning faq-item mb-3">
+
+    <h2 class="accordion-header">
+
+        <button class="accordion-button collapsed bg-dark text-warning"
+            data-bs-toggle="collapse"
+            data-bs-target="#faq6">
+
+            🔄 Can I return my order?
+
+        </button>
+
+    </h2>
+
+    <div id="faq6"
+         class="accordion-collapse collapse"
+         data-bs-parent="#faqAccordion">
+
+        <div class="accordion-body text-light">
+
+            Yes. Eligible products can be returned according to our
+            Return Policy. Please visit the Return Policy page for full details.
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FAQ 7 -->
+
+<div class="accordion-item bg-dark border-warning faq-item mb-3">
+
+    <h2 class="accordion-header">
+
+        <button class="accordion-button collapsed bg-dark text-warning"
+            data-bs-toggle="collapse"
+            data-bs-target="#faq7">
+
+            📦 How can I track my order?
+
+        </button>
+
+    </h2>
+
+    <div id="faq7"
+         class="accordion-collapse collapse"
+         data-bs-parent="#faqAccordion">
+
+        <div class="accordion-body text-light">
+
+            Visit the Track Order page and enter your Order ID to check
+            your latest delivery status.
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FAQ 8 -->
+
+<div class="accordion-item bg-dark border-warning faq-item mb-3">
+
+    <h2 class="accordion-header">
+
+        <button class="accordion-button collapsed bg-dark text-warning"
+            data-bs-toggle="collapse"
+            data-bs-target="#faq8">
+
+            ✨ Is your jewellery anti-tarnish?
+
+        </button>
+
+    </h2>
+
+    <div id="faq8"
+         class="accordion-collapse collapse"
+         data-bs-parent="#faqAccordion">
+
+        <div class="accordion-body text-light">
+
+            Our premium imitation jewellery is crafted using high-quality
+            materials. Proper care will help maintain its shine for a long time.
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FAQ 9 -->
+
+<div class="accordion-item bg-dark border-warning faq-item mb-3">
+
+    <h2 class="accordion-header">
+
+        <button class="accordion-button collapsed bg-dark text-warning"
+            data-bs-toggle="collapse"
+            data-bs-target="#faq9">
+
+            💍 Can I exchange my jewellery?
+
+        </button>
+
+    </h2>
+
+    <div id="faq9"
+         class="accordion-collapse collapse"
+         data-bs-parent="#faqAccordion">
+
+        <div class="accordion-body text-light">
+
+            Exchange availability depends on the product category and our
+            exchange policy. Please contact our support team before requesting an exchange.
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FAQ 10 -->
+
+<div class="accordion-item bg-dark border-warning faq-item mb-5">
+
+    <h2 class="accordion-header">
+
+        <button class="accordion-button collapsed bg-dark text-warning"
+            data-bs-toggle="collapse"
+            data-bs-target="#faq10">
+
+            📞 How can I contact Rara Jewels?
+
+        </button>
+
+    </h2>
+
+    <div id="faq10"
+         class="accordion-collapse collapse"
+         data-bs-parent="#faqAccordion">
+
+        <div class="accordion-body text-light">
+
+            Contact us anytime through WhatsApp, Email or our Contact Us page.
+            Our team will be happy to assist you.
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+<!-- End Accordion -->
+
+<!-- Help Section -->
+
+<div class="row mt-5">
+
+    <div class="col-lg-12">
+
+        <div class="card bg-dark border-warning shadow-lg">
+
+            <div class="card-body text-center py-5">
+
+                <h2 class="playfair-font text-warning mb-3">
+
+                    Still Need Help?
+
+                </h2>
+
+                <p class="text-light mb-4">
+
+                    Our support team is always ready to help you with orders,
+                    payments, shipping and product information.
+
+                </p>
+
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+
+                    <a href="{% url 'shop:contact' %}"
+                       class="btn btn-warning text-dark px-4">
+
+                        📧 Contact Us
+
+                    </a>
+
+                    <a href="{% url 'shop:track_order' %}"
+                       class="btn btn-outline-warning px-4">
+
+                        📦 Track Order
+
+                    </a>
+
+                    <a href="https://wa.me/{{ store_settings.whatsapp_number|cut:'+'|cut:' ' }}"
+                       target="_blank"
+                       class="btn btn-success px-4">
+
+                        💬 WhatsApp Support
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+ </div>
+
+</div> <!-- End Container -->
+
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const search = document.getElementById("faqSearch");
+
+    if (search) {
+        search.addEventListener("keyup", function () {
+            let filter = this.value.toLowerCase();
+
+            document.querySelectorAll(".faq-item").forEach(function(item) {
+                item.style.display = item.innerText.toLowerCase().includes(filter)
+                    ? ""
+                    : "none";
+            });
+        });
+    }
+});
+</script>
+
+{% endblock %}
