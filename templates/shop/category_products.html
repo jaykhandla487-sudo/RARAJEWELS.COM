@@ -6,143 +6,131 @@
 {% block content %}
 <div class="container py-5 mt-4">
     <div class="row">
-        <!-- Sidebar Filters -->
-        <div class="col-lg-3 mb-4">
+
+        <!-- Sidebar Desktop -->
+        <div class="col-lg-3 mb-4 d-none d-lg-block">
+
             <div class="glass-card p-4">
+
                 <h5 class="playfair-font text-gold mb-3">FILTERS</h5>
                 <hr class="border-gold-dim">
-                
-                <form method="GET" action=".">
-                    <!-- Maintain collection/search values if present -->
-                    {% if collection %}
-                    <input type="hidden" name="collection" value="{{ collection }}">
-                    {% endif %}
-                    {% if q %}
-                    <input type="hidden" name="q" value="{{ q }}">
-                    {% endif %}
-                    
-                    <!-- Categories -->
-                    <div class="mb-4">
-                        <label class="small-lettering text-gold mb-2 d-block">Categories</label>
-                        <div class="d-flex flex-column gap-2 text-sm">
-                            <a href="{% url 'shop:products' %}{% if collection %}?collection={{ collection }}{% endif %}" class="text-light-dim hover-text-gold {% if not category %}text-gold{% endif %}">
-                                <i class="fa-solid fa-gem me-2 text-xs"></i>All Categories
-                            </a>
-                            {% for cat in all_categories %}
-                                {% if not cat.parent %}
-                                <a href="{% url 'shop:category_products' cat.slug %}{% if collection %}?collection={{ collection }}{% endif %}" class="text-light-dim hover-text-gold font-medium {% if category.id == cat.id %}text-gold{% endif %}">
-                                    <i class="fa-solid fa-chevron-right me-2 text-xs"></i>{{ cat.name }}
-                                </a>
-                                    <!-- Subcategories -->
-                                    {% for sub in cat.subcategories.all %}
-                                    <a href="{% url 'shop:category_products' sub.slug %}{% if collection %}?collection={{ collection }}{% endif %}" class="text-light-dim hover-text-gold ps-3 text-xs {% if category.id == sub.id %}text-gold{% endif %}">
-                                        - {{ sub.name }}
-                                    </a>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                    
-                    <hr class="border-gold-dim">
-                    
-                    <!-- Price Range -->
-                    <div class="mb-4">
-                        <label class="small-lettering text-gold mb-2 d-block">Price Range (₹)</label>
-                        <div class="d-flex align-items-center gap-2">
-                            <input type="number" name="min_price" class="form-control bg-dark border-gold text-light py-1 px-2 text-xs" placeholder="Min" value="{{ min_price|default:'' }}">
-                            <span class="text-xs text-light-dim">to</span>
-                            <input type="number" name="max_price" class="form-control bg-dark border-gold text-light py-1 px-2 text-xs" placeholder="Max" value="{{ max_price|default:'' }}">
-                        </div>
-                    </div>
-                    
-                    <hr class="border-gold-dim">
-                    
-                    <!-- Sort By -->
-                    <div class="mb-4">
-                        <label class="small-lettering text-gold mb-2 d-block">Sort By</label>
-                        <select name="sort" class="form-select bg-dark border-gold text-light py-1 px-2 text-xs">
-                            <option value="newest" {% if sort_by == 'newest' %}selected{% endif %}>Newest</option>
-                            <option value="popularity" {% if sort_by == 'popularity' %}selected{% endif %}>Popularity</option>
-                            <option value="price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>Price: Low to High</option>
-                            <option value="price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>Price: High to Low</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-gold w-100 rounded-pill py-2 text-xs font-semibold">
-                        APPLY FILTERS
-                    </button>
-                    
-                    <a href="{% url 'shop:products' %}" class="btn btn-outline-gold w-100 rounded-pill py-1 mt-2 text-xs">
-                        CLEAR ALL
-                    </a>
-                </form>
+
+                {% include "shop/components/filters.html" %}
+
             </div>
+
         </div>
-        
+
         <!-- Products Grid Area -->
         <div class="col-lg-9">
-            <!-- Header Title -->
-            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+
+            <!-- Mobile Filter Button -->
+           <div class="d-lg-none mb-3 mobile-filter-btn">
+                <button class="btn btn-gold w-100"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#mobileFilter">
+                    <i class="fa-solid fa-sliders"></i> Filters
+                </button>
+            </div>
+
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
                 <div>
-                    <h2 class="playfair-font text-gold mb-1">
-                        {% if category %}{{ category.name|upper }}{% elif collection %}{{ collection|upper }} COLLECTION{% else %}ALL JEWELRY{% endif %}
+                    <h2 class="playfair-font text-gold">
+                        {% if category %}{{ category.name|upper }}{% else %}ALL PRODUCTS{% endif %}
                     </h2>
-                    <p class="text-xs text-light-dim mb-0">Showing {{ products.object_list|length }} products</p>
+
+                    <span class="text-xs text-light-dim">
+                        Showing {{ products.object_list|length }} results
+                    </span>
                 </div>
-                
+
                 {% if q %}
-                <div class="bg-dark px-3 py-1 rounded border-gold-dim text-xs text-light-dim">
-                    Search result for: <strong class="text-warning">"{{ q }}"</strong>
+                <div class="bg-dark px-3 py-1 rounded border-gold-dim text-xs">
+                    Search: <span class="text-warning">"{{ q }}"</span>
                 </div>
                 {% endif %}
+
             </div>
+
+            <!-- Product Cards -->
             {% if products %}
             <div class="products-grid">
                 {% for p in products %}
-                    {% include 'shop/components/product_card.html' with product=p %}
+                    {% include "shop/components/product_card.html" with product=p %}
                 {% endfor %}
             </div>
+
+            <!-- Pagination -->
+            {% if products.has_other_pages %}
+            <nav class="mt-5">
+                <ul class="pagination justify-content-center gap-2">
+
+                    {% if products.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-gold text-gold rounded-pill"
+                           href="?page={{ products.previous_page_number }}">Prev</a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in products.paginator.page_range %}
+                        {% if products.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link bg-gold text-dark rounded-pill px-3">{{ num }}</span>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link bg-dark border-gold text-gold rounded-pill"
+                               href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if products.has_next %}
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-gold text-gold rounded-pill"
+                           href="?page={{ products.next_page_number }}">Next</a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+            {% endif %}
+
             {% else %}
             <div class="text-center py-5">
                 <i class="fa-solid fa-gem text-gold-dim fs-1 mb-3"></i>
                 <h4 class="playfair-font text-light">No Products Found</h4>
-                <p class="text-light-dim text-sm">We couldn't find any products matching your current filters.</p>
-                <a href="{% url 'shop:products' %}" class="btn btn-gold rounded-pill px-4 mt-2">Browse All Products</a>
+                <p class="text-light-dim text-sm">Adjust your filters to see available items.</p>
+                <a href="{% url 'shop:products' %}" class="btn btn-gold rounded-pill mt-2">
+                    Browse All
+                </a>
             </div>
             {% endif %}
-            
-            <!-- Pagination Controls -->
-            {% if products.has_other_pages %}
-            <nav class="mt-5">
-                <ul class="pagination justify-content-center gap-2">
-                    {% if products.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link bg-dark border-gold text-gold rounded-pill px-3" href="?page={{ products.previous_page_number }}{% if category %}&category={{ category.slug }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if sort_by %}&sort={{ sort_by }}{% endif %}{% if q %}&q={{ q }}{% endif %}{% if collection %}&collection={{ collection }}{% endif %}">Prev</a>
-                    </li>
-                    {% endif %}
-                    
-                    {% for num in products.paginator.page_range %}
-                        {% if products.number == num %}
-                        <li class="page-item active">
-                            <span class="page-link bg-gold border-gold text-dark rounded-pill px-3">{{ num }}</span>
-                        </li>
-                        {% else %}
-                        <li class="page-item">
-                            <a class="page-link bg-dark border-gold-dim text-light rounded-pill px-3" href="?page={{ num }}{% if category %}&category={{ category.slug }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if sort_by %}&sort={{ sort_by }}{% endif %}{% if q %}&q={{ q }}{% endif %}{% if collection %}&collection={{ collection }}{% endif %}">{{ num }}</a>
-                        </li>
-                        {% endif %}
-                    {% endfor %}
-                    
-                    {% if products.has_next %}
-                    <li class="page-item">
-                        <a class="page-link bg-dark border-gold text-gold rounded-pill px-3" href="?page={{ products.next_page_number }}{% if category %}&category={{ category.slug }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if sort_by %}&sort={{ sort_by }}{% endif %}{% if q %}&q={{ q }}{% endif %}{% if collection %}&collection={{ collection }}{% endif %}">Next</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </nav>
-            {% endif %}
+
         </div>
     </div>
 </div>
+
+<!-- MOBILE FILTER OFF-CANVAS -->
+<div class="offcanvas offcanvas-start bg-dark text-light"
+     tabindex="-1"
+     id="mobileFilter">
+
+    <div class="offcanvas-header border-bottom border-secondary">
+        <h5 class="text-gold mb-0">Filters</h5>
+        <button type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"></button>
+    </div>
+
+    <div class="offcanvas-body">
+
+        {% include "shop/components/filters.html" %}
+
+    </div>
+
+</div>
+
 {% endblock %}

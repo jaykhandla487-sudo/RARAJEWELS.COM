@@ -1,0 +1,121 @@
+<form method="GET" action=".">
+
+    {% if collection %}
+    <input type="hidden" name="collection" value="{{ collection }}">
+    {% endif %}
+
+    {% if q %}
+    <input type="hidden" name="q" value="{{ q }}">
+    {% endif %}
+
+    <!-- Categories -->
+    <div class="mb-4">
+        <label class="small-lettering text-gold mb-2 d-block">
+            Categories
+        </label>
+
+        <div class="d-flex flex-column gap-2">
+
+            <a href="{% url 'shop:products' %}{% if collection %}?collection={{ collection }}{% endif %}"
+               class="text-light-dim hover-text-gold {% if not category %}text-gold{% endif %}">
+                <i class="fa-solid fa-gem me-2 text-xs"></i>
+                All Categories
+            </a>
+
+            {% for cat in all_categories %}
+                {% if not cat.parent %}
+
+                <a href="{% url 'shop:category_products' cat.slug %}{% if collection %}?collection={{ collection }}{% endif %}"
+                   class="text-light-dim hover-text-gold {% if category.id == cat.id %}text-gold{% endif %}">
+                    <i class="fa-solid fa-chevron-right me-2 text-xs"></i>
+                    {{ cat.name }}
+                </a>
+
+                {% for sub in cat.subcategories.all %}
+                <a href="{% url 'shop:category_products' sub.slug %}{% if collection %}?collection={{ collection }}{% endif %}"
+                   class="ps-3 text-light-dim hover-text-gold {% if category.id == sub.id %}text-gold{% endif %}">
+                    - {{ sub.name }}
+                </a>
+                {% endfor %}
+
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <hr class="border-gold-dim">
+
+    <!-- Price -->
+    <div class="mb-3">
+
+        <label class="small-lettering text-gold mb-2 d-block">
+            Price Range (₹)
+        </label>
+
+        <div class="d-flex gap-2">
+            <input
+                type="number"
+                class="form-control"
+                name="min_price"
+                placeholder="Min"
+                value="{{ min_price|default:'' }}">
+
+            <input
+                type="number"
+                class="form-control"
+                name="max_price"
+                placeholder="Max"
+                value="{{ max_price|default:'' }}">
+        </div>
+
+    </div>
+
+    <hr class="border-gold-dim">
+
+    <!-- Sort -->
+
+    <div class="mb-4">
+
+        <label class="small-lettering text-gold mb-2 d-block">
+            Sort By
+        </label>
+
+        <select
+            name="sort"
+            class="form-select">
+
+            <option value="newest" {% if sort_by == "newest" %}selected{% endif %}>Newest</option>
+
+            <option value="popularity" {% if sort_by == "popularity" %}selected{% endif %}>
+                Popularity
+            </option>
+
+            <option value="price_asc" {% if sort_by == "price_asc" %}selected{% endif %}>
+                Price: Low to High
+            </option>
+
+            <option value="price_desc" {% if sort_by == "price_desc" %}selected{% endif %}>
+                Price: High to Low
+            </option>
+
+        </select>
+
+    </div>
+
+    <button
+        type="submit"
+        class="btn btn-gold w-100 rounded-pill">
+
+        APPLY FILTERS
+
+    </button>
+
+    <a href="{% url 'shop:products' %}"
+       class="btn btn-outline-gold w-100 rounded-pill mt-2">
+
+        CLEAR ALL
+
+    </a>
+
+</form>
