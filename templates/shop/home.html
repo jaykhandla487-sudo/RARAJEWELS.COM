@@ -77,9 +77,8 @@
                     <a href="{% url 'shop:category_products' slug=cat.slug %}" class="text-decoration-none">
 
                         <div class="category-circle">
-                           {% if cat.image %}
-                            <img src="{% static 'images/categories/' %}{{ cat.image.name|cut:'categories/' }}" 
-                            alt="{{ cat.name }}">
+                            {% if cat.image %}
+                            <img src="{{ cat.image.url }}" alt="{{ cat.name }}">
                             {% endif %}
 
                         </div>
