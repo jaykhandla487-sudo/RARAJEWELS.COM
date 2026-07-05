@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('free_shipping_threshold', models.DecimalField(decimal_places=2, default=699.0, max_digits=10)),
                 ('shipping_charge', models.DecimalField(decimal_places=2, default=59.0, max_digits=10)),
-                ('whatsapp_number', models.CharField(default='+919999999999', max_length=20)),
+                ('whatsapp_number', models.CharField(default='+917777974101', max_length=20)),
                 ('instagram_url', models.CharField(default='https://instagram.com/rarajewels', max_length=255)),
                 ('facebook_url', models.CharField(default='https://facebook.com/rarajewels', max_length=255)),
                 ('youtube_url', models.CharField(default='https://youtube.com/rarajewels', max_length=255)),

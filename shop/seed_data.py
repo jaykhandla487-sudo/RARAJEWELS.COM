@@ -10,7 +10,7 @@ def seed():
     # 1. Initialize store settings
     settings_obj = StoreSetting.get_settings()
     settings_obj.announcement_text = "Free Shipping On Luxury Jewelry Orders Above ₹699"
-    settings_obj.whatsapp_number = "+919999999999"
+    settings_obj.whatsapp_number = "+917777974101"
     settings_obj.save()
     
     # 2. Create Categories

@@ -8,7 +8,7 @@ from django.urls import reverse
 class StoreSetting(models.Model):
     free_shipping_threshold = models.DecimalField(max_digits=10, decimal_places=2, default=699.00)
     shipping_charge = models.DecimalField(max_digits=10, decimal_places=2, default=59.00)
-    whatsapp_number = models.CharField(max_length=20, default='+919999999999')
+    whatsapp_number = models.CharField(max_length=20, default='+917777974101')
     instagram_url = models.CharField(max_length=255, default='https://instagram.com/rarajewels')
     facebook_url = models.CharField(max_length=255, default='https://facebook.com/rarajewels')
     youtube_url = models.CharField(max_length=255, default='https://youtube.com/rarajewels')

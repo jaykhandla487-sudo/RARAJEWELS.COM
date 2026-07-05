@@ -1,703 +1,703 @@
 [
-{
-  "model": "sessions.session",
-  "pk": "e1mg292p718lxuajk1w0mnjm4fjfexf4",
-  "fields": {
-    "session_data": ".eJxVjDsOwjAQBe_iGln4uzElPWew1p_FAWRLcVIh7o4jpYB2Zt57M4_bWvzW8-LnxC4M2OmXBYzPXHeRHljvjcdW12UOfE_4YTu_tZRf16P9OyjYy1hjnhIAwRQdKdRWZacoo9bBJWXlWcdBhByQlAUrwQCRJiHQGRMcss8X8EE30A:1wdj3U:mYTEXSuDWNKJAXxp5qgiSNyV4ldjVwGE5S5qKhUZ0XA",
-    "expire_date": "2026-07-12T06:31:48.112Z"
+  {
+    "model": "sessions.session",
+    "pk": "e1mg292p718lxuajk1w0mnjm4fjfexf4",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGln4uzElPWew1p_FAWRLcVIh7o4jpYB2Zt57M4_bWvzW8-LnxC4M2OmXBYzPXHeRHljvjcdW12UOfE_4YTu_tZRf16P9OyjYy1hjnhIAwRQdKdRWZacoo9bBJWXlWcdBhByQlAUrwQCRJiHQGRMcss8X8EE30A:1wdj3U:mYTEXSuDWNKJAXxp5qgiSNyV4ldjVwGE5S5qKhUZ0XA",
+      "expire_date": "2026-07-12T06:31:48.112Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "e204bstwmzj4tlny0fj7esgcrp4jp7h0",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2pCBFpi6dO8ZyACDVA0kpV0Z765NutDtf-_9l_C0rcVvnRc_J3EWSpx-t0DxwXUH6U711mRsdV3mIHdFHrTLa0v8vBzu30GhXr61hTyBBq2TBmtiMgaDQ7aYGQwZHAaltHOITJPlECHmMObMSY3IgVi8P8D_OAk:1wabdL:EF0AyLO2_bmrLNezhof3sL4HW7KAfTdlq1fOBZUiMdk",
+      "expire_date": "2026-07-03T15:59:55.791Z"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$pUKBxYsp4XPxWMB4gr8LkU$5JgSABDcUmX+UAlrkfnxzYSw/786LKFSt+C3JdgCUZg=",
+      "last_login": "2026-06-19T15:59:55.780Z",
+      "is_superuser": true,
+      "email": "admin@rarajewels.com",
+      "name": "Rara Admin",
+      "mobile": "917777974101",
+      "is_active": true,
+      "is_staff": true,
+      "date_joined": "2026-06-19T15:26:18.272Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$ukA9vuVoK8BM0moStM84z7$AYmjU/YlFC2imvNgruYSl59JxPg093PrWl0jtQ+NqWI=",
+      "last_login": "2026-06-19T15:59:21.081Z",
+      "is_superuser": false,
+      "email": "jaykhandla487@gmail.com",
+      "name": "jay",
+      "mobile": "8780705277",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2026-06-19T15:59:19.436Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$jStmEexBNBbOvSJcP7djpK$5dbmGpc4RvO7t2r6yGW6eKMf0Aeyt4M1oxcXToVsGro=",
+      "last_login": "2026-06-20T05:21:02.625Z",
+      "is_superuser": false,
+      "email": "jaykhandla448@gmail.com",
+      "name": "jay",
+      "mobile": "07777974101",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2026-06-20T05:21:00.123Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$URDHWROdwIdJZKdFEptwAr$KgR4ECubUVhCFwklFV4VmNWeYkxgbYvb89/nwtoLSvU=",
+      "last_login": "2026-06-20T05:35:58.839Z",
+      "is_superuser": true,
+      "email": "jaykhandla0777@gmail.com",
+      "name": "jay",
+      "mobile": "7777974101",
+      "is_active": true,
+      "is_staff": true,
+      "date_joined": "2026-06-20T05:33:50.270Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$GrjNsVJFAXhft8olYwX4hk$FFPA0TqWl86ejocluiVp6KwWA1S2cvCgT2q/zR5Gv70=",
+      "last_login": null,
+      "is_superuser": true,
+      "email": "rarajewels5277@gmail.com",
+      "name": "rara12",
+      "mobile": "7777974101",
+      "is_active": true,
+      "is_staff": true,
+      "date_joined": "2026-06-20T06:57:27.370Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$qrIZQ6FyVJFjXOVyXycgl4$m2FKcGXCD/YlxzT6owYMGsO7hrgYADe18vdMU8oA8eg=",
+      "last_login": "2026-06-23T05:35:53.088Z",
+      "is_superuser": false,
+      "email": "admin23@gmail.com",
+      "name": "jay",
+      "mobile": "3344343423",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2026-06-23T05:35:51.792Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$HTPSEzm71VHocPTmKgt2xt$braQrlSGmcXs+DFizuNrbas3jnxppyXM70GyokAIG5U=",
+      "last_login": "2026-06-28T06:31:48.100Z",
+      "is_superuser": true,
+      "email": "jaykhandla7777@gmail.com",
+      "name": "jay",
+      "mobile": "8780705277",
+      "is_active": true,
+      "is_staff": true,
+      "date_joined": "2026-06-28T06:31:07.869Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.address",
+    "pk": 1,
+    "fields": {
+      "user": [
+        "admin@rarajewels.com"
+      ],
+      "full_name": "jay",
+      "mobile_number": "8780705277",
+      "address_line1": "jaycdcdcdcv",
+      "address_line2": "csdcdfdcv",
+      "city": "sardhar",
+      "state": "gujrat",
+      "pin_code": "360025",
+      "is_default": true
+    }
+  },
+  {
+    "model": "accounts.address",
+    "pk": 5,
+    "fields": {
+      "user": [
+        "admin23@gmail.com"
+      ],
+      "full_name": "jay",
+      "mobile_number": "08780705277",
+      "address_line1": "near a bus stand",
+      "address_line2": "sitaram bapuni madhi same",
+      "city": "sardhar",
+      "state": "GUJARAT",
+      "pin_code": "360025",
+      "is_default": false
+    }
+  },
+  {
+    "model": "shop.storesetting",
+    "pk": 1,
+    "fields": {
+      "free_shipping_threshold": "699.00",
+      "shipping_charge": "59.00",
+      "whatsapp_number": "+917777974101",
+      "instagram_url": "https://instagram.com/rarajewels",
+      "facebook_url": "https://facebook.com/rarajewels",
+      "youtube_url": "https://youtube.com/rarajewels",
+      "announcement_text": "Free Shipping On Luxury Jewelry Orders Above ₹699"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+      "name": "Women Collection",
+      "slug": "women-collection",
+      "parent": null,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {
+      "name": "Men Collection",
+      "slug": "men-collection",
+      "parent": null,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 3,
+    "fields": {
+      "name": "Women Rings",
+      "slug": "women-rings",
+      "parent": 1,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 4,
+    "fields": {
+      "name": "Women Necklaces",
+      "slug": "women-necklaces",
+      "parent": 1,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 5,
+    "fields": {
+      "name": "Women Bracelets",
+      "slug": "women-bracelets",
+      "parent": 1,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 6,
+    "fields": {
+      "name": "Anklets",
+      "slug": "anklets",
+      "parent": 1,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 7,
+    "fields": {
+      "name": "Mangalsutra",
+      "slug": "mangalsutra",
+      "parent": 1,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 8,
+    "fields": {
+      "name": "Earrings",
+      "slug": "earrings",
+      "parent": 1,
+      "image": "categories/earring.jpeg",
+      "active": true,
+      "description": "primyam earrring"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 9,
+    "fields": {
+      "name": "Combo Sets",
+      "slug": "combo-sets",
+      "parent": 1,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 10,
+    "fields": {
+      "name": "Men Chains",
+      "slug": "men-chains",
+      "parent": 2,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 11,
+    "fields": {
+      "name": "Men Bracelets",
+      "slug": "men-bracelets",
+      "parent": 2,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 12,
+    "fields": {
+      "name": "Kada",
+      "slug": "kada",
+      "parent": 2,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 13,
+    "fields": {
+      "name": "Men Rings",
+      "slug": "men-rings",
+      "parent": 2,
+      "image": "",
+      "active": true,
+      "description": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 1,
+    "fields": {
+      "name": "Royal Gold Polished Solitaire Ring",
+      "slug": "royal-gold-polished-solitaire-ring",
+      "description": "Crafted in gold-plated brass with a shimmering premium AAA+ cubic zirconia solitaire crystal. Designed to shine on every formal dress occasion.",
+      "price": "899.00",
+      "discount_price": "699.00",
+      "category": 3,
+      "stock": 13,
+      "is_featured": true,
+      "is_new_arrival": true,
+      "is_best_seller": true,
+      "is_trending": false,
+      "view_count": 7,
+      "created_at": "2026-06-19T15:26:56.037Z",
+      "updated_at": "2026-06-23T15:33:46.304Z"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 2,
+    "fields": {
+      "name": "Classic Kundan Pearl Choker Set",
+      "slug": "classic-kundan-pearl-choker-set",
+      "description": "Traditional heritage kundan choker embellished with multi-layered micro pearls and golden lace adjustable drawstrings. Includes matching earrings.",
+      "price": "1899.00",
+      "discount_price": "1499.00",
+      "category": 4,
+      "stock": 7,
+      "is_featured": true,
+      "is_new_arrival": true,
+      "is_best_seller": false,
+      "is_trending": true,
+      "view_count": 5,
+      "created_at": "2026-06-19T15:26:56.068Z",
+      "updated_at": "2026-06-19T16:03:24.130Z"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 3,
+    "fields": {
+      "name": "Minimalist Diamond-Cut Gold Bangle",
+      "slug": "minimalist-diamond-cut-gold-bangle",
+      "description": "Sleek, stackable geometric bangle carved with detailed diamond-cut patterns that catch light from all directions. Gold polish finish.",
+      "price": "599.00",
+      "discount_price": null,
+      "category": 5,
+      "stock": 20,
+      "is_featured": false,
+      "is_new_arrival": true,
+      "is_best_seller": false,
+      "is_trending": true,
+      "view_count": 0,
+      "created_at": "2026-06-19T15:26:56.094Z",
+      "updated_at": "2026-06-19T15:26:56.094Z"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 4,
+    "fields": {
+      "name": "Men's Heavy Cuban Link Gold Chain",
+      "slug": "mens-heavy-cuban-link-gold-chain",
+      "description": "Thick 24-inch Cuban link statement chain for men. Double polished in gold plating for durability and premium metallic shine.",
+      "price": "1299.00",
+      "discount_price": "999.00",
+      "category": 10,
+      "stock": 12,
+      "is_featured": true,
+      "is_new_arrival": true,
+      "is_best_seller": true,
+      "is_trending": false,
+      "view_count": 2,
+      "created_at": "2026-06-19T15:26:56.118Z",
+      "updated_at": "2026-06-19T15:26:56.118Z"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 5,
+    "fields": {
+      "name": "Royal Carved Gold Kada Bracelet",
+      "slug": "royal-carved-gold-kada-bracelet",
+      "description": "Traditional heavy brass kada for men with detailed geometric tribal carvings. Features an openable hinge design for comfortable fit.",
+      "price": "949.00",
+      "discount_price": "799.00",
+      "category": 12,
+      "stock": 4,
+      "is_featured": false,
+      "is_new_arrival": true,
+      "is_best_seller": false,
+      "is_trending": true,
+      "view_count": 2,
+      "created_at": "2026-06-19T15:26:56.143Z",
+      "updated_at": "2026-06-19T16:03:24.198Z"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 6,
+    "fields": {
+      "name": "Emerald Gold Drop Jhumka Earrings",
+      "slug": "emerald-gold-drop-jhumka-earrings",
+      "description": "Premium artificial emerald drop jhumka earrings featuring floral designs and tiny dangling pearl beads.",
+      "price": "499.00",
+      "discount_price": null,
+      "category": 8,
+      "stock": 3,
+      "is_featured": false,
+      "is_new_arrival": true,
+      "is_best_seller": false,
+      "is_trending": false,
+      "view_count": 0,
+      "created_at": "2026-06-19T15:26:56.169Z",
+      "updated_at": "2026-06-19T15:26:56.169Z"
+    }
+  },
+  {
+    "model": "shop.productimage",
+    "pk": 13,
+    "fields": {
+      "product": 1,
+      "image": "products/ring.png",
+      "is_primary": true
+    }
+  },
+  {
+    "model": "shop.productimage",
+    "pk": 14,
+    "fields": {
+      "product": 2,
+      "image": "products/necklace.png",
+      "is_primary": true
+    }
+  },
+  {
+    "model": "shop.productimage",
+    "pk": 15,
+    "fields": {
+      "product": 3,
+      "image": "products/bracelet.png",
+      "is_primary": true
+    }
+  },
+  {
+    "model": "shop.productimage",
+    "pk": 16,
+    "fields": {
+      "product": 4,
+      "image": "products/chain.png",
+      "is_primary": true
+    }
+  },
+  {
+    "model": "shop.productimage",
+    "pk": 17,
+    "fields": {
+      "product": 5,
+      "image": "products/kada.png",
+      "is_primary": true
+    }
+  },
+  {
+    "model": "shop.productimage",
+    "pk": 18,
+    "fields": {
+      "product": 6,
+      "image": "products/earrings.png",
+      "is_primary": true
+    }
+  },
+  {
+    "model": "shop.cart",
+    "pk": 1,
+    "fields": {
+      "user": null,
+      "session_id": "n8f4qxmc24j81pmvq4esc7ylmh1sy10a",
+      "created_at": "2026-06-19T15:40:36.194Z"
+    }
+  },
+  {
+    "model": "shop.cart",
+    "pk": 2,
+    "fields": {
+      "user": null,
+      "session_id": "c7iesf69110eif1plyv7kr9j1xm70dpl",
+      "created_at": "2026-06-19T15:56:57.439Z"
+    }
+  },
+  {
+    "model": "shop.cart",
+    "pk": 3,
+    "fields": {
+      "user": [
+        "admin@rarajewels.com"
+      ],
+      "session_id": "",
+      "created_at": "2026-06-19T16:00:25.024Z"
+    }
+  },
+  {
+    "model": "shop.cart",
+    "pk": 4,
+    "fields": {
+      "user": [
+        "admin23@gmail.com"
+      ],
+      "session_id": "",
+      "created_at": "2026-06-23T05:36:10.563Z"
+    }
+  },
+  {
+    "model": "shop.cartitem",
+    "pk": 1,
+    "fields": {
+      "cart": 2,
+      "product": 1,
+      "quantity": 1
+    }
+  },
+  {
+    "model": "shop.cartitem",
+    "pk": 8,
+    "fields": {
+      "cart": 4,
+      "product": 1,
+      "quantity": 2
+    }
+  },
+  {
+    "model": "shop.coupon",
+    "pk": 1,
+    "fields": {
+      "code": "RARA15",
+      "discount_percentage": "15.00",
+      "discount_amount": null,
+      "min_purchase": "499.00",
+      "valid_from": "2026-06-19T15:26:56.195Z",
+      "valid_to": "2026-09-17T15:26:56.195Z",
+      "active": true
+    }
+  },
+  {
+    "model": "shop.coupon",
+    "pk": 2,
+    "fields": {
+      "code": "FESTIVE200",
+      "discount_percentage": null,
+      "discount_amount": "200.00",
+      "min_purchase": "999.00",
+      "valid_from": "2026-06-19T15:26:56.209Z",
+      "valid_to": "2026-09-17T15:26:56.209Z",
+      "active": true
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 1,
+    "fields": {
+      "user": [
+        "admin@rarajewels.com"
+      ],
+      "order_number": "RARA-1806A601E7",
+      "shipping_address": "jay\njaycdcdcdcv\ncsdcdfdcv\nsardhar, gujrat - 360025\nMobile: 8780705277",
+      "subtotal": "2997.00",
+      "shipping_charge": "0.00",
+      "discount_amount": "0.00",
+      "coupon": null,
+      "total_price": "2997.00",
+      "payment_method": "razorpay",
+      "payment_status": "completed",
+      "order_status": "shipped",
+      "razorpay_order_id": "rzp_order_RARA-1806A601E7",
+      "razorpay_payment_id": "pay_mock_408zjvh",
+      "razorpay_signature": "sig_mock_h945hc",
+      "created_at": "2026-06-19T16:03:24.095Z",
+      "updated_at": "2026-06-19T16:04:26.712Z"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 2,
+    "fields": {
+      "user": [
+        "admin23@gmail.com"
+      ],
+      "order_number": "RARA-89733A2C2D",
+      "shipping_address": "jay\nnear a bus stand sardhar rajkot\nsitaram bapuni madhi same\nsardhar, GUJARAT - 360025\nMobile: 08780705277",
+      "subtotal": "699.00",
+      "shipping_charge": "0.00",
+      "discount_amount": "0.00",
+      "coupon": null,
+      "total_price": "699.00",
+      "payment_method": "razorpay",
+      "payment_status": "pending",
+      "order_status": "pending",
+      "razorpay_order_id": "order_T57jAmc6ptQavx",
+      "razorpay_payment_id": null,
+      "razorpay_signature": null,
+      "created_at": "2026-06-23T15:33:46.281Z",
+      "updated_at": "2026-06-23T15:33:47.612Z"
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 1,
+    "fields": {
+      "order": 1,
+      "product": 2,
+      "quantity": 1,
+      "price": "1499.00"
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 2,
+    "fields": {
+      "order": 1,
+      "product": 1,
+      "quantity": 1,
+      "price": "699.00"
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 3,
+    "fields": {
+      "order": 1,
+      "product": 5,
+      "quantity": 1,
+      "price": "799.00"
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 4,
+    "fields": {
+      "order": 2,
+      "product": 1,
+      "quantity": 1,
+      "price": "699.00"
+    }
+  },
+  {
+    "model": "shop.banner",
+    "pk": 3,
+    "fields": {
+      "title": "THE ROYAL WOMEN COLLECTION",
+      "subtitle": "Anti-tarnish, gold-plated Kundan, Pearls, and Solitaire collections crafted to perfection.",
+      "image": "banners/banner_women.png",
+      "link_url": "",
+      "order": 1,
+      "active": true
+    }
+  },
+  {
+    "model": "shop.banner",
+    "pk": 4,
+    "fields": {
+      "title": "BOLD STATEMENT MEN JEWELRY",
+      "subtitle": "Explore heavy Cuban link chains, custom gold bracelets, rings, and premium carved Kadas.",
+      "image": "banners/banner_men.png",
+      "link_url": "",
+      "order": 2,
+      "active": true
+    }
   }
-},
-{
-  "model": "sessions.session",
-  "pk": "e204bstwmzj4tlny0fj7esgcrp4jp7h0",
-  "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2pCBFpi6dO8ZyACDVA0kpV0Z765NutDtf-_9l_C0rcVvnRc_J3EWSpx-t0DxwXUH6U711mRsdV3mIHdFHrTLa0v8vBzu30GhXr61hTyBBq2TBmtiMgaDQ7aYGQwZHAaltHOITJPlECHmMObMSY3IgVi8P8D_OAk:1wabdL:EF0AyLO2_bmrLNezhof3sL4HW7KAfTdlq1fOBZUiMdk",
-    "expire_date": "2026-07-03T15:59:55.791Z"
-  }
-},
-{
-  "model": "accounts.user",
-  "fields": {
-    "password": "pbkdf2_sha256$1200000$pUKBxYsp4XPxWMB4gr8LkU$5JgSABDcUmX+UAlrkfnxzYSw/786LKFSt+C3JdgCUZg=",
-    "last_login": "2026-06-19T15:59:55.780Z",
-    "is_superuser": true,
-    "email": "admin@rarajewels.com",
-    "name": "Rara Admin",
-    "mobile": "9999999999",
-    "is_active": true,
-    "is_staff": true,
-    "date_joined": "2026-06-19T15:26:18.272Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.user",
-  "fields": {
-    "password": "pbkdf2_sha256$1200000$ukA9vuVoK8BM0moStM84z7$AYmjU/YlFC2imvNgruYSl59JxPg093PrWl0jtQ+NqWI=",
-    "last_login": "2026-06-19T15:59:21.081Z",
-    "is_superuser": false,
-    "email": "jaykhandla487@gmail.com",
-    "name": "jay",
-    "mobile": "8780705277",
-    "is_active": true,
-    "is_staff": false,
-    "date_joined": "2026-06-19T15:59:19.436Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.user",
-  "fields": {
-    "password": "pbkdf2_sha256$1200000$jStmEexBNBbOvSJcP7djpK$5dbmGpc4RvO7t2r6yGW6eKMf0Aeyt4M1oxcXToVsGro=",
-    "last_login": "2026-06-20T05:21:02.625Z",
-    "is_superuser": false,
-    "email": "jaykhandla448@gmail.com",
-    "name": "jay",
-    "mobile": "07777974101",
-    "is_active": true,
-    "is_staff": false,
-    "date_joined": "2026-06-20T05:21:00.123Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.user",
-  "fields": {
-    "password": "pbkdf2_sha256$1200000$URDHWROdwIdJZKdFEptwAr$KgR4ECubUVhCFwklFV4VmNWeYkxgbYvb89/nwtoLSvU=",
-    "last_login": "2026-06-20T05:35:58.839Z",
-    "is_superuser": true,
-    "email": "jaykhandla0777@gmail.com",
-    "name": "jay",
-    "mobile": "7777974101",
-    "is_active": true,
-    "is_staff": true,
-    "date_joined": "2026-06-20T05:33:50.270Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.user",
-  "fields": {
-    "password": "pbkdf2_sha256$1200000$GrjNsVJFAXhft8olYwX4hk$FFPA0TqWl86ejocluiVp6KwWA1S2cvCgT2q/zR5Gv70=",
-    "last_login": null,
-    "is_superuser": true,
-    "email": "rarajewels5277@gmail.com",
-    "name": "rara12",
-    "mobile": "7777974101",
-    "is_active": true,
-    "is_staff": true,
-    "date_joined": "2026-06-20T06:57:27.370Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.user",
-  "fields": {
-    "password": "pbkdf2_sha256$1200000$qrIZQ6FyVJFjXOVyXycgl4$m2FKcGXCD/YlxzT6owYMGsO7hrgYADe18vdMU8oA8eg=",
-    "last_login": "2026-06-23T05:35:53.088Z",
-    "is_superuser": false,
-    "email": "admin23@gmail.com",
-    "name": "jay",
-    "mobile": "3344343423",
-    "is_active": true,
-    "is_staff": false,
-    "date_joined": "2026-06-23T05:35:51.792Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.user",
-  "fields": {
-    "password": "pbkdf2_sha256$1200000$HTPSEzm71VHocPTmKgt2xt$braQrlSGmcXs+DFizuNrbas3jnxppyXM70GyokAIG5U=",
-    "last_login": "2026-06-28T06:31:48.100Z",
-    "is_superuser": true,
-    "email": "jaykhandla7777@gmail.com",
-    "name": "jay",
-    "mobile": "8780705277",
-    "is_active": true,
-    "is_staff": true,
-    "date_joined": "2026-06-28T06:31:07.869Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "accounts.address",
-  "pk": 1,
-  "fields": {
-    "user": [
-      "admin@rarajewels.com"
-    ],
-    "full_name": "jay",
-    "mobile_number": "8780705277",
-    "address_line1": "jaycdcdcdcv",
-    "address_line2": "csdcdfdcv",
-    "city": "sardhar",
-    "state": "gujrat",
-    "pin_code": "360025",
-    "is_default": true
-  }
-},
-{
-  "model": "accounts.address",
-  "pk": 5,
-  "fields": {
-    "user": [
-      "admin23@gmail.com"
-    ],
-    "full_name": "jay",
-    "mobile_number": "08780705277",
-    "address_line1": "near a bus stand",
-    "address_line2": "sitaram bapuni madhi same",
-    "city": "sardhar",
-    "state": "GUJARAT",
-    "pin_code": "360025",
-    "is_default": false
-  }
-},
-{
-  "model": "shop.storesetting",
-  "pk": 1,
-  "fields": {
-    "free_shipping_threshold": "699.00",
-    "shipping_charge": "59.00",
-    "whatsapp_number": "+919999999999",
-    "instagram_url": "https://instagram.com/rarajewels",
-    "facebook_url": "https://facebook.com/rarajewels",
-    "youtube_url": "https://youtube.com/rarajewels",
-    "announcement_text": "Free Shipping On Luxury Jewelry Orders Above ₹699"
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 1,
-  "fields": {
-    "name": "Women Collection",
-    "slug": "women-collection",
-    "parent": null,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 2,
-  "fields": {
-    "name": "Men Collection",
-    "slug": "men-collection",
-    "parent": null,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 3,
-  "fields": {
-    "name": "Women Rings",
-    "slug": "women-rings",
-    "parent": 1,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 4,
-  "fields": {
-    "name": "Women Necklaces",
-    "slug": "women-necklaces",
-    "parent": 1,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 5,
-  "fields": {
-    "name": "Women Bracelets",
-    "slug": "women-bracelets",
-    "parent": 1,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 6,
-  "fields": {
-    "name": "Anklets",
-    "slug": "anklets",
-    "parent": 1,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 7,
-  "fields": {
-    "name": "Mangalsutra",
-    "slug": "mangalsutra",
-    "parent": 1,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 8,
-  "fields": {
-    "name": "Earrings",
-    "slug": "earrings",
-    "parent": 1,
-    "image": "categories/earring.jpeg",
-    "active": true,
-    "description": "primyam earrring"
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 9,
-  "fields": {
-    "name": "Combo Sets",
-    "slug": "combo-sets",
-    "parent": 1,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 10,
-  "fields": {
-    "name": "Men Chains",
-    "slug": "men-chains",
-    "parent": 2,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 11,
-  "fields": {
-    "name": "Men Bracelets",
-    "slug": "men-bracelets",
-    "parent": 2,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 12,
-  "fields": {
-    "name": "Kada",
-    "slug": "kada",
-    "parent": 2,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.category",
-  "pk": 13,
-  "fields": {
-    "name": "Men Rings",
-    "slug": "men-rings",
-    "parent": 2,
-    "image": "",
-    "active": true,
-    "description": ""
-  }
-},
-{
-  "model": "shop.product",
-  "pk": 1,
-  "fields": {
-    "name": "Royal Gold Polished Solitaire Ring",
-    "slug": "royal-gold-polished-solitaire-ring",
-    "description": "Crafted in gold-plated brass with a shimmering premium AAA+ cubic zirconia solitaire crystal. Designed to shine on every formal dress occasion.",
-    "price": "899.00",
-    "discount_price": "699.00",
-    "category": 3,
-    "stock": 13,
-    "is_featured": true,
-    "is_new_arrival": true,
-    "is_best_seller": true,
-    "is_trending": false,
-    "view_count": 7,
-    "created_at": "2026-06-19T15:26:56.037Z",
-    "updated_at": "2026-06-23T15:33:46.304Z"
-  }
-},
-{
-  "model": "shop.product",
-  "pk": 2,
-  "fields": {
-    "name": "Classic Kundan Pearl Choker Set",
-    "slug": "classic-kundan-pearl-choker-set",
-    "description": "Traditional heritage kundan choker embellished with multi-layered micro pearls and golden lace adjustable drawstrings. Includes matching earrings.",
-    "price": "1899.00",
-    "discount_price": "1499.00",
-    "category": 4,
-    "stock": 7,
-    "is_featured": true,
-    "is_new_arrival": true,
-    "is_best_seller": false,
-    "is_trending": true,
-    "view_count": 5,
-    "created_at": "2026-06-19T15:26:56.068Z",
-    "updated_at": "2026-06-19T16:03:24.130Z"
-  }
-},
-{
-  "model": "shop.product",
-  "pk": 3,
-  "fields": {
-    "name": "Minimalist Diamond-Cut Gold Bangle",
-    "slug": "minimalist-diamond-cut-gold-bangle",
-    "description": "Sleek, stackable geometric bangle carved with detailed diamond-cut patterns that catch light from all directions. Gold polish finish.",
-    "price": "599.00",
-    "discount_price": null,
-    "category": 5,
-    "stock": 20,
-    "is_featured": false,
-    "is_new_arrival": true,
-    "is_best_seller": false,
-    "is_trending": true,
-    "view_count": 0,
-    "created_at": "2026-06-19T15:26:56.094Z",
-    "updated_at": "2026-06-19T15:26:56.094Z"
-  }
-},
-{
-  "model": "shop.product",
-  "pk": 4,
-  "fields": {
-    "name": "Men's Heavy Cuban Link Gold Chain",
-    "slug": "mens-heavy-cuban-link-gold-chain",
-    "description": "Thick 24-inch Cuban link statement chain for men. Double polished in gold plating for durability and premium metallic shine.",
-    "price": "1299.00",
-    "discount_price": "999.00",
-    "category": 10,
-    "stock": 12,
-    "is_featured": true,
-    "is_new_arrival": true,
-    "is_best_seller": true,
-    "is_trending": false,
-    "view_count": 2,
-    "created_at": "2026-06-19T15:26:56.118Z",
-    "updated_at": "2026-06-19T15:26:56.118Z"
-  }
-},
-{
-  "model": "shop.product",
-  "pk": 5,
-  "fields": {
-    "name": "Royal Carved Gold Kada Bracelet",
-    "slug": "royal-carved-gold-kada-bracelet",
-    "description": "Traditional heavy brass kada for men with detailed geometric tribal carvings. Features an openable hinge design for comfortable fit.",
-    "price": "949.00",
-    "discount_price": "799.00",
-    "category": 12,
-    "stock": 4,
-    "is_featured": false,
-    "is_new_arrival": true,
-    "is_best_seller": false,
-    "is_trending": true,
-    "view_count": 2,
-    "created_at": "2026-06-19T15:26:56.143Z",
-    "updated_at": "2026-06-19T16:03:24.198Z"
-  }
-},
-{
-  "model": "shop.product",
-  "pk": 6,
-  "fields": {
-    "name": "Emerald Gold Drop Jhumka Earrings",
-    "slug": "emerald-gold-drop-jhumka-earrings",
-    "description": "Premium artificial emerald drop jhumka earrings featuring floral designs and tiny dangling pearl beads.",
-    "price": "499.00",
-    "discount_price": null,
-    "category": 8,
-    "stock": 3,
-    "is_featured": false,
-    "is_new_arrival": true,
-    "is_best_seller": false,
-    "is_trending": false,
-    "view_count": 0,
-    "created_at": "2026-06-19T15:26:56.169Z",
-    "updated_at": "2026-06-19T15:26:56.169Z"
-  }
-},
-{
-  "model": "shop.productimage",
-  "pk": 13,
-  "fields": {
-    "product": 1,
-    "image": "products/ring.png",
-    "is_primary": true
-  }
-},
-{
-  "model": "shop.productimage",
-  "pk": 14,
-  "fields": {
-    "product": 2,
-    "image": "products/necklace.png",
-    "is_primary": true
-  }
-},
-{
-  "model": "shop.productimage",
-  "pk": 15,
-  "fields": {
-    "product": 3,
-    "image": "products/bracelet.png",
-    "is_primary": true
-  }
-},
-{
-  "model": "shop.productimage",
-  "pk": 16,
-  "fields": {
-    "product": 4,
-    "image": "products/chain.png",
-    "is_primary": true
-  }
-},
-{
-  "model": "shop.productimage",
-  "pk": 17,
-  "fields": {
-    "product": 5,
-    "image": "products/kada.png",
-    "is_primary": true
-  }
-},
-{
-  "model": "shop.productimage",
-  "pk": 18,
-  "fields": {
-    "product": 6,
-    "image": "products/earrings.png",
-    "is_primary": true
-  }
-},
-{
-  "model": "shop.cart",
-  "pk": 1,
-  "fields": {
-    "user": null,
-    "session_id": "n8f4qxmc24j81pmvq4esc7ylmh1sy10a",
-    "created_at": "2026-06-19T15:40:36.194Z"
-  }
-},
-{
-  "model": "shop.cart",
-  "pk": 2,
-  "fields": {
-    "user": null,
-    "session_id": "c7iesf69110eif1plyv7kr9j1xm70dpl",
-    "created_at": "2026-06-19T15:56:57.439Z"
-  }
-},
-{
-  "model": "shop.cart",
-  "pk": 3,
-  "fields": {
-    "user": [
-      "admin@rarajewels.com"
-    ],
-    "session_id": "",
-    "created_at": "2026-06-19T16:00:25.024Z"
-  }
-},
-{
-  "model": "shop.cart",
-  "pk": 4,
-  "fields": {
-    "user": [
-      "admin23@gmail.com"
-    ],
-    "session_id": "",
-    "created_at": "2026-06-23T05:36:10.563Z"
-  }
-},
-{
-  "model": "shop.cartitem",
-  "pk": 1,
-  "fields": {
-    "cart": 2,
-    "product": 1,
-    "quantity": 1
-  }
-},
-{
-  "model": "shop.cartitem",
-  "pk": 8,
-  "fields": {
-    "cart": 4,
-    "product": 1,
-    "quantity": 2
-  }
-},
-{
-  "model": "shop.coupon",
-  "pk": 1,
-  "fields": {
-    "code": "RARA15",
-    "discount_percentage": "15.00",
-    "discount_amount": null,
-    "min_purchase": "499.00",
-    "valid_from": "2026-06-19T15:26:56.195Z",
-    "valid_to": "2026-09-17T15:26:56.195Z",
-    "active": true
-  }
-},
-{
-  "model": "shop.coupon",
-  "pk": 2,
-  "fields": {
-    "code": "FESTIVE200",
-    "discount_percentage": null,
-    "discount_amount": "200.00",
-    "min_purchase": "999.00",
-    "valid_from": "2026-06-19T15:26:56.209Z",
-    "valid_to": "2026-09-17T15:26:56.209Z",
-    "active": true
-  }
-},
-{
-  "model": "shop.order",
-  "pk": 1,
-  "fields": {
-    "user": [
-      "admin@rarajewels.com"
-    ],
-    "order_number": "RARA-1806A601E7",
-    "shipping_address": "jay\njaycdcdcdcv\ncsdcdfdcv\nsardhar, gujrat - 360025\nMobile: 8780705277",
-    "subtotal": "2997.00",
-    "shipping_charge": "0.00",
-    "discount_amount": "0.00",
-    "coupon": null,
-    "total_price": "2997.00",
-    "payment_method": "razorpay",
-    "payment_status": "completed",
-    "order_status": "shipped",
-    "razorpay_order_id": "rzp_order_RARA-1806A601E7",
-    "razorpay_payment_id": "pay_mock_408zjvh",
-    "razorpay_signature": "sig_mock_h945hc",
-    "created_at": "2026-06-19T16:03:24.095Z",
-    "updated_at": "2026-06-19T16:04:26.712Z"
-  }
-},
-{
-  "model": "shop.order",
-  "pk": 2,
-  "fields": {
-    "user": [
-      "admin23@gmail.com"
-    ],
-    "order_number": "RARA-89733A2C2D",
-    "shipping_address": "jay\nnear a bus stand sardhar rajkot\nsitaram bapuni madhi same\nsardhar, GUJARAT - 360025\nMobile: 08780705277",
-    "subtotal": "699.00",
-    "shipping_charge": "0.00",
-    "discount_amount": "0.00",
-    "coupon": null,
-    "total_price": "699.00",
-    "payment_method": "razorpay",
-    "payment_status": "pending",
-    "order_status": "pending",
-    "razorpay_order_id": "order_T57jAmc6ptQavx",
-    "razorpay_payment_id": null,
-    "razorpay_signature": null,
-    "created_at": "2026-06-23T15:33:46.281Z",
-    "updated_at": "2026-06-23T15:33:47.612Z"
-  }
-},
-{
-  "model": "shop.orderitem",
-  "pk": 1,
-  "fields": {
-    "order": 1,
-    "product": 2,
-    "quantity": 1,
-    "price": "1499.00"
-  }
-},
-{
-  "model": "shop.orderitem",
-  "pk": 2,
-  "fields": {
-    "order": 1,
-    "product": 1,
-    "quantity": 1,
-    "price": "699.00"
-  }
-},
-{
-  "model": "shop.orderitem",
-  "pk": 3,
-  "fields": {
-    "order": 1,
-    "product": 5,
-    "quantity": 1,
-    "price": "799.00"
-  }
-},
-{
-  "model": "shop.orderitem",
-  "pk": 4,
-  "fields": {
-    "order": 2,
-    "product": 1,
-    "quantity": 1,
-    "price": "699.00"
-  }
-},
-{
-  "model": "shop.banner",
-  "pk": 3,
-  "fields": {
-    "title": "THE ROYAL WOMEN COLLECTION",
-    "subtitle": "Anti-tarnish, gold-plated Kundan, Pearls, and Solitaire collections crafted to perfection.",
-    "image": "banners/banner_women.png",
-    "link_url": "",
-    "order": 1,
-    "active": true
-  }
-},
-{
-  "model": "shop.banner",
-  "pk": 4,
-  "fields": {
-    "title": "BOLD STATEMENT MEN JEWELRY",
-    "subtitle": "Explore heavy Cuban link chains, custom gold bracelets, rings, and premium carved Kadas.",
-    "image": "banners/banner_men.png",
-    "link_url": "",
-    "order": 2,
-    "active": true
-  }
-}
 ]

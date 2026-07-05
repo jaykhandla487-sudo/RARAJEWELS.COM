@@ -23,7 +23,7 @@
       "is_superuser": true,
       "email": "admin@rarajewels.com",
       "name": "Rara Admin",
-      "mobile": "9999999999",
+      "mobile": "917777974101",
       "is_active": true,
       "is_staff": true,
       "date_joined": "2026-06-19T15:26:18.272Z",
@@ -167,7 +167,7 @@
     "fields": {
       "free_shipping_threshold": "699.00",
       "shipping_charge": "59.00",
-      "whatsapp_number": "+919999999999",
+      "whatsapp_number": "+917777974101",
       "instagram_url": "https://instagram.com/rarajewels",
       "facebook_url": "https://facebook.com/rarajewels",
       "youtube_url": "https://youtube.com/rarajewels",
