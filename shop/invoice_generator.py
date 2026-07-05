@@ -105,7 +105,7 @@ def generate_pdf_invoice(order):
     
     details_data = [
         [
-            Paragraph("<b>Seller Info:</b><br/>Rara Jewels Corporate Office<br/>Luxury Tower, Sector 4<br/>Mumbai, Maharashtra, 400001<br/>Email: sales@rarajewels.com<br/>Mobile: +91 99999 99999", normal_style),
+            Paragraph("<b>Seller Info:</b><br/>Rara Jewels Corporate Office<br/>near a bus port<br/>rajkot,sardhar,gujrat , 360025<br/>Email: sales@rarajewels.com<br/>Mobile: +91 7777974101", normal_style),
             Paragraph(f"<b>Shipped To:</b><br/>{addr_line}", normal_style)
         ]
     ]
