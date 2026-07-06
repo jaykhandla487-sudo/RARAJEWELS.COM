@@ -7,11 +7,13 @@
         {% if product.stock == 0 %}
             <span class="card-badge bg-danger text-light">Sold Out</span>
         {% elif product.discount_percent > 0 %}
-            <span class="card-badge bg-warning text-dark">
+          <span class="card-badge bg-gold text-dark">
                 -{{ product.discount_percent }}% OFF
             </span>
         {% elif product.is_new_arrival %}
-            <span class="card-badge">NEW</span>
+         <span class="card-badge bg-gold text-dark">
+    NEW
+</span>
         {% endif %}
 
         <div class="wishlist-btn-overlay ajax-wishlist-toggle"
@@ -34,23 +36,23 @@
             {{ product.category.name }}
         </span>
 
-        <h5 class="card-title playfair-font fs-6 text-light mb-2">
+<h5 class="card-title playfair-font fs-6 text-dark mb-2">
             <a href="{% url 'shop:product_detail' product.slug %}"
-               class="text-light hover-text-gold">
+             class="text-dark hover-text-gold"
                 {{ product.name|truncatechars:45 }}
             </a>
         </h5>
 
         <div class="d-flex align-items-center gap-2 mb-3">
             {% if product.discount_price %}
-                <span class="fs-5 text-warning font-semibold">
+              <span class="fs-5 text-gold fw-bold">
                     ₹{{ product.discount_price }}
                 </span>
-                <span class="text-xs text-decoration-line-through text-light-dim">
+<span class="text-xs text-decoration-line-through text-muted">
                     ₹{{ product.price }}
                 </span>
             {% else %}
-                <span class="fs-5 text-warning font-semibold">
+                <span class="fs-5 text-gold fw-bold">
                     ₹{{ product.price }}
                 </span>
             {% endif %}
@@ -62,7 +64,7 @@
                 BUY NOW
             </a>
         {% else %}
-            <button class="btn btn-dark disabled rounded-pill w-100 py-1 text-xs border-gold-dim">
+<button class="btn btn-secondary disabled rounded-pill w-100 py-2">
                 OUT OF STOCK
             </button>
         {% endif %}
