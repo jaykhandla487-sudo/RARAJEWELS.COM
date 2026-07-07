@@ -190,7 +190,7 @@
               <img src="{% static 'images/logo.png' %}" alt="RARA JEWELS" class="navbar-logo">
             </a>
             
-            <div class="d-flex align-items-center gap-2 ms-auto navbar-icons"><button class="navbar-toggler border-gold text-gold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"><span class="fa-solid fa-bars"></span></button>
+          <div class="d-flex align-items-center gap-2 ms-auto navbar-icons mobile-nav-actions"><button class="navbar-toggler border-gold text-gold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"><span class="fa-solid fa-bars"></span></button>
     <a href="{% url 'shop:wishlist' %}" class="btn text-light position-relative"><i class="fa-regular fa-heart fs-5"></i></a>
     <a href="{% url 'shop:cart_detail' %}" class="btn text-light position-relative"><i class="fa-solid fa-bag-shopping fs-5 text-gold"></i></a>
     {% if user.is_authenticated %}
