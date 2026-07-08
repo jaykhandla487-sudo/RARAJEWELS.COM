@@ -1976,6 +1976,8 @@ a:focus-visible {
 }
 
 /* Admin Dashboard KPI Numbers */
-.glass-card h3.text-light {
+
+.glass-card h3 {
     color: #222 !important;
+    opacity: 1 !important;
 }
