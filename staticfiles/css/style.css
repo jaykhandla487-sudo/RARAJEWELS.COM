@@ -1974,3 +1974,8 @@ a:focus-visible {
     position: relative;
     z-index: 1;
 }
+
+/* Admin Dashboard KPI Numbers */
+.glass-card h3.text-light {
+    color: #222 !important;
+}
