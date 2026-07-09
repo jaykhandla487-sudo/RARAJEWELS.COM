@@ -319,17 +319,26 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    var thumbs = new Swiper(".thumbSwiper", {
-        spaceBetween: 10,
-        slidesPerView: 4,
+    const thumbs = new Swiper(".thumbSwiper", {
+        slidesPerView: 3,
+        spaceBetween: 12,
         freeMode: true,
         watchSlidesProgress: true,
+        breakpoints: {
+            0: {
+                slidesPerView: 3
+            },
+            768: {
+                slidesPerView: 4
+            }
+        }
     });
 
-    var product = new Swiper(".productSwiper", {
-        spaceBetween: 10,
-        grabCursor: true,
+    new Swiper(".productSwiper", {
+        slidesPerView: 1,
         loop: true,
+        speed: 500,
+        grabCursor: true,
 
         thumbs: {
             swiper: thumbs
@@ -338,6 +347,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
-
 
 {% endblock %}

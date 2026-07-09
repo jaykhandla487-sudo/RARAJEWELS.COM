@@ -2139,32 +2139,51 @@ body.offcanvas-open {
     border-radius: 18px;
 }
 
+.productSwiper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .productSwiper .swiper-slide img {
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
 }
 
+/* Thumbnail Slider */
 .thumbSwiper {
-    margin-top: 15px;
+    margin-top: 18px;
+}
+
+.thumbSwiper .swiper-wrapper {
+    align-items: center;
 }
 
 .thumbSwiper .swiper-slide {
+    width: 90px !important;
+    height: 90px !important;
+    flex-shrink: 0;
+    opacity: .55;
     cursor: pointer;
-    opacity: .5;
-    transition: .3s;
+    overflow: hidden;
+    border-radius: 12px;
+    transition: all .3s ease;
+}
+
+.thumbSwiper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid transparent;
 }
 
 .thumbSwiper .swiper-slide-thumb-active {
     opacity: 1;
 }
 
-.thumbSwiper img {
-    width: 100%;
-    border-radius: 12px;
-    border: 2px solid transparent;
-}
-
 .thumbSwiper .swiper-slide-thumb-active img {
     border-color: #D4AF37;
+    box-shadow: 0 0 12px rgba(212, 175, 55, .35);
 }
