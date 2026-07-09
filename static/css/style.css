@@ -2128,3 +2128,43 @@ body.offcanvas-open {
     overflow: hidden;
 
 }
+
+/* ===========================
+   PRODUCT SWIPER
+=========================== */
+
+.productSwiper {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.productSwiper .swiper-slide img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.thumbSwiper {
+    margin-top: 15px;
+}
+
+.thumbSwiper .swiper-slide {
+    cursor: pointer;
+    opacity: .5;
+    transition: .3s;
+}
+
+.thumbSwiper .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
+.thumbSwiper img {
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid transparent;
+}
+
+.thumbSwiper .swiper-slide-thumb-active img {
+    border-color: #D4AF37;
+}

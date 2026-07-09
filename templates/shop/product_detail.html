@@ -65,20 +65,47 @@
 <div class="container py-5 mt-4">
     <div class="row g-5">
         <!-- Left: Product Images Gallery -->
-        <div class="col-lg-6">
-            <div class="zoom-container shadow-premium relative">
-                <img src="{{ product.primary_image }}" id="mainProductImage" class="img-fluid w-100" alt="{{ product.name }}" style="aspect-ratio: 1/1; object-fit: cover;">
+       <div class="col-lg-6">
+
+    <!-- Main Swiper -->
+    <div class="swiper productSwiper shadow-premium">
+
+        <div class="swiper-wrapper">
+
+            {% for img in images %}
+            <div class="swiper-slide">
+                <img src="{{ img.image.url }}"
+                     class="img-fluid w-100"
+                     alt="{{ product.name }}"
+                     style="aspect-ratio:1/1;object-fit:cover;">
             </div>
-            
-            <!-- Thumbnail scroll -->
-            {% if images.count > 1 %}
-            <div class="product-thumbnails">
-                {% for img in images %}
-                <img src="{{ img.image.url }}" class="thumb-img {% if img.is_primary %}active{% endif %}" alt="{{ product.name }} Thumbnail">
-                {% endfor %}
-            </div>
-            {% endif %}
+            {% endfor %}
+
         </div>
+
+    </div>
+
+    <!-- Thumbnail Swiper -->
+    {% if images.count > 1 %}
+    <div class="swiper thumbSwiper mt-3">
+
+        <div class="swiper-wrapper">
+
+            {% for img in images %}
+            <div class="swiper-slide">
+
+                <img src="{{ img.image.url }}"
+                     class="img-fluid rounded">
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+    {% endif %}
+
+</div>
         
         <!-- Right: Purchase Panel details -->
         <div class="col-lg-6">
@@ -289,4 +316,28 @@
         </div>
     </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    var thumbs = new Swiper(".thumbSwiper", {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+
+    var product = new Swiper(".productSwiper", {
+        spaceBetween: 10,
+        grabCursor: true,
+        loop: true,
+
+        thumbs: {
+            swiper: thumbs
+        }
+    });
+
+});
+</script>
+
+
 {% endblock %}
