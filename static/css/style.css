@@ -610,7 +610,7 @@ textarea.form-control {
 
     overflow: hidden;
 
-    border-radius: 24px;
+    border-radius: 0px;
 
     border: 1px solid #E7DDCC;
 
@@ -660,7 +660,7 @@ textarea.form-control {
 
         padding: 4px 10px;
 
-        border-radius: 20px;
+        border-radius: 0px;
 
     }
 
@@ -681,7 +681,7 @@ textarea.form-control {
 
     overflow: hidden;
 
-    border-radius: 28px;
+    border-radius: 0px;
 
     box-shadow: 0 25px 60px rgba(0, 0, 0, .12);
 
@@ -726,31 +726,23 @@ textarea.form-control {
 .carousel-caption-overlay {
 
     position: absolute;
-
     top: 0;
-
     left: 0;
-
     width: 100%;
-
     height: 100%;
 
     display: flex;
-
     align-items: center;
-
     justify-content: flex-start;
 
     padding-left: 5%;
 
-
     background: linear-gradient(90deg,
-            rgba(248, 244, 236, .78) 0%,
-            rgba(248, 244, 236, .25) 50%,
-            rgba(248, 244, 236, .65) 100%);
+            rgba(248, 244, 236, .28) 0%,
+            rgba(248, 244, 236, .10) 45%,
+            rgba(248, 244, 236, .18) 100%);
 
 }
-
 
 /* Hero Text */
 
@@ -801,7 +793,7 @@ textarea.form-control {
 
         max-height: 700px;
 
-        border-radius: 20px;
+        border-radius: 0px;
 
     }
 
@@ -1991,5 +1983,148 @@ a:focus-visible {
         font-size: 14px;
         white-space: nowrap;
     }
+
+}
+
+/* ==========================================
+   RARA JEWELS PREMIUM MOBILE MENU
+========================================== */
+
+#mobileMenu {
+
+    /* Size */
+    --bs-offcanvas-width: 300px !important;
+    width: 300px !important;
+    max-width: 300px !important;
+
+    /* Premium Cream Background */
+    background: linear-gradient(180deg,
+            #FFFDF9 0%,
+            #FAF5EC 45%,
+            #F5EEE1 100%) !important;
+
+    /* Luxury Border */
+    border-right: 2px solid #D4AF37;
+
+    /* Shadow */
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .15);
+
+}
+
+/* Header */
+
+#mobileMenu .offcanvas-header {
+
+    padding: 20px;
+
+    background: #FFF8EF;
+
+    border-bottom: 1px solid #E7DDCC;
+
+}
+
+/* Body */
+
+#mobileMenu .offcanvas-body {
+
+    padding: 18px;
+
+}
+
+/* Menu Items */
+
+#mobileMenu .nav-item {
+
+    margin-bottom: 8px;
+
+}
+
+#mobileMenu .nav-link {
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 15px 18px;
+
+    border-radius: 14px;
+
+    color: #2D2D2D !important;
+
+    font-weight: 600;
+
+    transition: all .3s ease;
+
+}
+
+/* Hover */
+
+#mobileMenu .nav-link:hover {
+
+    background: #D4AF37;
+
+    color: #fff !important;
+
+    transform: translateX(4px);
+
+}
+
+/* Dropdown */
+
+#mobileMenu .dropdown-menu {
+
+    position: static !important;
+
+    transform: none !important;
+
+    margin-top: 10px;
+
+    background: #FFF8F0;
+
+    border: 1px solid #E7DDCC;
+
+    border-radius: 14px;
+
+    box-shadow: none;
+
+}
+
+#mobileMenu .dropdown-item {
+
+    padding: 13px 16px;
+
+    border-radius: 10px;
+
+    color: #2D2D2D;
+
+}
+
+#mobileMenu .dropdown-item:hover {
+
+    background: #D4AF37;
+
+    color: #fff !important;
+
+}
+
+/* Backdrop */
+
+.offcanvas-backdrop {
+
+    background: rgba(0, 0, 0, .45);
+
+}
+
+.offcanvas-backdrop.show {
+
+    opacity: 1;
+
+}
+
+/* Prevent Page Scroll */
+
+body.offcanvas-open {
+
+    overflow: hidden;
 
 }

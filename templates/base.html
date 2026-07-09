@@ -257,111 +257,123 @@ id="navbarText">
             </div>
         </div>
     </nav>
+
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
 
-<div class="offcanvas-header">
+    <div class="offcanvas-header border-bottom">
+        <img src="{% static 'images/logo.png' %}" class="navbar-logo" alt="RARA JEWELS">
 
-<img src="{% static 'images/logo.png' %}"
-class="navbar-logo">
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
 
-<button
-type="button"
-class="btn-close"
-data-bs-dismiss="offcanvas">
-</button>
+    <div class="offcanvas-body">
+
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop:home' %}">
+                    <i class="fa-solid fa-house me-2"></i> Home
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+
+                <a class="nav-link dropdown-toggle"
+                   href="#"
+                   data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-gem me-2"></i> Women
+                </a>
+
+                <ul class="dropdown-menu">
+
+                    <li>
+                        <a class="dropdown-item"
+                           href="{% url 'shop:products' %}?collection=women">
+                            All Women Collection
+                        </a>
+                    </li>
+
+                    <li><hr class="dropdown-divider"></li>
+
+                    {% for cat in nav_categories %}
+                        {% if "women" in cat.name|lower or "combo" in cat.name|lower or "anklet" in cat.name|lower or "mangalsutra" in cat.name|lower or "ring" in cat.name|lower or "earring" in cat.name|lower or "necklace" in cat.name|lower or "bracelet" in cat.name|lower %}
+                            {% if not cat.parent %}
+                                <li>
+                                    <a class="dropdown-item"
+                                       href="{% url 'shop:category_products' cat.slug %}">
+                                        {{ cat.name }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
+
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop:home' %}#new-arrivals">
+                    ✨ New Arrivals
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop:products' %}">
+                    <i class="fa-solid fa-store me-2"></i> Shop All
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop:track_order' %}">
+                    <i class="fa-solid fa-truck me-2"></i> Track Order
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop:wishlist' %}">
+                    <i class="fa-regular fa-heart me-2"></i> Wishlist
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop:cart_detail' %}">
+                    <i class="fa-solid fa-bag-shopping me-2"></i> Cart
+                </a>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:dashboard' %}">
+                        <i class="fa-regular fa-user me-2"></i> My Account
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:login' %}">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i> Login
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link text-warning"
+                       href="{% url 'shop:admin_dashboard' %}">
+                        <i class="fa-solid fa-gauge me-2"></i> Admin Panel
+                    </a>
+                </li>
+            {% endif %}
+
+        </ul>
+
+    </div>
 
 </div>
-
-<div class="offcanvas-body">
-
-<ul class="navbar-nav">
-
-<li class="nav-item">
-<a class="nav-link" href="{% url 'shop:home' %}">
-Home
-</a>
-</li>
-
-<li class="nav-item dropdown">
-
-<a class="nav-link dropdown-toggle"
-data-bs-toggle="dropdown">
-
-Women
-
-</a>
-
-<ul class="dropdown-menu">
-
-<li>
-
-<a class="dropdown-item"
-href="{% url 'shop:products' %}?collection=women">
-
-All Women Collection
-
-</a>
-
-</li>
-
-</ul>
-
-</li>
-
-<li class="nav-item">
-
-<a class="nav-link"
-href="{% url 'shop:home' %}#new-arrivals">
-
-✨ New Arrivals
-
-</a>
-
-</li>
-
-<li class="nav-item">
-
-<a class="nav-link"
-href="{% url 'shop:products' %}">
-
-Shop All
-
-</a>
-
-</li>
-
-<li class="nav-item">
-
-<a class="nav-link"
-href="{% url 'shop:track_order' %}">
-
-Track Order
-
-</a>
-
-</li>
-
-{% if user.is_authenticated and user.is_superuser %}
-
-<li class="nav-item">
-
-<a class="nav-link text-warning"
-href="{% url 'shop:admin_dashboard' %}">
-
-Admin Panel
-
-</a>
-
-</li>
-
-{% endif %}
-
-</ul>
-
-</div>
-
-</div>
-
+   
     <!-- Message Alerts (Toasts) -->
     <div class="container mt-3">
         {% if messages %}
