@@ -278,7 +278,7 @@
                         <img src="{{ rp.primary_image }}" class="rounded border-gold-dim" style="width: 80px; height: 80px; object-fit: cover;">
                     </a>
                     <div>
-                        <a href="{% url 'shop:product_detail' rp.slug %}" class="text-light text-sm hover-text-gold font-medium d-block mb-1">{{ rp.name }}</a>
+                        <a href="{% url 'shop:product_detail' rp.slug %}" class="text-dark text-sm hover-text-gold font-medium d-block mb-1">{{ rp.name }}</a>
                         <span class="text-warning font-bold text-sm">₹{{ rp.get_price }}</span>
                     </div>
                 </div>
