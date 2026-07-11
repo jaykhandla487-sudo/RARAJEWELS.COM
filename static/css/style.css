@@ -183,23 +183,9 @@ a:hover {
 ========================================== */
 
 .luxury-navbar {
-
     background: #FCFAF5 !important;
-
-    border-bottom: 1px solid #E7DDCC;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, .05);
-
-    backdrop-filter: blur(10px);
-
-    -webkit-backdrop-filter: blur(10px);
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 999;
-
+    border-bottom: 0 !important;
+    box-shadow: none !important;
 }
 
 /* Navbar Logo */
@@ -605,19 +591,13 @@ textarea.form-control {
 
 /* Carousel/Hero Slider */
 .luxury-slider {
-
     position: relative;
-
     overflow: hidden;
-
-    border-radius: 0px;
-
-    border: 1px solid #E7DDCC;
-
-    box-shadow: 0 15px 40px rgba(0, 0, 0, .08);
-
-    background: #FFFFFF;
-
+    border-radius: 0;
+    border: 0;
+    margin-top: 0;
+    box-shadow: none;
+    background: transparent;
 }
 
 /* ==========================================
@@ -688,7 +668,7 @@ textarea.form-control {
 @media (max-width:768px) {
 
     .carousel-item {
-        height: 380px;
+        height: 290px;
     }
 
     .carousel-img {

@@ -186,7 +186,7 @@
 
     <!-- Top Luxury Navigation Grid -->
     <nav class="navbar navbar-expand-lg sticky-top luxury-navbar">
-        <div class="container py-2">
+        <div class="container py-1">
             <a class="navbar-brand text-gold playfair-font fs-3 tracking-wide" href="{% url 'shop:home' %}">
               <img src="{% static 'images/logo.png' %}" alt="RARA JEWELS" class="navbar-logo">
             </a>
@@ -376,17 +376,18 @@ id="navbarText">
 </div>
    
     <!-- Message Alerts (Toasts) -->
-    <div class="container mt-3">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} bg-opacity-75 border-gold text-light alert-dismissible fade show" role="alert">
-                    {% if message.tags == 'success' %}<i class="fa-solid fa-circle-check me-2 text-warning"></i>{% endif %}
-                    {{ message }}
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
+   {% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
 
     <!-- Main Content Area -->
     <main>
