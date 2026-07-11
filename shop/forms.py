@@ -116,14 +116,49 @@ class OfferForm(forms.ModelForm):
 class BannerForm(forms.ModelForm):
     class Meta:
         model = Banner
-        fields = ['title', 'subtitle', 'image', 'link_url', 'order', 'active']
+        fields = [
+            'title',
+            'subtitle',
+            'desktop_image',
+            'mobile_image',
+            'image',          # optional fallback
+            'link_url',
+            'order',
+            'active',
+        ]
+
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control bg-dark text-light border-gold'}),
-            'subtitle': forms.TextInput(attrs={'class': 'form-control bg-dark text-light border-gold'}),
-            'image': forms.ClearableFileInput(attrs={'class': 'form-control bg-dark text-light border-gold'}),
-            'link_url': forms.TextInput(attrs={'class': 'form-control bg-dark text-light border-gold'}),
-            'order': forms.NumberInput(attrs={'class': 'form-control bg-dark text-light border-gold'}),
-            'active': forms.CheckboxInput(attrs={'class': 'form-check-input bg-dark border-gold'}),
+            'title': forms.TextInput(attrs={
+                'class': 'form-control bg-dark text-light border-gold'
+            }),
+
+            'subtitle': forms.TextInput(attrs={
+                'class': 'form-control bg-dark text-light border-gold'
+            }),
+
+            'desktop_image': forms.ClearableFileInput(attrs={
+                'class': 'form-control bg-dark text-light border-gold'
+            }),
+
+            'mobile_image': forms.ClearableFileInput(attrs={
+                'class': 'form-control bg-dark text-light border-gold'
+            }),
+
+            'image': forms.ClearableFileInput(attrs={
+                'class': 'form-control bg-dark text-light border-gold'
+            }),
+
+            'link_url': forms.TextInput(attrs={
+                'class': 'form-control bg-dark text-light border-gold'
+            }),
+
+            'order': forms.NumberInput(attrs={
+                'class': 'form-control bg-dark text-light border-gold'
+            }),
+
+            'active': forms.CheckboxInput(attrs={
+                'class': 'form-check-input bg-dark border-gold'
+            }),
         }
 
 class StoreSettingForm(forms.ModelForm):

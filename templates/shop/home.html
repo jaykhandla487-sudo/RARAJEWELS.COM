@@ -11,18 +11,25 @@
         {% if banners %}
             {% for banner in banners %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-         <picture>
+
+   <picture>
+
     {% if banner.mobile_image %}
-        <source media="(max-width:768px)" srcset="{{ banner.mobile_image.url }}">
+    <source media="(max-width: 768px)"
+            srcset="{{ banner.mobile_image.url }}">
     {% endif %}
 
     {% if banner.desktop_image %}
-        <source media="(min-width:769px)" srcset="{{ banner.desktop_image.url }}">
+    <source media="(min-width: 769px)"
+            srcset="{{ banner.desktop_image.url }}">
     {% endif %}
 
-    <img src="{% if banner.desktop_image %}{{ banner.desktop_image.url }}{% else %}{{ banner.image.url }}{% endif %}"
-         class="carousel-img"
-         alt="{{ banner.title }}">
+    <img
+        src="{% if banner.desktop_image %}{{ banner.desktop_image.url }}{% else %}{{ banner.image.url }}{% endif %}"
+        class="carousel-img"
+        alt="{{ banner.title }}"
+    >
+
 </picture>
                 <div class="carousel-caption-overlay text-center">
                     <div class="container text-start px-4 px-md-5">
@@ -117,8 +124,8 @@
 
 <!-- Featured Products Section -->
 {% if featured %}
-<section class="py-5">
-    <div class="container py-3">
+<section class="pt-2 pb-5">
+    <div class="container py-0">
         <div class="text-center mb-5">
             <span class="small-lettering text-gold">Curated Masterpieces</span>
           <h2 class="playfair-font text-dark mt-2 fs-1 fw-bold">FEATURED DESIGNS</h2>
@@ -154,7 +161,7 @@
 {% endif %}
 
 <!-- Best Sellers & Trending Section (Tabs) -->
-<section class="py-5">
+<section class="pt-5 pb-2">
     <div class="container py-3">
         <div class="text-center mb-4">
             <span class="small-lettering text-gold">Most Coveted Pieces</span>

@@ -666,157 +666,43 @@ textarea.form-control {
 
 }
 
-
-/* Hero Slider */
+/* =========================
+   HERO BANNER
+========================= */
 
 .carousel-item {
-
     position: relative;
-
-    height: 42vw;
-
-    min-height: 600px;
-
-    max-height: 800px;
-
+    width: 100%;
+    height: 620px;
     overflow: hidden;
-
-    background: #F8F4EC;
-
 }
-
-/* Desktop */
-
-@media(min-width:992px) {
-
-    .carousel-item {
-
-        height: 90vh;
-
-        min-height: 700px;
-
-    }
-
-}
-
-/* Hero Image */
 
 .carousel-img {
-
     width: 100%;
-
     height: 100%;
-
     object-fit: cover;
-
     object-position: center;
-
-    transition: .5s;
-
 }
 
-.carousel-item:hover .carousel-img {
-
-    transform: scale(1.05);
-
-}
-
-
-/* Hero Overlay */
-
-.carousel-caption-overlay {
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    padding-left: 5%;
-
-    background: linear-gradient(90deg,
-            rgba(248, 244, 236, .28) 0%,
-            rgba(248, 244, 236, .10) 45%,
-            rgba(248, 244, 236, .18) 100%);
-
-}
-
-/* Hero Text */
-
-.carousel-caption {
-
-    max-width: 650px;
-
-    text-align: left;
-
-    padding-left: 40px;
-
-}
-
-.carousel-caption h1 {
-
-    font-size: 58px;
-
-    font-family: var(--font-brand);
-
-    font-weight: 700;
-
-    color: #2D2D2D;
-
-    margin-bottom: 20px;
-
-}
-
-.carousel-caption p {
-
-    font-size: 18px;
-
-    color: #666666;
-
-    margin-bottom: 25px;
-
-}
-
-
-/* Mobile Hero */
-
-
-@media(max-width:768px) {
+/* Mobile */
+@media (max-width:768px) {
 
     .carousel-item {
-
-        height: auto;
-
-        aspect-ratio: 9/16;
-
-        min-height: auto;
-
+        height: 380px;
     }
 
     .carousel-img {
-
         width: 100%;
-
         height: 100%;
-
         object-fit: cover;
-
-        object-position: center;
-
+        object-position: center center;
     }
 
     .carousel-caption-overlay {
-
         display: none;
-
     }
 
 }
-
 
 /* ==========================================
    PREMIUM GLASS CARDS
@@ -1717,8 +1603,8 @@ a:focus-visible {
 
 .category-circle {
 
-    width: 165px;
-    height: 165px;
+    width: 140px;
+    height: 140px;
 
     margin: auto;
 
@@ -1800,8 +1686,8 @@ a:focus-visible {
 
     .category-circle {
 
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
 
     }
 
@@ -2167,4 +2053,12 @@ body.offcanvas-open {
 .thumbSwiper .swiper-slide-thumb-active img {
     border-color: #D4AF37;
     box-shadow: 0 0 12px rgba(212, 175, 55, .35);
+}
+
+.category-section {
+    padding-bottom: 20px !important;
+}
+
+.featured-section {
+    padding-top: 20px !important;
 }

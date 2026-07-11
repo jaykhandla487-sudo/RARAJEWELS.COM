@@ -30,7 +30,7 @@
                         {% for b in banners %}
                         <tr>
                             <td style="width: 100px;">
-                                <img src="{{ b.image.url }}" class="rounded" style="width: 80px; height: 50px; object-fit: cover; border: 1px solid var(--glass-border);">
+                                  <img src="{% if b.desktop_image %}{{ b.desktop_image.url }}{% else %}{{ b.image.url }}{% endif %}" class="rounded" style="width:80px;height:50px;object-fit:cover;border:1px solid var(--glass-border);">
                             </td>
                             <td>
                                 <strong class="text-light">{{ b.title|default:"Untitled Slide" }}</strong><br>
@@ -76,10 +76,26 @@
                     <label class="text-xs text-gold mb-1">Target link URL (optional)</label>
                     {{ form.link_url }}
                 </div>
-                <div class="mb-3">
-                    <label class="text-xs text-gold mb-1">Banner Image (Required)</label>
-                    {{ form.image }}
-                </div>
+              <div class="mb-3">
+    <label class="text-xs text-gold mb-1">
+        Desktop Banner (1920 × 800)
+    </label>
+    {{ form.desktop_image }}
+</div>
+
+<div class="mb-3">
+    <label class="text-xs text-gold mb-1">
+        Mobile Banner (1080 × 1350)
+    </label>
+    {{ form.mobile_image }}
+</div>
+
+<div class="mb-3">
+    <label class="text-xs text-gold mb-1">
+        Fallback Banner (Optional)
+    </label>
+    {{ form.image }}
+</div>
                 <div class="mb-3">
                     <label class="text-xs text-gold mb-1">Display Priority Order Number</label>
                     {{ form.order }}
