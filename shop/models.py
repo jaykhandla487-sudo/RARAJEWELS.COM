@@ -308,6 +308,17 @@ class Banner(models.Model):
     title = models.CharField(max_length=200, blank=True)
     subtitle = models.CharField(max_length=250, blank=True)
     image = models.ImageField(upload_to='banners/')
+    desktop_image = models.ImageField(
+    upload_to='banners/',
+    blank=True,
+    null=True
+)
+
+    mobile_image = models.ImageField(
+        upload_to='banners/',
+        blank=True,
+        null=True
+    )
     link_url = models.CharField(max_length=255, blank=True)
     order = models.IntegerField(default=0)
     active = models.BooleanField(default=True)

@@ -41,7 +41,43 @@ admin.site.register(Coupon)
 admin.site.register(Offer)
 admin.site.register(CustomerDiscountLead)
 admin.site.register(ReturnRequest)
-admin.site.register(Banner)
+@admin.register(Banner)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = (
+        "title",
+        "order",
+        "active",
+    )
+
+    list_editable = (
+        "order",
+        "active",
+    )
+
+    fieldsets = (
+        ("Banner Details", {
+            "fields": (
+                "title",
+                "subtitle",
+                "link_url",
+            )
+        }),
+
+        ("Banner Images", {
+            "fields": (
+                 "image",
+                "desktop_image",
+                "mobile_image",
+            )
+        }),
+
+        ("Settings", {
+            "fields": (
+                "order",
+                "active",
+            )
+        }),
+    )
 admin.site.register(Wishlist)
 admin.site.register(ProductReview)
 admin.site.register(ReviewImage)

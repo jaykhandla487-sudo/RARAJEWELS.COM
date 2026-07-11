@@ -11,9 +11,19 @@
         {% if banners %}
             {% for banner in banners %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-          <img src="{{ banner.image.url }}"
-     class="carousel-img"
-     alt="{{ banner.title }}">
+         <picture>
+    {% if banner.mobile_image %}
+        <source media="(max-width:768px)" srcset="{{ banner.mobile_image.url }}">
+    {% endif %}
+
+    {% if banner.desktop_image %}
+        <source media="(min-width:769px)" srcset="{{ banner.desktop_image.url }}">
+    {% endif %}
+
+    <img src="{% if banner.desktop_image %}{{ banner.desktop_image.url }}{% else %}{{ banner.image.url }}{% endif %}"
+         class="carousel-img"
+         alt="{{ banner.title }}">
+</picture>
                 <div class="carousel-caption-overlay text-center">
                     <div class="container text-start px-4 px-md-5">
                         <div class="col-lg-7">
