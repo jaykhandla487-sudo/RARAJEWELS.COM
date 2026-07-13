@@ -88,7 +88,7 @@
                     <hr class="border-gold-dim">
                     <div class="d-flex justify-content-between text-xs mb-2">
                         <span class="text-light-dim">Subtotal:</span>
-                        <span class="text-light">₹{{ subtotal }}</span>
+                        <span class="text-dark">₹{{ subtotal }}</span>
                     </div>
                     {% if discount > 0 %}
                     <div class="d-flex justify-content-between text-xs mb-2">
@@ -101,7 +101,7 @@
                         {% if shipping == 0 %}
                         <span class="text-success">FREE</span>
                         {% else %}
-                        <span class="text-light">₹{{ shipping }}</span>
+                        <span class="text-dark">₹{{ shipping }}</span>
                         {% endif %}
                     </div>
                     <hr class="border-gold-dim">
