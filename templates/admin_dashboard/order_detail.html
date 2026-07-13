@@ -23,26 +23,26 @@
             <div class="row g-3 text-sm mb-4">
                 <div class="col-6">
                     <span class="text-light-dim d-block text-xs">Order Number:</span>
-                    <strong class="text-light font-monospace fs-5">{{ order.order_number }}</strong>
+                    <strong class="text-dark font-monospace fs-5">{{ order.order_number }}</strong>
                 </div>
                 <div class="col-6">
                     <span class="text-light-dim d-block text-xs">Date Placed:</span>
-                    <strong class="text-light">{{ order.created_at|date:"Y-m-d h:i A" }}</strong>
+                    <strong class="text-dark">{{ order.created_at|date:"Y-m-d h:i A" }}</strong>
                 </div>
                 <div class="col-6">
                     <span class="text-light-dim d-block text-xs">Payment Method:</span>
-                    <strong class="text-light text-uppercase">{{ order.get_payment_method_display }}</strong>
+                    <strong class="text-dark text-uppercase">{{ order.get_payment_method_display }}</strong>
                 </div>
                 {% if order.razorpay_order_id %}
                 <div class="col-6">
                     <span class="text-light-dim d-block text-xs">Razorpay Order ID:</span>
-                    <strong class="text-light font-monospace">{{ order.razorpay_order_id }}</strong>
+                    <strong class="text-dark font-monospace">{{ order.razorpay_order_id }}</strong>
                 </div>
                 {% endif %}
                 {% if order.razorpay_payment_id %}
                 <div class="col-6">
                     <span class="text-light-dim d-block text-xs">Razorpay Payment ID:</span>
-                    <strong class="text-light font-monospace">{{ order.razorpay_payment_id }}</strong>
+                    <strong class="text-dark font-monospace">{{ order.razorpay_payment_id }}</strong>
                 </div>
                 {% endif %}
             </div>

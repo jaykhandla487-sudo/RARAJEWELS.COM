@@ -54,7 +54,7 @@
                         <div class="d-flex gap-3 align-items-center">
                             <img src="{{ item.product.primary_image }}" class="rounded" style="width: 50px; height: 50px; object-fit: cover; border: 1px solid var(--glass-border);">
                             <div class="flex-grow-1">
-                                <span class="text-light text-xs font-semibold d-block">{{ item.product.name|truncatechars:35 }}</span>
+                                <span class="text-dark text-xs font-semibold d-block">{{ item.product.name|truncatechars:35 }}</span>
                                 <span class="text-light-dim text-xs">Qty: {{ item.quantity }}</span>
                             </div>
                             <span class="text-warning text-xs font-semibold">₹{{ item.subtotal }}</span>
