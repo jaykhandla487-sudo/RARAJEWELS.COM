@@ -766,39 +766,56 @@ textarea.form-control {
 
 
 /* ==========================================
-   MOBILE HERO BANNER (1080 × 540)
+   PREMIUM MOBILE HERO (1080 × 675)
 ========================================== */
 
 @media (max-width:768px) {
 
+    /* Mobile Banner */
     .carousel-item {
-        aspect-ratio: 2 / 1;
+        aspect-ratio: 16 / 10;
         height: auto;
         overflow: hidden;
         border-radius: 0;
+        background: #1F2113;
     }
 
+    /* Banner Image */
     .carousel-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center;
+        object-position: center center;
+        display: block;
     }
 
+    /* Overlay */
     .carousel-caption-overlay {
-        padding: 15px;
+        padding: 18px;
+        display: flex;
         align-items: center;
     }
 
+    /* Heading */
     .hero-title {
-        font-size: 24px;
+        font-size: 26px;
         line-height: 1.2;
+        margin-bottom: 8px;
     }
 
+    /* Subtitle */
     .hero-subtitle {
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.4;
+        margin-bottom: 14px;
     }
+
+    /* Button */
+    .carousel-caption-overlay .btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+
 }
 
 /* ==========================================
