@@ -765,28 +765,40 @@ textarea.form-control {
 }
 
 
-/* Mobile Hero */
+/* ==========================================
+   MOBILE HERO BANNER (1080 × 540)
+========================================== */
 
-@media(max-width:768px) {
+@media (max-width:768px) {
 
     .carousel-item {
-
-        height: 360px;
-
+        aspect-ratio: 2 / 1;
+        height: auto;
+        overflow: hidden;
+        border-radius: 0;
     }
 
-    .carousel-caption h1 {
-
-        font-size: 32px;
-
+    .carousel-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
     }
 
-    .carousel-caption p {
-
-        font-size: 15px;
-
+    .carousel-caption-overlay {
+        padding: 15px;
+        align-items: center;
     }
 
+    .hero-title {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 13px;
+        line-height: 1.4;
+    }
 }
 
 /* ==========================================
