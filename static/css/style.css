@@ -2184,3 +2184,8 @@ body.offcanvas-open {
     }
 
 }
+
+/* Hide category slider dots */
+.categorySwiper .swiper-pagination {
+    display: none !important;
+}
