@@ -32,16 +32,14 @@
 
     <div class="card-body p-3">
 
-        <span class="small-lettering text-gold text-xs d-block mb-1">
-            {{ product.category.name }}
-        </span>
+       
 
-<h5 class="card-title playfair-font fs-6 text-dark mb-2">
-            <a href="{% url 'shop:product_detail' product.slug %}"
-             class="text-dark hover-text-gold"
-                {{ product.name|truncatechars:45 }}
-            </a>
-        </h5>
+<h5 class="card-title product-title mb-2">
+    <a href="{% url 'shop:product_detail' product.slug %}"
+       class="text-dark text-decoration-none hover-text-gold">
+        {{ product.name|truncatechars:45 }}
+    </a>
+</h5>
 
         <div class="d-flex align-items-center gap-2 mb-3">
             {% if product.discount_price %}
