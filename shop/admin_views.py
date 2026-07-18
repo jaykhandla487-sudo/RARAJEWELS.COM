@@ -187,21 +187,32 @@ def admin_orders_view(request):
 @superuser_required
 def admin_order_detail_view(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
-    
+
     if request.method == 'POST':
         new_order_status = request.POST.get('order_status')
         new_payment_status = request.POST.get('payment_status')
-        
+
         if new_order_status:
             order.order_status = new_order_status
         if new_payment_status:
             order.payment_status = new_payment_status
-            
+
         order.save()
         messages.success(request, f"Order status updated for {order.order_number}.")
         return redirect('shop:admin_order_detail', order_number=order.order_number)
-        
+
     return render(request, 'admin_dashboard/order_detail.html', {'order': order})
+
+
+@superuser_required
+def admin_order_delete_view(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+
+    if request.method == "POST":
+        order.delete()
+        messages.success(request, f"Order {order.order_number} deleted successfully.")
+
+    return redirect("shop:admin_orders")
 
 # --- Returns Management ---
 

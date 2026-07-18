@@ -67,6 +67,7 @@ urlpatterns = [
     # Orders Management
     path('luxury-admin/orders/', admin_views.admin_orders_view, name='admin_orders'),
     path('luxury-admin/order/<str:order_number>/', admin_views.admin_order_detail_view, name='admin_order_detail'),
+    path('luxury-admin/order/<str:order_number>/delete/',admin_views.admin_order_delete_view,name='admin_order_delete'),
     
     # Returns Management
     path('luxury-admin/returns/', admin_views.admin_return_requests_view, name='admin_returns'),
