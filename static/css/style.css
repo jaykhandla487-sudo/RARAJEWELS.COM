@@ -2232,3 +2232,31 @@ body.offcanvas-open {
     }
 
 }
+
+.star-rating-input {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.star-rating-input input {
+    display: none;
+}
+
+.star-rating-input label {
+    font-size: 32px;
+    color: #d8d8d8;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.star-rating-input label:hover,
+.star-rating-input label:hover~label {
+    color: #FFD700;
+    transform: scale(1.12);
+}
+
+.star-rating-input input:checked~label {
+    color: #FFD700;
+}
