@@ -2191,3 +2191,44 @@ body.offcanvas-open {
 .categorySwiper .swiper-pagination {
     display: none !important;
 }
+
+/* ===== Product Detail Action Buttons ===== */
+
+.col-9 .d-flex {
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px !important;
+}
+
+.add-cart-btn {
+    flex: 0 0 220px !important;
+    width: 220px !important;
+    max-width: 220px !important;
+    height: 54px;
+    font-size: 15px;
+    padding: 0 18px !important;
+    white-space: nowrap;
+}
+
+.wishlist-circle {
+    flex: 0 0 54px !important;
+    width: 54px !important;
+    height: 54px !important;
+    min-width: 54px;
+}
+
+@media (max-width:768px) {
+
+    .add-cart-btn {
+        flex: 1 1 auto !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+
+    .wishlist-circle {
+        width: 50px !important;
+        height: 50px !important;
+        flex: 0 0 50px !important;
+    }
+
+}
