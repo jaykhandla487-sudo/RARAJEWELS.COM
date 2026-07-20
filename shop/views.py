@@ -481,8 +481,12 @@ def verify_razorpay_payment_view(request):
             order.payment_status = 'completed'
             order.order_status = 'processing'
             order.save()
+            request.session["purchase_value"] = float(order.total_price)
             messages.success(request, f"Payment simulated successfully! Order {order.order_number} is processing.")
-            return JsonResponse({'status': 'success', 'redirect_url': '/accounts/dashboard/'})
+            return JsonResponse({
+               'status': 'success',
+                   'redirect_url': f'/payment-success/{order.order_number}/'
+            })
         else:
             # Live signature validation
             client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
@@ -498,8 +502,12 @@ def verify_razorpay_payment_view(request):
                 order.payment_status = 'completed'
                 order.order_status = 'processing'
                 order.save()
+                request.session["purchase_value"] = float(order.total_price)
                 messages.success(request, "Payment verified successfully. Your order is processing!")
-                return JsonResponse({'status': 'success', 'redirect_url': '/accounts/dashboard/'})
+                return JsonResponse({
+                    'status': 'success',
+                    'redirect_url': f'/payment-success/{order.order_number}/'
+                })  
             except Exception as e:
                 order.payment_status = 'failed'
                 order.save()
@@ -682,6 +690,25 @@ def blogs_view(request):
 
 def careers_view(request):
     return render(request, 'careers.html')
-    from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
 
+@login_required
+def payment_success_view(request, order_number):
+    order = get_object_or_404(
+        Order,
+        order_number=order_number,
+        user=request.user
+    )
+
+    context = {
+        "order": order,
+        "purchase_value": request.session.pop(
+            "purchase_value",
+            order.total_price
+        )
+    }
+
+    return render(
+        request,
+        "shop/payment_success.html",
+        context
+    )

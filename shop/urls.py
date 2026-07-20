@@ -11,6 +11,12 @@ urlpatterns = [
     path('products/', views.category_products_view, name='products'),
     path('products/category/<slug:slug>/', views.category_products_view, name='category_products'),
     path('product/<slug:slug>/', views.product_detail_view, name='product_detail'),
+
+    path(
+        'payment-success/<str:order_number>/',
+        views.payment_success_view,
+        name='payment_success',
+    ),  
     
     # Cart
     path('cart/', views.cart_detail_view, name='cart_detail'),
