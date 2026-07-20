@@ -171,10 +171,20 @@
         </div>
         <div class="col-9 pt-3">
             <div class="d-flex gap-3">
-              <button type="submit" class="btn btn-gold rounded-pill add-cart-btn py-3 font-semibold tracking-wide">
-                    <i class="fa-solid fa-bag-shopping me-2"></i>ADD TO BAG
-                </button>
-           <a href="{% url 'shop:toggle_wishlist' product.id %}"
+             <button
+    type="submit"
+    onclick="fbq('track','AddToCart',{
+        content_ids:['{{ product.id }}'],
+        content_name:'{{ product.name|escapejs }}',
+        value:{% if product.discount_price %}{{ product.discount_price }}{% else %}{{ product.price }}{% endif %},
+        currency:'INR'
+    })"
+    class="btn btn-gold rounded-pill add-cart-btn py-3 font-semibold tracking-wide">
+
+    <i class="fa-solid fa-bag-shopping me-2"></i>
+    ADD TO BAG
+</button>
+<a href="{% url 'shop:toggle_wishlist' product.id %}"
 class="btn btn-outline-gold rounded-circle p-0 d-flex align-items-center justify-content-center wishlist-circle">
                     <i class="fa-regular fa-heart fs-4"></i>
                 </a>
@@ -333,6 +343,15 @@ class="btn btn-outline-gold rounded-circle p-0 d-flex align-items-center justify
         </div>
     </div>
 </div>
+<script>
+fbq('track', 'ViewContent', {
+    content_ids: ['{{ product.id }}'],
+    content_name: '{{ product.name|escapejs }}',
+    content_type: 'product',
+    value: {% if product.discount_price %}{{ product.discount_price }}{% else %}{{ product.price }}{% endif %},
+    currency: 'INR'
+});
+</script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 

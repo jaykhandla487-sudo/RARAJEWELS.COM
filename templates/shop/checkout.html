@@ -160,6 +160,13 @@
 
 {% block extra_js %}
 <script>
+fbq('track', 'InitiateCheckout', {
+    value: {{ total }},
+    currency: 'INR',
+    num_items: {{ cart.items_count }}
+});
+</script>
+<script>
     function applyPromoCoupon() {
         const code = document.getElementById("couponCodeInput").value.trim();
         if (code === "") {
